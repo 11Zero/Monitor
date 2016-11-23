@@ -1,0 +1,1792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|Win32">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|x64">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release|Win32">
+      <Configuration>Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release|x64">
+      <Configuration>Unicode Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}</ProjectGuid>
+    <RootNamespace>BCGCBPro</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.40825.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>.\Debug110U\</IntDir>
+    <TargetName>BCGCBPRO2210ud110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+    <OutDir>..\bin64\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>BCGCBPRO2210ud110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>.\Debug110\</IntDir>
+    <TargetName>BCGCBPRO2210d110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\bin64\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>BCGCBPRO2210d110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>.\Release110\</IntDir>
+    <TargetName>BCGCBPRO2210110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\bin64\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>BCGCBPRO2210110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>.\Release110U\</IntDir>
+    <TargetName>BCGCBPRO2210u110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+    <OutDir>..\bin64\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>BCGCBPRO2210u110</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_AFXEXT;_BCGCBPRO_;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug110U/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug110U/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug110U/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug110U/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\bin/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_AFXEXT;_BCGCBPRO_;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug64U/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug64U/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug64U/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug64U/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\bin64/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin64/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_AFXEXT;_BCGCBPRO_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug110/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug110/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug110/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug110/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\bin/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin/$(TargetName).lib</ImportLibrary>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_AFXEXT;_BCGCBPRO_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug64/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug64/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug64/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug64/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\bin64/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin64/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_AFXEXT;_BCGCBPRO_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release110/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release110/</AssemblerListingLocation>
+      <ObjectFileName>.\Release110/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release110/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>..\bin/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_AFXEXT;_BCGCBPRO_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release64/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release64/</AssemblerListingLocation>
+      <ObjectFileName>.\Release64/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release64/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>..\bin64/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin64/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_MBCS;_AFXEXT;_BCGCBPRO_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release110U/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release110U/</AssemblerListingLocation>
+      <ObjectFileName>.\Release110U/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release110U/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>..\bin/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>..\bin/BCGCBPro110.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_MBCS;_AFXEXT;_BCGCBPRO_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release64U/$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release64U/</AssemblerListingLocation>
+      <ObjectFileName>.\Release64U/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release64U/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>..\bin64/$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\bin64/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BCGCBPro.cpp" />
+    <ClCompile Include="Bcgglobals.cpp" />
+    <ClCompile Include="BCGPAnimCtrl.cpp" />
+    <ClCompile Include="BCGPAppBarWnd.cpp" />
+    <ClCompile Include="BCGPAutoHideButton.cpp" />
+    <ClCompile Include="BCGPAutoHideDockBar.cpp" />
+    <ClCompile Include="BCGPAutoHideToolBar.cpp" />
+    <ClCompile Include="BCGPBarContainer.cpp" />
+    <ClCompile Include="BCGPBarContainerManager.cpp" />
+    <ClCompile Include="BCGPBaseControlBar.cpp" />
+    <ClCompile Include="BCGPBaseInfo.cpp" />
+    <ClCompile Include="BCGPBaseRibbonElement.cpp" />
+    <ClCompile Include="BCGPBaseTabbedBar.cpp" />
+    <ClCompile Include="BCGPBaseTabWnd.cpp" />
+    <ClCompile Include="BCGPBaseToolBar.cpp" />
+    <ClCompile Include="BCGPBreadcrumb.cpp" />
+    <ClCompile Include="BCGPBreadcrumbControlImpl.cpp" />
+    <ClCompile Include="BCGPBrushButton.cpp" />
+    <ClCompile Include="BCGPButton.cpp" />
+    <ClCompile Include="BCGPCalculator.cpp" />
+    <ClCompile Include="BCGPCalendarBar.cpp" />
+    <ClCompile Include="BCGPCalendarMenuButton.cpp" />
+    <ClCompile Include="BCGPCaptionBar.cpp" />
+    <ClCompile Include="BCGPCaptionButton.cpp" />
+    <ClCompile Include="BCGPCaptionMenuButton.cpp" />
+    <ClCompile Include="BCGPColorBar.cpp" />
+    <ClCompile Include="BCGPColorButton.cpp" />
+    <ClCompile Include="BCGPColorDialog.cpp" />
+    <ClCompile Include="BCGPColorMenuButton.cpp" />
+    <ClCompile Include="BCGPComboBox.cpp" />
+    <ClCompile Include="BCGPCommandManager.cpp" />
+    <ClCompile Include="BCGPContextMenuManager.cpp" />
+    <ClCompile Include="BCGPControlBar.cpp" />
+    <ClCompile Include="BCGPControlBarImpl.cpp" />
+    <ClCompile Include="BCGPControlRenderer.cpp" />
+    <ClCompile Include="BCGPCustomizeMenuButton.cpp" />
+    <ClCompile Include="BCGPDAOGridCtrl.cpp" />
+    <ClCompile Include="BCGPDateTimeCtrl.cpp" />
+    <ClCompile Include="BCGPDBGridCtrl.cpp" />
+    <ClCompile Include="BCGPDiagramConnector.cpp" />
+    <ClCompile Include="BCGPDiagramCtrl.cpp" />
+    <ClCompile Include="BCGPDiagramShape.cpp" />
+    <ClCompile Include="BCGPDiagramView.cpp" />
+    <ClCompile Include="BCGPDiagramVisualConstructor.cpp" />
+    <ClCompile Include="BCGPDiagramVisualContainer.cpp" />
+    <ClCompile Include="BCGPDiagramVisualObject.cpp" />
+    <ClCompile Include="BCGPDialog.cpp" />
+    <ClCompile Include="BCGPDialogBar.cpp" />
+    <ClCompile Include="BCGPDlgImpl.cpp" />
+    <ClCompile Include="BCGPDockBar.cpp" />
+    <ClCompile Include="BCGPDockBarRow.cpp" />
+    <ClCompile Include="BCGPDockingCBWrapper.cpp" />
+    <ClCompile Include="BCGPDockingControlBar.cpp" />
+    <ClCompile Include="BCGPDockManager.cpp" />
+    <ClCompile Include="BCGPDragFrameImpl.cpp" />
+    <ClCompile Include="BCGPDrawManager.cpp" />
+    <ClCompile Include="BCGPDropDown.cpp" />
+    <ClCompile Include="BCGPDropDownList.cpp" />
+    <ClCompile Include="BCGPDurationCtrl.cpp" />
+    <ClCompile Include="BCGPEdit.cpp" />
+    <ClCompile Include="BCGPEditBrushDlg.cpp" />
+    <ClCompile Include="BCGPEditCtrl.cpp" />
+    <ClCompile Include="BCGPEditListBox.cpp" />
+    <ClCompile Include="BCGPEditView.cpp" />
+    <ClCompile Include="BCGPExCheckList.cpp" />
+    <ClCompile Include="BCGPExplorerToolBar.cpp" />
+    <ClCompile Include="BCGPFileDialog.cpp" />
+    <ClCompile Include="BCGPFontComboBox.cpp" />
+    <ClCompile Include="BCGPFormView.cpp" />
+    <ClCompile Include="BCGPFrameImpl.cpp" />
+    <ClCompile Include="BCGPFrameWnd.cpp" />
+    <ClCompile Include="BCGPFullScreenImpl.cpp" />
+    <ClCompile Include="BCGPGestureManager.cpp" />
+    <ClCompile Include="BCGPGlobalUtils.cpp" />
+    <ClCompile Include="BCGPGridCtrl.cpp" />
+    <ClCompile Include="BCGPGridFilter.cpp" />
+    <ClCompile Include="BCGPGridFilterMenu.cpp" />
+    <ClCompile Include="BCGPGridSerialize.cpp" />
+    <ClCompile Include="BCGPGridView.cpp" />
+    <ClCompile Include="BCGPGroup.cpp" />
+    <ClCompile Include="BCGPHeaderCtrl.cpp" />
+    <ClCompile Include="BCGPHotSpotImageCtrl.cpp" />
+    <ClCompile Include="BCGPImageEditDlg.cpp" />
+    <ClCompile Include="BCGPImageProcessing.cpp" />
+    <ClCompile Include="BCGPInplaceEdit.cpp" />
+    <ClCompile Include="BCGPInplaceToolTipCtrl.cpp" />
+    <ClCompile Include="BCGPIntelliSenseLB.cpp" />
+    <ClCompile Include="BCGPIntelliSenseWnd.cpp" />
+    <ClCompile Include="BCGPKeyboardManager.cpp" />
+    <ClCompile Include="BCGPKeyboardPage.cpp" />
+    <ClCompile Include="BCGPKeyHelper.cpp" />
+    <ClCompile Include="BCGPKeyMapDlg.cpp" />
+    <ClCompile Include="BCGPLayout.cpp" />
+    <ClCompile Include="BCGPLineStyleComboBox.cpp" />
+    <ClCompile Include="BCGPListBox.cpp" />
+    <ClCompile Include="BCGPListCtrl.cpp" />
+    <ClCompile Include="BCGPLocalRes.cpp" />
+    <ClCompile Include="BCGPMainClientAreaWnd.cpp" />
+    <ClCompile Include="BCGPMaskEdit.cpp" />
+    <ClCompile Include="BCGPMath.cpp" />
+    <ClCompile Include="BCGPMDIChildWnd.cpp" />
+    <ClCompile Include="BCGPMDIFrameWnd.cpp" />
+    <ClCompile Include="BCGPMenuBar.cpp" />
+    <ClCompile Include="BCGPMenuButton.cpp" />
+    <ClCompile Include="BCGPMenuPage.cpp" />
+    <ClCompile Include="BCGPMessageBox.cpp" />
+    <ClCompile Include="BCGPPageTransitionManager.cpp" />
+    <ClCompile Include="BCGPShadowManager.cpp" />
+    <ClCompile Include="BCGPSwitchImpl.cpp" />
+    <ClCompile Include="BCGPVisualManager2013.cpp" />
+    <ClCompile Include="BCGPWinUITiles.cpp" />
+    <ClCompile Include="BCGPMiniFrameWnd.cpp" />
+    <ClCompile Include="BCGPMouseManager.cpp" />
+    <ClCompile Include="BCGPMousePage.cpp" />
+    <ClCompile Include="BCGPMultiMiniFrameWnd.cpp" />
+    <ClCompile Include="BCGPODBCGridCtrl.cpp" />
+    <ClCompile Include="BCGPOleCntrFrameWnd.cpp" />
+    <ClCompile Include="BCGPOleDocIPFrameWnd.cpp" />
+    <ClCompile Include="BCGPOleIPFrameWnd.cpp" />
+    <ClCompile Include="BCGPOleServerDoc.cpp" />
+    <ClCompile Include="BCGPOptionsPage.cpp" />
+    <ClCompile Include="BCGPOutlineParser.cpp" />
+    <ClCompile Include="BCGPOutlookBar.cpp" />
+    <ClCompile Include="BCGPOutlookBarDockingPane.cpp" />
+    <ClCompile Include="BCGPOutlookBarPane.cpp" />
+    <ClCompile Include="BCGPOutlookButton.cpp" />
+    <ClCompile Include="BCGPOutlookWnd.cpp" />
+    <ClCompile Include="BCGPPngImage.cpp" />
+    <ClCompile Include="BCGPPopupDlg.cpp" />
+    <ClCompile Include="BCGPPopupMenu.cpp" />
+    <ClCompile Include="BCGPPopupMenuBar.cpp" />
+    <ClCompile Include="BCGPPopupWindow.cpp" />
+    <ClCompile Include="BCGPPowerColorPicker.cpp" />
+    <ClCompile Include="BCGPPrintPreviewCtrl.cpp" />
+    <ClCompile Include="BCGPPrintPreviewView.cpp" />
+    <ClCompile Include="BCGPProgressCtrl.cpp" />
+    <ClCompile Include="BCGPProgressDlg.cpp" />
+    <ClCompile Include="BCGPPropertyPage.cpp" />
+    <ClCompile Include="BCGPPropertySheet.cpp" />
+    <ClCompile Include="BCGPPropList.cpp" />
+    <ClCompile Include="BCGPReBar.cpp" />
+    <ClCompile Include="BCGPRebarState.cpp" />
+    <ClCompile Include="BCGPRecentDockInfo.cpp" />
+    <ClCompile Include="BCGPRegistry.cpp" />
+    <ClCompile Include="BCGPRenameDlg.cpp" />
+    <ClCompile Include="BCGPReportCtrl.cpp" />
+    <ClCompile Include="BCGPReportView.cpp" />
+    <ClCompile Include="BCGPRibbonBackstagePageRecent.cpp" />
+    <ClCompile Include="BCGPRibbonCustomizationData.cpp" />
+    <ClCompile Include="BCGPRibbonCustomizeQATPage.cpp" />
+    <ClCompile Include="BCGPRibbonItemDlg.cpp" />
+    <ClCompile Include="BCGPRibbonTreeCtrl.cpp" />
+    <ClCompile Include="BCGPScrollBar.cpp" />
+    <ClCompile Include="BCGPSDPlaceMarkerWnd.cpp" />
+    <ClCompile Include="BCGPSelectSkinDlg.cpp" />
+    <ClCompile Include="BCGPShellBreadcrumb.cpp" />
+    <ClCompile Include="BCGPShellList.cpp" />
+    <ClCompile Include="BCGPShellManager.cpp" />
+    <ClCompile Include="BCGPShellTree.cpp" />
+    <ClCompile Include="BCGPShowAllButton.cpp" />
+    <ClCompile Include="BCGPSkinManager.cpp" />
+    <ClCompile Include="BCGPSlider.cpp" />
+    <ClCompile Include="BCGPSliderCtrl.cpp" />
+    <ClCompile Include="BCGPSmartDockingManager.cpp" />
+    <ClCompile Include="BCGPSmartDockingMarker.cpp" />
+    <ClCompile Include="BCGPSound.cpp" />
+    <ClCompile Include="BCGPSpinButtonCtrl.cpp" />
+    <ClCompile Include="BCGPSplitterWnd.cpp" />
+    <ClCompile Include="BCGPStatic.cpp" />
+    <ClCompile Include="BCGPStatusBar.cpp" />
+    <ClCompile Include="BCGPTabbedControlBar.cpp" />
+    <ClCompile Include="BCGPTabbedToolbar.cpp" />
+    <ClCompile Include="BCGPTabView.cpp" />
+    <ClCompile Include="BCGPTabWnd.cpp" />
+    <ClCompile Include="BCGPTagCloud.cpp" />
+    <ClCompile Include="BCGPTagManager.cpp" />
+    <ClCompile Include="BCGPTaskPaneMiniFrameWnd.cpp" />
+    <ClCompile Include="BCGPTasksPane.cpp" />
+    <ClCompile Include="BCGPTearOffManager.cpp" />
+    <ClCompile Include="BCGPTextFormatDlg.cpp" />
+    <ClCompile Include="BCGPToolBar.cpp" />
+    <ClCompile Include="BCGPToolbarButton.cpp" />
+    <ClCompile Include="BCGPToolbarComboBoxButton.cpp" />
+    <ClCompile Include="BCGPToolbarCustomize.cpp" />
+    <ClCompile Include="BCGPToolbarCustomizePages.cpp" />
+    <ClCompile Include="BCGPToolbarDateTimeCtrl.cpp" />
+    <ClCompile Include="BCGPToolbarDropSource.cpp" />
+    <ClCompile Include="BCGPToolbarDropTarget.cpp" />
+    <ClCompile Include="BCGPToolbarEditBoxButton.cpp" />
+    <ClCompile Include="BCGPToolbarFontCombo.cpp" />
+    <ClCompile Include="BCGPToolBarImages.cpp" />
+    <ClCompile Include="BCGPToolbarMenuButton.cpp" />
+    <ClCompile Include="BCGPToolbarMenuButtonsButton.cpp" />
+    <ClCompile Include="BCGPToolbarSpinEditBoxButton.cpp" />
+    <ClCompile Include="BCGPToolbarSystemMenuButton.cpp" />
+    <ClCompile Include="BCGPToolBox.cpp" />
+    <ClCompile Include="BCGPToolsPage.cpp" />
+    <ClCompile Include="BCGPToolTipCtrl.cpp" />
+    <ClCompile Include="BCGPTooltipManager.cpp" />
+    <ClCompile Include="BCGPTreeCtrl.cpp" />
+    <ClCompile Include="BCGPTreeMap.cpp" />
+    <ClCompile Include="BCGPURLLinkButton.cpp" />
+    <ClCompile Include="BCGPUserTool.cpp" />
+    <ClCompile Include="BCGPUserToolsManager.cpp" />
+    <ClCompile Include="BCGPVisualManagerVS2012.cpp" />
+    <ClCompile Include="BCGPWindowsManagerDlg.cpp" />
+    <ClCompile Include="BCGPWnd.cpp" />
+    <ClCompile Include="BCGPWorkspace.cpp" />
+    <ClCompile Include="ButtonAppearanceDlg.cpp" />
+    <ClCompile Include="ButtonsList.cpp" />
+    <ClCompile Include="ButtonsTextList.cpp" />
+    <ClCompile Include="CalendarPopup.cpp" />
+    <ClCompile Include="CmdUsageCount.cpp" />
+    <ClCompile Include="ColorPage1.cpp" />
+    <ClCompile Include="ColorPage2.cpp" />
+    <ClCompile Include="ColorPopup.cpp" />
+    <ClCompile Include="CustomizeButton.cpp" />
+    <ClCompile Include="ImagePaintArea.cpp" />
+    <ClCompile Include="KeyAssign.cpp" />
+    <ClCompile Include="MenuHash.cpp" />
+    <ClCompile Include="MenuImages.cpp" />
+    <ClCompile Include="PropertySheetCtrl.cpp" />
+    <ClCompile Include="RegPath.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ToolbarNameDlg.cpp" />
+    <ClCompile Include="TrackMouse.cpp" />
+    <ClCompile Include="BCGPAppointment.cpp" />
+    <ClCompile Include="BCGPAppointmentDS.cpp" />
+    <ClCompile Include="BCGPAppointmentProperty.cpp" />
+    <ClCompile Include="BCGPAppointmentStorage.cpp" />
+    <ClCompile Include="BCGPPlannerClockIcons.cpp" />
+    <ClCompile Include="BCGPPlannerDropSource.cpp" />
+    <ClCompile Include="BCGPPlannerDropTarget.cpp" />
+    <ClCompile Include="BCGPPlannerManagerCtrl.cpp" />
+    <ClCompile Include="BCGPPlannerManagerView.cpp" />
+    <ClCompile Include="BCGPPlannerPrint.cpp" />
+    <ClCompile Include="BCGPPlannerPrintDay.cpp" />
+    <ClCompile Include="BCGPPlannerPrintDual.cpp" />
+    <ClCompile Include="BCGPPlannerPrintMonth.cpp" />
+    <ClCompile Include="BCGPPlannerPrintWeek.cpp" />
+    <ClCompile Include="BCGPPlannerView.cpp" />
+    <ClCompile Include="BCGPPlannerViewDay.cpp" />
+    <ClCompile Include="BCGPPlannerViewMonth.cpp" />
+    <ClCompile Include="BCGPPlannerViewMulti.cpp" />
+    <ClCompile Include="BCGPPlannerViewWeek.cpp" />
+    <ClCompile Include="BCGPPlannerViewWorkWeek.cpp" />
+    <ClCompile Include="BCGPRecurrence.cpp" />
+    <ClCompile Include="BCGPRecurrenceRule.cpp" />
+    <ClCompile Include="BCGPRecurrenceRules.cpp" />
+    <ClCompile Include="BCGPRibbonBackstagePagePrint.cpp" />
+    <ClCompile Include="BCGPRibbonBackstageView.cpp" />
+    <ClCompile Include="BCGPRibbonBackstageViewPanel.cpp" />
+    <ClCompile Include="BCGPRibbonBar.cpp" />
+    <ClCompile Include="BCGPRibbonButton.cpp" />
+    <ClCompile Include="BCGPRibbonButtonsGroup.cpp" />
+    <ClCompile Include="BCGPRibbonCategory.cpp" />
+    <ClCompile Include="BCGPRibbonCheckBox.cpp" />
+    <ClCompile Include="BCGPRibbonCollector.cpp" />
+    <ClCompile Include="BCGPRibbonColorButton.cpp" />
+    <ClCompile Include="BCGPRibbonComboBox.cpp" />
+    <ClCompile Include="BCGPRibbonCommandsListBox.cpp" />
+    <ClCompile Include="BCGPRibbonConstructor.cpp" />
+    <ClCompile Include="BCGPRibbonCustomizePage.cpp" />
+    <ClCompile Include="BCGPRibbonDialogBar.cpp" />
+    <ClCompile Include="BCGPRibbonEdit.cpp" />
+    <ClCompile Include="BCGPRibbonElementHostCtrl.cpp" />
+    <ClCompile Include="BCGPRibbonFloaty.cpp" />
+    <ClCompile Include="BCGPRibbonHyperlink.cpp" />
+    <ClCompile Include="BCGPRibbonInfo.cpp" />
+    <ClCompile Include="BCGPRibbonInfoLoader.cpp" />
+    <ClCompile Include="BCGPRibbonInfoWriter.cpp" />
+    <ClCompile Include="BCGPRibbonKeyboardCustomizeDlg.cpp" />
+    <ClCompile Include="BCGPRibbonKeyTip.cpp" />
+    <ClCompile Include="BCGPRibbonLabel.cpp" />
+    <ClCompile Include="BCGPRibbonMainPanel.cpp" />
+    <ClCompile Include="BCGPRibbonPaletteButton.cpp" />
+    <ClCompile Include="BCGPRibbonPanel.cpp" />
+    <ClCompile Include="BCGPRibbonPanelMenu.cpp" />
+    <ClCompile Include="BCGPRibbonProgressBar.cpp" />
+    <ClCompile Include="BCGPRibbonQuickAccessToolbar.cpp" />
+    <ClCompile Include="BCGPRibbonQuickStepsButton.cpp" />
+    <ClCompile Include="BCGPRibbonSlider.cpp" />
+    <ClCompile Include="BCGPRibbonStatusBar.cpp" />
+    <ClCompile Include="BCGPRibbonStatusBarPane.cpp" />
+    <ClCompile Include="BCGPRibbonToolsPage.cpp" />
+    <ClCompile Include="BCGPRibbonUndoButton.cpp" />
+    <ClCompile Include="BCGPGanttChart.cpp" />
+    <ClCompile Include="BCGPGanttControl.cpp" />
+    <ClCompile Include="BCGPGanttGrid.cpp" />
+    <ClCompile Include="BCGPGanttItem.cpp" />
+    <ClCompile Include="BCGPGanttItemStorage.cpp" />
+    <ClCompile Include="BCGPGanttRenderer.cpp" />
+    <ClCompile Include="BCGPGanttView.cpp" />
+    <ClCompile Include="BCGPEngine3D.cpp" />
+    <ClCompile Include="BCGPEngine3DOpenGL.cpp" />
+    <ClCompile Include="BCGPGraphicsManager.cpp" />
+    <ClCompile Include="BCGPGraphicsManagerD2D.cpp" />
+    <ClCompile Include="BCGPGraphicsManagerGDI.cpp" />
+    <ClCompile Include="BCGPVisualManager.cpp" />
+    <ClCompile Include="BCGPVisualManager2003.cpp" />
+    <ClCompile Include="BCGPVisualManager2007.cpp" />
+    <ClCompile Include="BCGPVisualManager2010.cpp" />
+    <ClCompile Include="BCGPVisualManagerCarbon.cpp" />
+    <ClCompile Include="BCGPVisualManagerScenic.cpp" />
+    <ClCompile Include="BCGPVisualManagerVS2005.cpp" />
+    <ClCompile Include="BCGPVisualManagerVS2008.cpp" />
+    <ClCompile Include="BCGPVisualManagerVS2010.cpp" />
+    <ClCompile Include="BCGPVisualManagerXP.cpp" />
+    <ClCompile Include="BCGPWinXPVisualManager.cpp" />
+    <ClCompile Include="BCGPVisualCollector.cpp" />
+    <ClCompile Include="BCGPVisualConstructor.cpp" />
+    <ClCompile Include="BCGPVisualContainer.cpp" />
+    <ClCompile Include="BCGPVisualCtrl.cpp" />
+    <ClCompile Include="BCGPVisualInfo.cpp" />
+    <ClCompile Include="BCGPChartAxis.cpp" />
+    <ClCompile Include="BCGPChartCtrl.cpp" />
+    <ClCompile Include="BCGPChartFormat.cpp" />
+    <ClCompile Include="BCGPChartFormula.cpp" />
+    <ClCompile Include="BCGPChartImpl.cpp" />
+    <ClCompile Include="BCGPChartLegend.cpp" />
+    <ClCompile Include="BCGPChartObject.cpp" />
+    <ClCompile Include="BCGPChartSeries.cpp" />
+    <ClCompile Include="BCGPChartShape3D.cpp" />
+    <ClCompile Include="BCGPChartView.cpp" />
+    <ClCompile Include="BCGPChartVisualObject.cpp" />
+    <ClCompile Include="BCGPAnalogClock.cpp" />
+    <ClCompile Include="BCGPCircularGaugeImpl.cpp" />
+    <ClCompile Include="BCGPColorIndicatorImpl.cpp" />
+    <ClCompile Include="BCGPGaugeImpl.cpp" />
+    <ClCompile Include="BCGPImageGaugeImpl.cpp" />
+    <ClCompile Include="BCGPKnob.cpp" />
+    <ClCompile Include="BCGPLinearGaugeImpl.cpp" />
+    <ClCompile Include="BCGPNumericIndicatorImpl.cpp" />
+    <ClCompile Include="BCGPRadialMenu.cpp" />
+    <ClCompile Include="BCGPRotationObject.cpp" />
+    <ClCompile Include="BCGPStaticGaugeImpl.cpp" />
+    <ClCompile Include="BCGPTextGaugeImpl.cpp" />
+    <ClCompile Include="Zlib\adler32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\compress.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\crc32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\deflate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\inffast.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\inflate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\inftrees.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\trees.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\zutil.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\png.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngerror.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pnggccrd.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngget.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngmem.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngpread.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngread.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngrio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngrtran.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngrutil.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngset.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngtest.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngtrans.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngvcrd.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngwio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngwrite.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngwtran.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lpng\pngwutil.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BCGCBPro.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BCGCBPro.h" />
+    <ClInclude Include="BCGCBProConfig.h" />
+    <ClInclude Include="BCGCBProInc.h" />
+    <ClInclude Include="BCGCBProVer.h" />
+    <ClInclude Include="Bcgglobals.h" />
+    <ClInclude Include="BCGPAccessibility.h" />
+    <ClInclude Include="BCGPADOGridCtrl.h" />
+    <ClInclude Include="BCGPAnimCtrl.h" />
+    <ClInclude Include="BCGPAppBarWnd.h" />
+    <ClInclude Include="BCGPAutoHideButton.h" />
+    <ClInclude Include="BCGPAutoHideDockBar.h" />
+    <ClInclude Include="BCGPAutoHideToolBar.h" />
+    <ClInclude Include="BCGPBarContainer.h" />
+    <ClInclude Include="BCGPBarContainerManager.h" />
+    <ClInclude Include="BCGPBaseControlBar.h" />
+    <ClInclude Include="BCGPBaseInfo.h" />
+    <ClInclude Include="BCGPBaseRibbonElement.h" />
+    <ClInclude Include="BCGPBaseTabbedBar.h" />
+    <ClInclude Include="BCGPBaseTabWnd.h" />
+    <ClInclude Include="BCGPBaseToolBar.h" />
+    <ClInclude Include="BCGPBreadcrumb.h" />
+    <ClInclude Include="BCGPBreadcrumbControlImpl.h" />
+    <ClInclude Include="BCGPBrushButton.h" />
+    <ClInclude Include="BCGPButton.h" />
+    <ClInclude Include="BCGPCalculator.h" />
+    <ClInclude Include="BCGPCalendarBar.h" />
+    <ClInclude Include="BCGPCalendarMenuButton.h" />
+    <ClInclude Include="BCGPCaptionBar.h" />
+    <ClInclude Include="BCGPCaptionButton.h" />
+    <ClInclude Include="BCGPCaptionMenuButton.h" />
+    <ClInclude Include="BCGPColorBar.h" />
+    <ClInclude Include="BCGPColorButton.h" />
+    <ClInclude Include="BCGPColorDialog.h" />
+    <ClInclude Include="BCGPColorMenuButton.h" />
+    <ClInclude Include="BCGPComboBox.h" />
+    <ClInclude Include="BCGPCommandManager.h" />
+    <ClInclude Include="BCGPContextMenuManager.h" />
+    <ClInclude Include="BCGPControlBar.h" />
+    <ClInclude Include="BCGPControlBarImpl.h" />
+    <ClInclude Include="BCGPControlRenderer.h" />
+    <ClInclude Include="BCGPCustomizeMenuButton.h" />
+    <ClInclude Include="BCGPDAOGridCtrl.h" />
+    <ClInclude Include="BCGPDateTimeCtrl.h" />
+    <ClInclude Include="BCGPDBGridCtrl.h" />
+    <ClInclude Include="BCGPDiagramConnector.h" />
+    <ClInclude Include="BCGPDiagramCtrl.h" />
+    <ClInclude Include="BCGPDiagramShape.h" />
+    <ClInclude Include="BCGPDiagramView.h" />
+    <ClInclude Include="BCGPDiagramVisualConstructor.h" />
+    <ClInclude Include="BCGPDiagramVisualContainer.h" />
+    <ClInclude Include="BCGPDiagramVisualObject.h" />
+    <ClInclude Include="BCGPDialog.h" />
+    <ClInclude Include="BCGPDialogBar.h" />
+    <ClInclude Include="BCGPDlgImpl.h" />
+    <ClInclude Include="BCGPDockBar.h" />
+    <ClInclude Include="BCGPDockBarRow.h" />
+    <ClInclude Include="BCGPDockingCBWrapper.h" />
+    <ClInclude Include="BCGPDockingControlBar.h" />
+    <ClInclude Include="BCGPDockManager.h" />
+    <ClInclude Include="BCGPDragFrameImpl.h" />
+    <ClInclude Include="BCGPDrawManager.h" />
+    <ClInclude Include="BCGPDropDown.h" />
+    <ClInclude Include="BCGPDropDownList.h" />
+    <ClInclude Include="BCGPDurationCtrl.h" />
+    <ClInclude Include="BCGPEdit.h" />
+    <ClInclude Include="BCGPEditBrushDlg.h" />
+    <ClInclude Include="BCGPEditCtrl.h" />
+    <ClInclude Include="BCGPEditListBox.h" />
+    <ClInclude Include="BCGPEditView.h" />
+    <ClInclude Include="BCGPExCheckList.h" />
+    <ClInclude Include="BCGPExplorerToolBar.h" />
+    <ClInclude Include="BCGPFileDialog.h" />
+    <ClInclude Include="BCGPFontComboBox.h" />
+    <ClInclude Include="BCGPFormView.h" />
+    <ClInclude Include="BCGPFrameImpl.h" />
+    <ClInclude Include="BCGPFrameWnd.h" />
+    <ClInclude Include="BCGPFullScreenImpl.h" />
+    <ClInclude Include="BCGPGestureManager.h" />
+    <ClInclude Include="BCGPGlobalUtils.h" />
+    <ClInclude Include="BCGPGridCtrl.h" />
+    <ClInclude Include="BCGPGridFilter.h" />
+    <ClInclude Include="BCGPGridFilterMenu.h" />
+    <ClInclude Include="BCGPGridSerialize.h" />
+    <ClInclude Include="BCGPGridView.h" />
+    <ClInclude Include="BCGPGroup.h" />
+    <ClInclude Include="BCGPHeaderCtrl.h" />
+    <ClInclude Include="BCGPHelpids.h" />
+    <ClInclude Include="BCGPHotSpotImageCtrl.h" />
+    <ClInclude Include="BCGPImageEditDlg.h" />
+    <ClInclude Include="BCGPImageProcessing.h" />
+    <ClInclude Include="BCGPInplaceEdit.h" />
+    <ClInclude Include="BCGPInplaceToolTipCtrl.h" />
+    <ClInclude Include="BCGPIntelliSenseLB.h" />
+    <ClInclude Include="BCGPIntelliSenseWnd.h" />
+    <ClInclude Include="BCGPKeyboardManager.h" />
+    <ClInclude Include="BCGPKeyboardPage.h" />
+    <ClInclude Include="BCGPKeyHelper.h" />
+    <ClInclude Include="BCGPKeyMapDlg.h" />
+    <ClInclude Include="BCGPLayout.h" />
+    <ClInclude Include="BCGPLineStyleComboBox.h" />
+    <ClInclude Include="BCGPListBox.h" />
+    <ClInclude Include="BCGPListCtrl.h" />
+    <ClInclude Include="BCGPLocalResource.h" />
+    <ClInclude Include="BCGPMainClientAreaWnd.h" />
+    <ClInclude Include="BCGPMaskEdit.h" />
+    <ClInclude Include="BCGPMath.h" />
+    <ClInclude Include="BCGPMDIChildWnd.h" />
+    <ClInclude Include="BCGPMDIFrameWnd.h" />
+    <ClInclude Include="BCGPMenuBar.h" />
+    <ClInclude Include="BCGPMenuButton.h" />
+    <ClInclude Include="BCGPMenuPage.h" />
+    <ClInclude Include="BCGPMessageBox.h" />
+    <ClInclude Include="BCGPPageTransitionManager.h" />
+    <ClInclude Include="BCGPShadowManager.h" />
+    <ClInclude Include="BCGPSwitchImpl.h" />
+    <ClInclude Include="BCGPWinUITiles.h" />
+    <ClInclude Include="BCGPVisualManager2013.h" />
+    <ClInclude Include="BCGPMiniFrameWnd.h" />
+    <ClInclude Include="BCGPMouseManager.h" />
+    <ClInclude Include="BCGPMousePage.h" />
+    <ClInclude Include="BCGPMultiDocTemplate.h" />
+    <ClInclude Include="BCGPMultiMiniFrameWnd.h" />
+    <ClInclude Include="BCGPODBCGridCtrl.h" />
+    <ClInclude Include="BCGPOleCntrFrameWnd.h" />
+    <ClInclude Include="BCGPOleDocIPFrameWnd.h" />
+    <ClInclude Include="BCGPOleIPFrameWnd.h" />
+    <ClInclude Include="BCGPOleServerDoc.h" />
+    <ClInclude Include="BCGPOptionsPage.h" />
+    <ClInclude Include="BCGPOutlineParser.h" />
+    <ClInclude Include="BCGPOutlookBar.h" />
+    <ClInclude Include="BCGPOutlookBarDockingPane.h" />
+    <ClInclude Include="BCGPOutlookBarPane.h" />
+    <ClInclude Include="BCGPOutlookButton.h" />
+    <ClInclude Include="BCGPOutlookWnd.h" />
+    <ClInclude Include="BCGPPngImage.h" />
+    <ClInclude Include="BCGPPopupDlg.h" />
+    <ClInclude Include="BCGPPopupMenu.h" />
+    <ClInclude Include="BCGPPopupMenuBar.h" />
+    <ClInclude Include="BCGPPopupWindow.h" />
+    <ClInclude Include="BCGPPowerColorPicker.h" />
+    <ClInclude Include="BCGPPrintPreviewCtrl.h" />
+    <ClInclude Include="BCGPPrintPreviewView.h" />
+    <ClInclude Include="BCGPProgressCtrl.h" />
+    <ClInclude Include="BCGPProgressDlg.h" />
+    <ClInclude Include="BCGPPropertyPage.h" />
+    <ClInclude Include="BCGPPropertySheet.h" />
+    <ClInclude Include="BCGPPropList.h" />
+    <ClInclude Include="BCGPReBar.h" />
+    <ClInclude Include="BCGPRebarState.h" />
+    <ClInclude Include="BCGPRecentDockInfo.h" />
+    <ClInclude Include="BCGPRegistry.h" />
+    <ClInclude Include="BCGPRenameDlg.h" />
+    <ClInclude Include="BCGPReportCtrl.h" />
+    <ClInclude Include="BCGPReportView.h" />
+    <ClInclude Include="BCGPRibbonBackstagePageRecent.h" />
+    <ClInclude Include="BCGPRibbonCustomizationData.h" />
+    <ClInclude Include="BCGPRibbonCustomizeQATPage.h" />
+    <ClInclude Include="BCGPRibbonItemDlg.h" />
+    <ClInclude Include="BCGPRibbonTreeCtrl.h" />
+    <ClInclude Include="BCGProMigrate.h" />
+    <ClInclude Include="bcgprores.h" />
+    <ClInclude Include="BCGPScrollBar.h" />
+    <ClInclude Include="BCGPSDPlaceMarkerWnd.h" />
+    <ClInclude Include="BCGPSelectSkinDlg.h" />
+    <ClInclude Include="BCGPShellBreadcrumb.h" />
+    <ClInclude Include="BCGPShellList.h" />
+    <ClInclude Include="BCGPShellManager.h" />
+    <ClInclude Include="BCGPShellTree.h" />
+    <ClInclude Include="BCGPShowAllButton.h" />
+    <ClInclude Include="BCGPSkinEntry.h" />
+    <ClInclude Include="BCGPSkinManager.h" />
+    <ClInclude Include="BCGPSlider.h" />
+    <ClInclude Include="BCGPSliderCtrl.h" />
+    <ClInclude Include="BCGPSmartDockingManager.h" />
+    <ClInclude Include="BCGPSmartDockingMarker.h" />
+    <ClInclude Include="BCGPSound.h" />
+    <ClInclude Include="BCGPSpinButtonCtrl.h" />
+    <ClInclude Include="BCGPSplitterWnd.h" />
+    <ClInclude Include="BCGPStatic.h" />
+    <ClInclude Include="BCGPStatusBar.h" />
+    <ClInclude Include="BCGPTabbedControlBar.h" />
+    <ClInclude Include="BCGPTabbedToolbar.h" />
+    <ClInclude Include="BCGPTabView.h" />
+    <ClInclude Include="BCGPTabWnd.h" />
+    <ClInclude Include="BCGPTagCloud.h" />
+    <ClInclude Include="BCGPTagManager.h" />
+    <ClInclude Include="BCGPTaskPaneMiniFrameWnd.h" />
+    <ClInclude Include="BCGPTasksPane.h" />
+    <ClInclude Include="BCGPTearOffManager.h" />
+    <ClInclude Include="BCGPTextFormatDlg.h" />
+    <ClInclude Include="BCGPToolBar.h" />
+    <ClInclude Include="BCGPToolbarButton.h" />
+    <ClInclude Include="BCGPToolbarComboBoxButton.h" />
+    <ClInclude Include="BCGPToolbarCustomize.h" />
+    <ClInclude Include="BCGPToolbarCustomizePages.h" />
+    <ClInclude Include="BCGPToolbarDateTimeCtrl.h" />
+    <ClInclude Include="BCGPToolbarDropSource.h" />
+    <ClInclude Include="BCGPToolbarDropTarget.h" />
+    <ClInclude Include="BCGPToolbarEditBoxButton.h" />
+    <ClInclude Include="BCGPToolbarFontCombo.h" />
+    <ClInclude Include="BCGPToolBarImages.h" />
+    <ClInclude Include="BCGPToolbarMenuButton.h" />
+    <ClInclude Include="BCGPToolbarMenuButtonsButton.h" />
+    <ClInclude Include="BCGPToolbarSpinEditBoxButton.h" />
+    <ClInclude Include="BCGPToolbarSystemMenuButton.h" />
+    <ClInclude Include="BCGPToolBox.h" />
+    <ClInclude Include="BCGPToolsPage.h" />
+    <ClInclude Include="BCGPToolTipCtrl.h" />
+    <ClInclude Include="BCGPTooltipManager.h" />
+    <ClInclude Include="BCGPTreeCtrl.h" />
+    <ClInclude Include="BCGPTreeMap.h" />
+    <ClInclude Include="BCGPURLLinkButton.h" />
+    <ClInclude Include="BCGPUserTool.h" />
+    <ClInclude Include="BCGPUserToolsManager.h" />
+    <ClInclude Include="BCGPVisualManagerVS2012.h" />
+    <ClInclude Include="BCGPWindowsManagerDlg.h" />
+    <ClInclude Include="BCGPWnd.h" />
+    <ClInclude Include="BCGPWorkspace.h" />
+    <ClInclude Include="ButtonAppearanceDlg.h" />
+    <ClInclude Include="ButtonsList.h" />
+    <ClInclude Include="ButtonsTextList.h" />
+    <ClInclude Include="CalendarPopup.h" />
+    <ClInclude Include="CmdUsageCount.h" />
+    <ClInclude Include="ColorPage1.h" />
+    <ClInclude Include="ColorPage2.h" />
+    <ClInclude Include="ColorPopup.h" />
+    <ClInclude Include="CustomizeButton.h" />
+    <ClInclude Include="ImagePaintArea.h" />
+    <ClInclude Include="KeyAssign.h" />
+    <ClInclude Include="MenuHash.h" />
+    <ClInclude Include="MenuImages.h" />
+    <ClInclude Include="PropertySheetCtrl.h" />
+    <ClInclude Include="RegPath.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="ToolbarNameDlg.h" />
+    <ClInclude Include="TrackMouse.h" />
+    <ClInclude Include="BCGPAppointment.h" />
+    <ClInclude Include="BCGPAppointmentDS.h" />
+    <ClInclude Include="BCGPAppointmentProperty.h" />
+    <ClInclude Include="BCGPAppointmentStorage.h" />
+    <ClInclude Include="BCGPPlannerClockIcons.h" />
+    <ClInclude Include="BCGPPlannerDropSource.h" />
+    <ClInclude Include="BCGPPlannerDropTarget.h" />
+    <ClInclude Include="BCGPPlannerManagerCtrl.h" />
+    <ClInclude Include="BCGPPlannerManagerView.h" />
+    <ClInclude Include="BCGPPlannerPrint.h" />
+    <ClInclude Include="BCGPPlannerPrintDay.h" />
+    <ClInclude Include="BCGPPlannerPrintDual.h" />
+    <ClInclude Include="BCGPPlannerPrintMonth.h" />
+    <ClInclude Include="BCGPPlannerPrintWeek.h" />
+    <ClInclude Include="BCGPPlannerView.h" />
+    <ClInclude Include="BCGPPlannerViewDay.h" />
+    <ClInclude Include="BCGPPlannerViewMonth.h" />
+    <ClInclude Include="BCGPPlannerViewMulti.h" />
+    <ClInclude Include="BCGPPlannerViewWeek.h" />
+    <ClInclude Include="BCGPPlannerViewWorkWeek.h" />
+    <ClInclude Include="BCGPRecurrence.h" />
+    <ClInclude Include="BCGPRecurrenceRule.h" />
+    <ClInclude Include="BCGPRecurrenceRules.h" />
+    <ClInclude Include="BCGPRibbonBackstagePagePrint.h" />
+    <ClInclude Include="BCGPRibbonBackstageView.h" />
+    <ClInclude Include="BCGPRibbonBackstageViewPanel.h" />
+    <ClInclude Include="BCGPRibbonBar.h" />
+    <ClInclude Include="BCGPRibbonButton.h" />
+    <ClInclude Include="BCGPRibbonButtonsGroup.h" />
+    <ClInclude Include="BCGPRibbonCategory.h" />
+    <ClInclude Include="BCGPRibbonCheckBox.h" />
+    <ClInclude Include="BCGPRibbonCollector.h" />
+    <ClInclude Include="BCGPRibbonColorButton.h" />
+    <ClInclude Include="BCGPRibbonComboBox.h" />
+    <ClInclude Include="BCGPRibbonCommandsListBox.h" />
+    <ClInclude Include="BCGPRibbonConstructor.h" />
+    <ClInclude Include="BCGPRibbonCustomizePage.h" />
+    <ClInclude Include="BCGPRibbonDialogBar.h" />
+    <ClInclude Include="BCGPRibbonEdit.h" />
+    <ClInclude Include="BCGPRibbonElementHostCtrl.h" />
+    <ClInclude Include="BCGPRibbonFloaty.h" />
+    <ClInclude Include="BCGPRibbonHyperlink.h" />
+    <ClInclude Include="BCGPRibbonInfo.h" />
+    <ClInclude Include="BCGPRibbonInfoLoader.h" />
+    <ClInclude Include="BCGPRibbonInfoWriter.h" />
+    <ClInclude Include="BCGPRibbonKeyboardCustomizeDlg.h" />
+    <ClInclude Include="BCGPRibbonKeyTip.h" />
+    <ClInclude Include="BCGPRibbonLabel.h" />
+    <ClInclude Include="BCGPRibbonMainPanel.h" />
+    <ClInclude Include="BCGPRibbonPaletteButton.h" />
+    <ClInclude Include="BCGPRibbonPanel.h" />
+    <ClInclude Include="BCGPRibbonPanelMenu.h" />
+    <ClInclude Include="BCGPRibbonProgressBar.h" />
+    <ClInclude Include="BCGPRibbonQuickAccessToolbar.h" />
+    <ClInclude Include="BCGPRibbonQuickStepsButton.h" />
+    <ClInclude Include="BCGPRibbonSlider.h" />
+    <ClInclude Include="BCGPRibbonStatusBar.h" />
+    <ClInclude Include="BCGPRibbonStatusBarPane.h" />
+    <ClInclude Include="BCGPRibbonToolsPage.h" />
+    <ClInclude Include="BCGPRibbonUndoButton.h" />
+    <ClInclude Include="BCGPGanttChart.h" />
+    <ClInclude Include="BCGPGanttControl.h" />
+    <ClInclude Include="BCGPGanttGrid.h" />
+    <ClInclude Include="BCGPGanttItem.h" />
+    <ClInclude Include="BCGPGanttItemStorage.h" />
+    <ClInclude Include="BCGPGanttRenderer.h" />
+    <ClInclude Include="BCGPGanttView.h" />
+    <ClInclude Include="BCGPD2DDefs.h" />
+    <ClInclude Include="BCGPEngine3D.h" />
+    <ClInclude Include="BCGPEngine3DOpenGL.h" />
+    <ClInclude Include="BCGPGraphicsManager.h" />
+    <ClInclude Include="BCGPGraphicsManagerD2D.h" />
+    <ClInclude Include="BCGPGraphicsManagerGDI.h" />
+    <ClInclude Include="BCGPVisualManager.h" />
+    <ClInclude Include="BCGPVisualManager2003.h" />
+    <ClInclude Include="BCGPVisualManager2007.h" />
+    <ClInclude Include="BCGPVisualManager2010.h" />
+    <ClInclude Include="BCGPVisualManagerCarbon.h" />
+    <ClInclude Include="BCGPVisualManagerScenic.h" />
+    <ClInclude Include="BCGPVisualManagerVS2005.h" />
+    <ClInclude Include="BCGPVisualManagerVS2008.h" />
+    <ClInclude Include="BCGPVisualManagerVS2010.h" />
+    <ClInclude Include="BCGPVisualManagerXP.h" />
+    <ClInclude Include="BCGPWinXPVisualManager.h" />
+    <ClInclude Include="BCGPVisualCollector.h" />
+    <ClInclude Include="BCGPVisualConstructor.h" />
+    <ClInclude Include="BCGPVisualContainer.h" />
+    <ClInclude Include="BCGPVisualCtrl.h" />
+    <ClInclude Include="BCGPVisualInfo.h" />
+    <ClInclude Include="BCGPChartAxis.h" />
+    <ClInclude Include="BCGPChartCtrl.h" />
+    <ClInclude Include="BCGPChartFormat.h" />
+    <ClInclude Include="BCGPChartFormula.h" />
+    <ClInclude Include="BCGPChartImpl.h" />
+    <ClInclude Include="BCGPChartLegend.h" />
+    <ClInclude Include="BCGPChartObject.h" />
+    <ClInclude Include="BCGPChartSeries.h" />
+    <ClInclude Include="BCGPChartShape3D.h" />
+    <ClInclude Include="BCGPChartView.h" />
+    <ClInclude Include="BCGPChartVisualObject.h" />
+    <ClInclude Include="BCGPAnalogClock.h" />
+    <ClInclude Include="BCGPCircularGaugeImpl.h" />
+    <ClInclude Include="BCGPColorIndicatorImpl.h" />
+    <ClInclude Include="BCGPGaugeImpl.h" />
+    <ClInclude Include="BCGPImageGaugeImpl.h" />
+    <ClInclude Include="BCGPKnob.h" />
+    <ClInclude Include="BCGPLinearGaugeImpl.h" />
+    <ClInclude Include="BCGPNumericIndicatorImpl.h" />
+    <ClInclude Include="BCGPRadialMenu.h" />
+    <ClInclude Include="BCGPRotationObject.h" />
+    <ClInclude Include="BCGPStaticGaugeImpl.h" />
+    <ClInclude Include="BCGPTextGaugeImpl.h" />
+    <ClInclude Include="Zlib\crc32.h" />
+    <ClInclude Include="Zlib\deflate.h" />
+    <ClInclude Include="Zlib\inffast.h" />
+    <ClInclude Include="Zlib\inffixed.h" />
+    <ClInclude Include="Zlib\inflate.h" />
+    <ClInclude Include="Zlib\inftrees.h" />
+    <ClInclude Include="Zlib\trees.h" />
+    <ClInclude Include="Zlib\zconf.h" />
+    <ClInclude Include="Zlib\zlib.h" />
+    <ClInclude Include="Zlib\zutil.h" />
+    <ClInclude Include="Lpng\png.h" />
+    <ClInclude Include="Lpng\pngconf.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\appClock.bmp" />
+    <Image Include="res\appClockM.bmp" />
+    <Image Include="res\appUpDown.bmp" />
+    <Image Include="res\browse.bmp" />
+    <Image Include="res\calcbuttons.png" />
+    <Image Include="res\calendar_icons.bmp" />
+    <Image Include="res\Clear.bmp" />
+    <Image Include="res\Clear32.png" />
+    <Image Include="res\colors.ico" />
+    <Image Include="res\copy-pro.bmp" />
+    <Image Include="res\delete-pro.bmp" />
+    <Image Include="res\down-pro.bmp" />
+    <Image Include="res\font-pro.bmp" />
+    <Image Include="res\help-pro.bmp" />
+    <Image Include="res\help-pro.ico" />
+    <Image Include="res\linestyles.bmp" />
+    <Image Include="res\link.ico" />
+    <Image Include="res\logo24.bmp" />
+    <Image Include="res\mail-pro.bmp" />
+    <Image Include="res\menuimg-pro.bmp" />
+    <Image Include="res\menuimg-pro24.bmp" />
+    <Image Include="res\NavButtons.png" />
+    <Image Include="res\NavButtons120.png" />
+    <Image Include="res\NavButtons16.bmp" />
+    <Image Include="res\NavFrames.png" />
+    <Image Include="res\NavFrames120.png" />
+    <Image Include="res\NavFrames16.bmp" />
+    <Image Include="res\new-pro.bmp" />
+    <Image Include="res\palette-pro.bmp" />
+    <Image Include="res\picker.bmp" />
+    <Image Include="res\print-pro.bmp" />
+    <Image Include="res\Print_Button.png" />
+    <Image Include="res\Print_Collate.PNG" />
+    <Image Include="res\Print_Frame.PNG" />
+    <Image Include="res\Print_Orientation.PNG" />
+    <Image Include="res\Print_Page.PNG" />
+    <Image Include="res\Print_Paper.PNG" />
+    <Image Include="res\PrintPreview-pro.bmp" />
+    <Image Include="res\proplist.bmp" />
+    <Image Include="res\proplist32.png" />
+    <Image Include="res\proplistadvanced.bmp" />
+    <Image Include="res\RibbonPrintL.PNG" />
+    <Image Include="res\RibbonPrintS.png" />
+    <Image Include="res\SD2008base.bmp" />
+    <Image Include="res\SD2008bottom.bmp" />
+    <Image Include="res\SD2008bottomh.bmp" />
+    <Image Include="res\SD2008center.bmp" />
+    <Image Include="res\SD2008centerh.bmp" />
+    <Image Include="res\SD2008left.bmp" />
+    <Image Include="res\SD2008lefth.bmp" />
+    <Image Include="res\SD2008right.bmp" />
+    <Image Include="res\SD2008righth.bmp" />
+    <Image Include="res\SD2008top.bmp" />
+    <Image Include="res\SD2008toph.bmp" />
+    <Image Include="res\SD2010base.bmp" />
+    <Image Include="res\SD2010Bottom.bmp" />
+    <Image Include="res\SD2010Center.bmp" />
+    <Image Include="res\SD2010Left.bmp" />
+    <Image Include="res\SD2010Right.bmp" />
+    <Image Include="res\SD2010Top.bmp" />
+    <Image Include="res\SDbottom.bmp" />
+    <Image Include="res\SDCenter.bmp" />
+    <Image Include="res\SDleft.bmp" />
+    <Image Include="res\SDmiddle.bmp" />
+    <Image Include="res\SDright.bmp" />
+    <Image Include="res\SDtop.bmp" />
+    <Image Include="res\search.bmp" />
+    <Image Include="res\Search32.png" />
+    <Image Include="res\swap.bmp" />
+    <Image Include="res\taskpane.bmp" />
+    <Image Include="res\tool-pro.ico" />
+    <Image Include="res\up-pro.bmp" />
+    <Image Include="res\url-pro.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\BCGCBPro.rc2" />
+    <None Include="res\color-pro.cur" />
+    <None Include="res\copy-pro.cur" />
+    <None Include="res\delete-pro.cur" />
+    <None Include="res\deletecolumn.cur" />
+    <None Include="res\ellipse-pro.cur" />
+    <None Include="res\fill-pro.cur" />
+    <None Include="res\hand-pro.cur" />
+    <None Include="res\line-pro.cur" />
+    <None Include="res\move-pro.cur" />
+    <None Include="res\movetab.cur" />
+    <None Include="res\nomovetab.cur" />
+    <None Include="res\pen-pro.cur" />
+    <None Include="res\rect-pro.cur" />
+    <None Include="res\selectrow.cur" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="BCGCBPro.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

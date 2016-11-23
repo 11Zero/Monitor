@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BCGCBPro", "BCGCBPro.vcproj", "{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+		ConfigName.2 = Unicode Debug
+		ConfigName.3 = Unicode Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Debug.ActiveCfg = Debug|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Debug.Build.0 = Debug|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Release.ActiveCfg = Release|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Release.Build.0 = Release|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Unicode Debug.Build.0 = Unicode Debug|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Unicode Release.ActiveCfg = Unicode Release|Win32
+		{9DF443FB-9EC0-4511-9262-D9AE2C74F5DD}.Unicode Release.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

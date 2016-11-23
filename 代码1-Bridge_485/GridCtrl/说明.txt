@@ -1,0 +1,58 @@
+使用时将本文件夹拷贝到工程目录下，导入所有文件，将该文件夹中includeGridCtrl.h包含在工程目录中的stdafx.h中即可，注意区分资源目录中的两个stdafx.h。#include "GridCtrl\includeGridCtrl.h".
+
+
+
+
+本代码是从codeproject中示例代码转换到VC6下的结果，作者范例为：
+
+
+/////////以下添加到Dlg实现文件(cpp文件)中的全局部分///////////////////////////
+grid_item g_gi[]={
+	gi_hdr("Header"),
+	gi_edit("Edit"),
+	gi_combo("Combo drop down",GCS_DRDN),
+	gi_edit("Edit (NC)",GLS_NC),
+	gi_edit("Edit with custom",GCSS_CSBT),
+    gi_combo("Combo"),
+
+	gi_hdr("Header (NC)",GLS_NC),	
+	gi_edit("Edit with custom",GCSS_CSBT),
+	gi_edit("Edit read only",GSS_RDNL),
+	gi_edit("Edit number",GES_NUMB),
+	gi_combo("Combo (NC)",GLS_NC),
+	gi_edit("Edit password",GES_PASS),	
+	gi_combo("Combo with custom",GCSS_CSBT),	
+};
+//////////////////////////////////////////////////////////
+
+
+////////以下添加到Dlg实现文件中的OnInitDialog()函数中，也可以放在其他动作函数中创建/////
+	RECT rct;
+	GetClientRect(&rct);
+	rct.top = rct.top + 100;
+	rct.top = rct.top + 100;
+	m_Grid.Create(0,rct,this);
+
+	for(int i=0;i<sizeof(g_gi)/sizeof(grid_item);i++){
+		m_Grid<<g_gi[i];
+	}
+
+	m_Grid->Index[1]->Text="Edit item";
+	m_Grid->Index[2]->Text="Combo item";
+	m_Grid->Index[3]->Text="Edit item";
+	m_Grid->Index[4]->Text="Edit with custom";
+	
+	m_Grid->Index[5]->SubItem->Insert("Text1");
+	m_Grid->Index[5]->SubItem->Insert("Text2");
+	m_Grid->Index[5]->SubItem->Insert("Text3");
+	m_Grid->Index[5]->SubItem->Select=0;
+
+	m_Grid->Index[7]->Text="Edit item";
+	m_Grid->Index[8]->Text="Edit readonly";
+	m_Grid->Index[9]->Text="Edit number";
+
+	m_Grid->Index[10]->SubItem->Insert("Text");
+	m_Grid->Index[10]->SubItem->Select=0;
+
+	m_Grid->Index[11]->Text="Password";
+//////////////////////////////////////////////////////

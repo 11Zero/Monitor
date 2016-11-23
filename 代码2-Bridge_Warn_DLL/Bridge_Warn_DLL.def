@@ -1,0 +1,7 @@
+; Bridge_Warn_DLL.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Bridge_Warn_DLL"
+DESCRIPTION  'Bridge_Warn_DLL Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

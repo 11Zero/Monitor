@@ -1,0 +1,646 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Bridge_485.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Bridge_485.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 Bridge_485"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Bridge_485 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2015",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_BRIDGE_485_DIALOG DIALOGEX 0, 0, 457, 239
+STYLE DS_SYSMODAL | DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | 
+    WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+MENU IDR_MENU1
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,193,218,50,14
+    PUSHBUTTON      "取消",IDCANCEL,263,218,50,14
+    CONTROL         "",IDC_MSCOMM1,"{648A5600-2C6E-101B-82B6-000000000014}",
+                    WS_TABSTOP,66,207,25,25
+    CONTROL         "",IDC_MSCOMM2,"{648A5600-2C6E-101B-82B6-000000000014}",
+                    WS_TABSTOP,35,207,25,25
+    LISTBOX         IDC_LIST2,7,6,444,179,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "运行模式",IDC_BUTTON1,345,201,92,31,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "实时监测测试",IDC_BUTTON_TEST,122,218,50,14
+END
+
+IDD_SCOMM_PARA DIALOG DISCARDABLE  0, 0, 248, 105
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "串行口参数选择"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,185,24,50,14
+    PUSHBUTTON      "取    消",IDCANCEL,185,50,50,14
+    LTEXT           "串行口:",IDC_STATIC,21,14,35,13
+    LTEXT           "波特率:",IDC_STATIC,21,34,35,13
+    LTEXT           "数据位:",IDC_STATIC,21,56,35,13
+    LTEXT           "停止位:",IDC_STATIC,21,76,35,13
+    COMBOBOX        IDC_COMBO1,77,15,93,80,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO2,77,31,93,80,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO3,77,52,93,80,CBS_DROPDOWN | WS_DISABLED | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO4,78,74,93,80,CBS_DROPDOWN | WS_DISABLED | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_RS485_PARA DIALOG DISCARDABLE  0, 0, 243, 97
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "485总线参数设置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,178,30,50,14
+    PUSHBUTTON      "取    消",IDCANCEL,180,55,50,14
+    LTEXT           "串行口:",IDC_STATIC,11,10,35,13
+    LTEXT           "波特率:",IDC_STATIC,11,30,35,13
+    LTEXT           "数据位:",IDC_STATIC,11,52,35,13
+    LTEXT           "停止位:",IDC_STATIC,11,72,35,13
+    COMBOBOX        IDC_COMBO1,67,11,93,80,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO2,67,27,93,80,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO3,67,48,93,80,CBS_DROPDOWN | WS_DISABLED | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO4,68,70,93,80,CBS_DROPDOWN | WS_DISABLED | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_MOBILE_PHENG DIALOG DISCARDABLE  0, 0, 284, 143
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "接收报警信号的负责人信息输入"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,147,117,50,14
+    PUSHBUTTON      "取    消",IDCANCEL,213,117,50,14
+    GROUPBOX        "技术人员姓名及手机号",IDC_STATIC,14,7,263,129,BS_CENTER
+    COMBOBOX        IDC_COMBO1,19,19,251,92,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "姓名:",IDC_STATIC,20,67,29,13
+    EDITTEXT        IDC_EDIT1,66,67,196,15,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "手机:",IDC_STATIC,20,89,29,13
+    EDITTEXT        IDC_EDIT2,66,89,196,15,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "添    加",IDC_BUTTON1,21,117,49,13,WS_DISABLED
+    PUSHBUTTON      "删    除",IDC_BUTTON2,80,117,49,13,WS_DISABLED
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 342, 191
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "测控网络节点参数配置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,285,54,50,14
+    PUSHBUTTON      "取    消",IDCANCEL,285,84,50,14
+    LISTBOX         IDC_LIST1,16,13,263,171,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 392, 187
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "浏览测量数据"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "退    出",IDOK,233,165,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,317,165,50,14,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "后    页",IDC_BUTTON1,61,165,48,15
+    PUSHBUTTON      "前    页",IDC_BUTTON2,150,165,48,15,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    LISTBOX         IDC_LIST2,7,7,378,149,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_SG_STEP_SEL DIALOG DISCARDABLE  0, 0, 187, 133
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "施工阶段选择"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,38,112,50,14
+    PUSHBUTTON      "退    出",IDCANCEL,102,112,50,14
+    CONTROL         "支架预压50%",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,15,15,124,11
+    CONTROL         "支架预压80%",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,15,
+                    32,124,11
+    CONTROL         "支架预压100%",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,15,
+                    49,124,11
+    CONTROL         "第一次施工浇铸",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    15,67,124,11
+    CONTROL         "第二次施工浇铸",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    15,87,124,11
+END
+
+IDD_SENSOR_WARNING_VALUE DIALOG DISCARDABLE  0, 0, 375, 201
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "预压与施工阶段传感器报警参数设置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,158,180,50,14
+    PUSHBUTTON      "取    消",IDCANCEL,219,180,50,14
+    GROUPBOX        "预压与施工阶段",IDC_STATIC,7,7,361,32,BS_CENTER
+    CONTROL         "预压50%",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,22,43,10
+    CONTROL         "预压80%",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,77,22,
+                    43,10
+    CONTROL         "预压100%",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,138,22,
+                    43,10
+    CONTROL         "施工第1次浇铸",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    195,22,67,10
+    CONTROL         "施工第2次浇铸",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    272,22,78,10
+    GROUPBOX        "传感器报警参数设置",IDC_STEP_PHASE,7,45,361,129,
+                    BS_CENTER
+    LISTBOX         IDC_LIST1,7,54,361,119,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+TESTING_WARNING_FUN DIALOG DISCARDABLE  0, 0, 367, 181
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_VSCROLL | WS_SYSMENU
+CAPTION "报警功能验证(用文件代替测量值)"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确    定",IDOK,145,155,50,14
+    PUSHBUTTON      "取    消",IDCANCEL,202,155,50,14
+    GROUPBOX        "测量与报警参数设置信息",IDC_STATIC,7,7,345,139,
+                    BS_CENTER
+    LISTBOX         IDC_LIST1,7,18,210,127,NOT LBS_NOTIFY | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "开始检验",IDC_BUTTON1,92,155,48,14
+    GROUPBOX        "预压与施工阶段",IDC_STATIC,226,17,126,128,BS_CENTER
+    CONTROL         "预压20%",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,235,30,106,15
+    CONTROL         "预压80%",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,235,50,
+                    106,15
+    CONTROL         "预压100%",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,235,69,
+                    106,15
+    CONTROL         "施工第1次浇铸",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    235,91,106,15
+    CONTROL         "施工第2次浇铸",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    235,115,106,15
+END
+
+IDD_HIST_BROW_DIALOG DIALOG DISCARDABLE  0, 0, 387, 258
+STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "历史浏览"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,274,237,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,330,237,50,14
+    DEFPUSHBUTTON   "浏览文件",IDC_BROWSE_BUTTON,137,237,50,14
+    CONTROL         "Custom1",IDC_CHART_HISTROY,"ChartCtrl",WS_CLIPCHILDREN | 
+                    WS_TABSTOP,7,7,373,204
+    SCROLLBAR       IDC_SCROLLBAR_HIST,7,211,373,11
+    PUSHBUTTON      "关闭文件",IDC_CLOSE_HIST,188,237,50,14
+END
+
+IDD_CUR_DATA_DIALOG DIALOG DISCARDABLE  0, 0, 375, 309
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "实时监测数据"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,313,263,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,313,282,50,14
+    PUSHBUTTON      "生成数据库测试",IDC_TEMPBUTTON,309,244,56,14
+    CONTROL         "",IDC_CHART,"ChartCtrl",WS_CLIPCHILDREN | WS_TABSTOP,0,
+                    0,375,178
+    PUSHBUTTON      "绘图测试",IDC_BUTTON_DRAW,312,227,50,14
+    COMBOBOX        IDC_COMBO_NODE,326,186,37,55,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "节点:",IDC_STATIC,302,188,19,8
+    COMBOBOX        IDC_COMBO_CHANNEL,326,207,37,55,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "通道:",IDC_STATIC,303,209,19,8
+    CONTROL         "",IDC_FIELD_GRID,"Static",SS_ETCHEDFRAME | NOT 
+                    WS_VISIBLE,0,184,292,118
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Bridge_485 Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Bridge_485\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2015\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Bridge_485.EXE\0"
+            VALUE "ProductName", "Bridge_485 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_BRIDGE_485_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 450
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 232
+    END
+
+    IDD_SCOMM_PARA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 241
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+    END
+
+    IDD_RS485_PARA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 90
+    END
+
+    IDD_MOBILE_PHENG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 335
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 385
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 180
+    END
+
+    IDD_SG_STEP_SEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 126
+    END
+
+    IDD_SENSOR_WARNING_VALUE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 368
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    TESTING_WARNING_FUN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 352
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 174
+    END
+
+    IDD_HIST_BROW_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 380
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+    END
+
+    IDD_CUR_DATA_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 374
+        BOTTOMMARGIN, 302
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "  文件  "
+    BEGIN
+        MENUITEM "新建工程",                    ID_MENU_NEW
+        MENUITEM "打开工程",                    IDC_HIST_LIB_BROW
+        MENUITEM "关闭工程",                    ID_MENU_CLOSE
+        MENUITEM "导入工程",                    65535
+        MENUITEM "导出工程",                    65535
+        MENUITEM "文本输出",                    65535
+        MENUITEM "清空文件",                    IDD_CLEAR_LIB
+        MENUITEM "退出程序",                    ID_MENU_EXIT
+    END
+    POPUP "  测量  "
+    BEGIN
+        MENUITEM "启动定时测量",                IDD_TIMER_MEAS
+        MENUITEM "关闭定时测量",                IDD_TIMER_STOP
+    END
+    POPUP "  报警  "
+    BEGIN
+        MENUITEM "预压与施工阶段选择",          MENU_SG_STEP
+        MENUITEM "传感器报警值",                MENU_WARNING_PARA
+        MENUITEM "报警功能验证",                IDD_WARNING_TEST
+        MENUITEM "提取电话号码和命令代码",      IDD_GET_PHONE_NUM
+    END
+    POPUP "  配置  "
+    BEGIN
+        MENUITEM "测量节点配置",                NODE_CONFIG
+        MENUITEM "传感器初始值",                IDD_INIT_VAL
+        POPUP "  串口设置  "
+        BEGIN
+            MENUITEM "无线通讯口参数",              ID1_232_CFG
+            MENUITEM "打开无线串行口",              IDD_OPEN_S232
+            MENUITEM "数据测量通讯口参数",          IDD2_485_CFG
+            MENUITEM "打开测量串行口",              IDD_OPEN_S485
+        END
+    END
+    POPUP "  管理员  "
+    BEGIN
+        MENUITEM "监理人员信息",                WARNING_CONFIG
+    END
+    POPUP "  视图  "
+    BEGIN
+        MENUITEM "T-X 图窗",                    IDC_CUR_DATA_BROW, MENUBREAK
+        MENUITEM "数据表窗",                    ID_MENUITEM32801
+        MENUITEM SEPARATOR
+        MENUITEM " 工具栏",                     ID_MENUITEM32807
+        MENUITEM " 状态栏",                     ID_MENUITEM32808
+    END
+    POPUP "  测试  "
+    BEGIN
+        MENUITEM "无线网络检查",                IDD_SHOUJI_COM
+        MENUITEM "测控网络检查",                IDD_485_COM
+        MENUITEM "扫描数据节点",                IDD_FETCH_485_DATA
+        MENUITEM "向手机发送信息",              ID1_232_SEND
+        MENUITEM "从手机接收信息",              ID1_RECEIVE_232
+        MENUITEM "无线发送数据测试",            IDD_TEST_WIRELESS_DATA
+        MENUITEM "向测量节点发送数据",          ID2_SEND_485, GRAYED
+        MENUITEM "从测量节点读取数据",          ID2_RECEIVE_485, GRAYED
+    END
+    MENUITEM "  帮助  ",                    65535
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_BRIDGE_485_DIALOG DLGINIT
+BEGIN
+    IDC_MSCOMM1, 0x376, 102, 0
+0x0013, 0x0000, 0x0043, 0x006f, 0x0070, 0x0079, 0x0072, 0x0069, 0x0067, 
+0x0068, 0x0074, 0x0020, 0x0028, 0x0063, 0x0029, 0x0020, 0x0031, 0x0039, 
+0x0039, 0x0034, 0x0020, 0x4321, 0x1234, 0x0008, 0x0000, 0x03ed, 0x0000, 
+0x03ed, 0x0000, 0x5601, 0x648a, 0x0000, 0x0006, 0x0000, 0x0001, 0x0400, 
+0x0000, 0x0200, 0x0000, 0x2580, 0x0000, 0x0000, 0x0008, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x003f, 0x0000, 0x0001, 0x0000, 
+    IDC_MSCOMM2, 0x376, 102, 0
+0x0013, 0x0000, 0x0043, 0x006f, 0x0070, 0x0079, 0x0072, 0x0069, 0x0067, 
+0x0068, 0x0074, 0x0020, 0x0028, 0x0063, 0x0029, 0x0020, 0x0031, 0x0039, 
+0x0039, 0x0034, 0x0020, 0x4321, 0x1234, 0x0008, 0x0000, 0x03ed, 0x0000, 
+0x03ed, 0x0000, 0x5601, 0x648a, 0x0000, 0x0006, 0x0000, 0x0001, 0x0400, 
+0x0000, 0x0200, 0x0000, 0x2580, 0x0000, 0x0000, 0x0008, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x003f, 0x0000, 0x0001, 0x0000, 
+    0
+END
+
+IDD_SCOMM_PARA DLGINIT
+BEGIN
+    IDC_COMBO2, 0x403, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMBO2, 0x403, 6, 0
+0x3931, 0x3032, 0x0030, 
+    IDC_COMBO2, 0x403, 6, 0
+0x3833, 0x3034, 0x0030, 
+    IDC_COMBO2, 0x403, 6, 0
+0x3735, 0x3036, 0x0030, 
+    IDC_COMBO2, 0x403, 7, 0
+0x3131, 0x3235, 0x3030, "\000" 
+    IDC_COMBO3, 0x403, 2, 0
+0x0035, 
+    IDC_COMBO3, 0x403, 2, 0
+0x0036, 
+    IDC_COMBO3, 0x403, 2, 0
+0x0037, 
+    IDC_COMBO3, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO4, 0x403, 2, 0
+0x0031, 
+    IDC_COMBO4, 0x403, 4, 0
+0x2e31, 0x0035, 
+    IDC_COMBO4, 0x403, 2, 0
+0x0032, 
+    0
+END
+
+IDD_RS485_PARA DLGINIT
+BEGIN
+    IDC_COMBO2, 0x403, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMBO2, 0x403, 6, 0
+0x3931, 0x3032, 0x0030, 
+    IDC_COMBO2, 0x403, 6, 0
+0x3833, 0x3034, 0x0030, 
+    IDC_COMBO2, 0x403, 6, 0
+0x3735, 0x3036, 0x0030, 
+    IDC_COMBO2, 0x403, 7, 0
+0x3131, 0x3235, 0x3030, "\000" 
+    IDC_COMBO3, 0x403, 2, 0
+0x0035, 
+    IDC_COMBO3, 0x403, 2, 0
+0x0036, 
+    IDC_COMBO3, 0x403, 2, 0
+0x0037, 
+    IDC_COMBO3, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO4, 0x403, 2, 0
+0x0031, 
+    IDC_COMBO4, 0x403, 4, 0
+0x2e31, 0x0035, 
+    IDC_COMBO4, 0x403, 2, 0
+0x0032, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 Bridge_485(&A)..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    NODE_CONFIG             "配置测量节点参数"
+    WARNING_CONFIG          "设置报警参数"
+    DATA_LIB_BROW           "浏览测量数据"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDD_CLEAR_LIB           "清空测量文件"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\Bridge_485.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
