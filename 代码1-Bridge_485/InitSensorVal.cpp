@@ -14,6 +14,8 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // InitSensorVal dialog
+extern CString GB2312ToUTF8(char* str);
+extern CString UTF8ToGB2312(char* str);
 
 
 InitSensorVal::InitSensorVal(CWnd* pParent /*=NULL*/)
@@ -46,6 +48,31 @@ END_MESSAGE_MAP()
 
 void InitSensorVal::OnOK() 
 {
+	sqlite3 *db=NULL;
+	CString FileName = "userdata.dat";
+	//CString FilePathName = "";
+	CString sqlcmd = "";
+    int rc;
+	char pBuf[MAX_PATH];                //存放路径的变量
+	GetCurrentDirectory(MAX_PATH,pBuf);                   //获取程序的当前目录
+	FileName.Format("%s\\DataFolder\\userdata.dat",pBuf);
+	sprintf(pBuf,"%s",FileName);
+	FileName = GB2312ToUTF8(pBuf);
+    rc = sqlite3_open(FileName, &db);
+	char* ExeErrorMsg = "";
+	int i=0;
+	CBCGPGridRow* pRow = NULL;
+	CString strname;
+	CString strval;
+	CString strunit;
+	//sqlcmd.Format("drop table init_val");
+	//sqlcmd.Format("create table init_val(ID integer primary key autoincrement,step1 CHAR(30),step2 CHAR(30),step3 CHAR(30),step4 CHAR(30),step5 CHAR(30))");
+	//sprintf(pBuf,"%s",sqlcmd);
+	//sqlcmd = GB2312ToUTF8(pBuf);
+	//rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+	//AfxMessageBox(ExeErrorMsg);
+	sqlite3_close(db);
+	return;
 	// TODO: Add extra validation here
 	CBridge_485App* pApp=(CBridge_485App*)AfxGetApp();
 	CBridge_485Dlg* pd=(CBridge_485Dlg*)pApp->m_pMainWnd;

@@ -6,8 +6,7 @@
 --------------------Configuration: Bridge_485 - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x804 /fo"Release/Bridge_485.res" /d "NDEBUG" /d "_AFXDLL" "F:\documents\Bridge Monitor\支架监控程序执行文件\支架监控程序执行文件-张老师\代码1-Bridge_485\Bridge_485.rc"" 
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1648.tmp" with contents
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPE80B.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:no /pdb:"Release/Bridge_485.pdb" /machine:I386 /out:"Release/Bridge_485.exe" 
 ".\Release\Bridge_485.obj"
@@ -50,9 +49,8 @@ Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1648.tmp" with 
 ".\Release\Bridge_485.res"
 ".\Bridge_Warn_DLL.lib"
 ]
-Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP1648.tmp"
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPE80B.tmp"
 <h3>Output Window</h3>
-Compiling resources...
 Linking...
 
 
