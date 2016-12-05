@@ -6,24 +6,22 @@
 
 #if !defined(AFX_BRIDGE_485DLG_H__CA58FB38_53A6_45F7_905C_C9EDD6BB6169__INCLUDED_)
 #define AFX_BRIDGE_485DLG_H__CA58FB38_53A6_45F7_905C_C9EDD6BB6169__INCLUDED_
-
+#include "Brow_Cur_Data.h"
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-#define WM_RECEIVEDATA WM_USER+100
+#define WM_RECEIVEMSG WM_USER+100
 /////////////////////////////////////////////////////////////////////////////
 // CBridge_485Dlg dialog
-#include "Brow_Cur_Data.h"
 
 class CBridge_485Dlg : public CDialog
 {
 // Construction
 public:
-	void SendData(CStringArray* Array);
-	void WriteToSQL(CString* pDataStr,int Node,int Ch,sqlite3*  pdb);
+	Brow_Cur_Data* Curhdlg;
+	double* Send_To_History();
 	double TestData;
-	Brow_Cur_Data* phdlg[10];//预定义10个监测窗口
-	int Brow_Cur_Data_Count;//监测窗口计数器，也用于标记窗口
+	void OnLibBrow() ;
 	void Keep_Step_Flag(int val);
 	void Send_Cur_Testing_Data(char *phone_num,int flag);
 	void Process_Phone_Cmd(int fflag);
@@ -74,13 +72,12 @@ public:
     //当前施工阶段标志
 	int Step_flag;
 	int Test_fflag;
-	CStringArray DataToCurView;//定义动态数组，用于实时传递检测值给监测窗口，
-								//由于监测数据类型不同，这里用字符串存储
 //来自手机的控制数据
 	int Control_Command_ID;//命令代码
 	int cmd_Dat;//命令数据
 	char Cmd_Buffer[2048];//命令缓冲区
 	char cur_phone_num[40];//收集号码
+	double InitValOfSensor[5];//感应器初始值，顺序为预压1，预压2，预压3，施工1，施工2
 // Dialog Data
 	//{{AFX_DATA(CBridge_485Dlg)
 	enum { IDD = IDD_BRIDGE_485_DIALOG };
@@ -116,7 +113,6 @@ protected:
 	afx_msg void OnReceive_485();
 	afx_msg void On_BaoJing_Config();
 	afx_msg void OnConfig_para();
-	afx_msg void OnLibBrow();
 	afx_msg void OnClearLib();
 	afx_msg void OnShoujiCom();
 	afx_msg void On485Com_ch();
@@ -132,7 +128,9 @@ protected:
 	afx_msg void OnTimerStop();
 	afx_msg void OnHistLibBrow();
 	afx_msg void OnCurDataBrow();
-	afx_msg void OnButtonTest();
+	afx_msg void OnButton3();
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg void OnCancelMode();
 	DECLARE_EVENTSINK_MAP()
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

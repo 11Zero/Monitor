@@ -12,14 +12,16 @@
 #include "Sg_Step_Selectiong.h"
 #include "Set_Sensor_Warning_Value.h"
 #include "Testing_Warning_Value_Fun.h"
-#include "Bridge_Dll.h"//æŠ¥è­¦åŠ¨æ€åº“å¤´æ–‡ä»¶
+#include "Bridge_Dll.h"//±¨¾¯¶¯Ì¬¿âÍ·ÎÄ¼ş
 #include "Brow_Cur_Data.h"
+#include "InitSensorVal.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
 
 
 
@@ -121,8 +123,10 @@ ON_COMMAND(IDD_GET_PHONE_NUM, OnGetPhoneNum)
 ON_COMMAND(IDD_TIMER_STOP, OnTimerStop)
 ON_COMMAND(IDC_HIST_LIB_BROW, OnHistLibBrow)
 ON_COMMAND(IDC_CUR_DATA_BROW, OnCurDataBrow)
-ON_BN_CLICKED(IDC_BUTTON_TEST, OnButtonTest)
-//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_BUTTON3, OnButton3)
+	ON_WM_CREATE()
+	ON_WM_CANCELMODE()
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -132,10 +136,6 @@ BOOL CBridge_485Dlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	SetWindowPos(&wndNoTopMost,0,0,0,0, SWP_NOMOVE | SWP_NOSIZE);
-	Brow_Cur_Data_Count = 0;//åˆå§‹åŒ–æ£€æµ‹çª—å£è®¡æ•°å™¨
-	DataToCurView.SetSize(8);//å®šä¹‰ä¼ è¾“æ•°æ®ä¸²ä¸ºå…«ä¸ªæ•°æ®
-	for(int i= 0 ;i < sizeof(phdlg)/sizeof(phdlg[0]);i++)
-		phdlg[i] = NULL;//åˆå§‹åŒ–ç›‘æµ‹çª—å£ä¸ºç©ºï¼›
 	// Add "About..." menu item to system menu.
 	
 	// IDM_ABOUTBOX must be in the system command range.
@@ -153,29 +153,33 @@ BOOL CBridge_485Dlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
-	
+	InitValOfSensor[0]=0.0;//¸÷½×¶Î¸ĞÓ¦Æ÷³õÊ¼Öµ³õÊ¼»¯
+	InitValOfSensor[1]=0.0;
+	InitValOfSensor[2]=0.0;
+	InitValOfSensor[3]=0.0;
+	InitValOfSensor[4]=0.0;
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	flag_232=flag_485=0;//æœªé…ç½®å‚æ•°
-	SetWindowText(_T("å…¬è·¯æ¡¥æ¢ç¢—æ‰£å¼æ»¡å ‚æ”¯æ¶æ–½å·¥å®‰å…¨é¢„è­¦ç³»ç»Ÿ"));
+	flag_232=flag_485=0;//Î´ÅäÖÃ²ÎÊı
+	SetWindowText("ºÏ·Ê¹¤Òµ´óÑ§ÍÁÄ¾ÓëË®Àû¹¤³ÌÑ§Ôº");
 	// TODO: Add extra initialization here
-	//è·å¾—æ‰§è¡Œæ–‡ä»¶å½“å‰æ‰€åœ¨ç›®å½•
+	//»ñµÃÖ´ĞĞÎÄ¼şµ±Ç°ËùÔÚÄ¿Â¼
 	::GetCurrentDirectory(199,(LPTSTR) Cur_Path_Dir);
-	strcpy(Config_Path_Dir,Cur_Path_Dir);strcat(Config_Path_Dir,"\\Config");//é…ç½®æ–‡ä»¶ç›®å½•
-	   Bridge_DLL_Set_Cfg_Path(Config_Path_Dir);//è®¾ç½®é…ç½®æ–‡ä»¶ç›®å½•
+	strcpy(Config_Path_Dir,Cur_Path_Dir);strcat(Config_Path_Dir,"\\Config");//ÅäÖÃÎÄ¼şÄ¿Â¼
+	   Bridge_DLL_Set_Cfg_Path(Config_Path_Dir);//ÉèÖÃÅäÖÃÎÄ¼şÄ¿Â¼
 	   //  AfxMessageBox(Config_Path_Dir);
-	   strcpy(Meas_Path_Dir,Cur_Path_Dir);strcat(Meas_Path_Dir,"\\Mdata");//æµ‹é‡æ–‡ä»¶å’Œæ•°æ®åº“æ–‡ä»¶ç›®å½•
+	   strcpy(Meas_Path_Dir,Cur_Path_Dir);strcat(Meas_Path_Dir,"\\Mdata");//²âÁ¿ÎÄ¼şºÍÊı¾İ¿âÎÄ¼şÄ¿Â¼
 	   strcpy(Meas_Lib_File_Name,Meas_Path_Dir);strcat(Meas_Lib_File_Name,"\\MeasData.txt");
-	   //æ–‡ä»¶æµ‹è¯•
+	   //ÎÄ¼ş²âÊÔ
 	   //Add_Dtat_To_Lib(Meas_Lib_File_Name,"2001;Node1;Ch1;10.5mm\n");
 	   //AfxMessageBox(Meas_Path_Dir);
 	   //AfxMessageBox(Cur_Path_Dir);
-	   //è°ƒå…¥é…ç½®ä¿¡æ¯__æµ‹é‡æ§åˆ¶ç½‘ç»œ
+	   //µ÷ÈëÅäÖÃĞÅÏ¢__²âÁ¿¿ØÖÆÍøÂç
 	   Load_Node_Info();//
 	   Control_Command_ID=0;Cmd_Buffer[0]='\0';
-	   //è®¾ç½®è¿è¡Œæ¨¡å¼
+	   //ÉèÖÃÔËĞĞÄ£Ê½
 	   Set_Run_Mode();
 	   
 	   return TRUE;  // return TRUE  unless you set the focus to a control
@@ -248,7 +252,7 @@ void CBridge_485Dlg::OnOnCommMscomm2()
 	// TODO: Add your control notification handler code here
 	
 }
-//æ— çº¿é€šè®¯å£å‚æ•°é…ç½®
+//ÎŞÏßÍ¨Ñ¶¿Ú²ÎÊıÅäÖÃ
 void CBridge_485Dlg::On232Cfg() 
 {
 	// TODO: Add your command handler code here
@@ -263,7 +267,7 @@ void CBridge_485Dlg::On232Cfg()
 		*/
 	}
 }
-//æµ‹æ§ç½‘ç»œé€šè®¯å‚æ•°é…ç½®
+//²â¿ØÍøÂçÍ¨Ñ¶²ÎÊıÅäÖÃ
 void CBridge_485Dlg::On485Cfg() 
 {
 	// TODO: Add your command handler code here
@@ -278,7 +282,7 @@ void CBridge_485Dlg::On485Cfg()
 		*/
 	}
 }
-//æ‰“å¼€232å£é…ç½®å¯¹è¯æ¡†
+//´ò¿ª232¿ÚÅäÖÃ¶Ô»°¿ò
 void CBridge_485Dlg::Open_232_Port()
 {
 	// TODO: Add your control notification handler code here
@@ -289,29 +293,29 @@ void CBridge_485Dlg::Open_232_Port()
     
 	if(flag_232==0) return;
     //MessageBox("23222");
-	m_comm1.SetCommPort(m_PPort_232);//m_Port);//è®¾ç½®ä¸²å£
-	m_comm1.SetInputMode(1);//è®¾ç½®æ•°æ®è¯»å–æ ¼å¼ä¸ºäºŒè¿›åˆ¶
+	m_comm1.SetCommPort(m_PPort_232);//m_Port);//ÉèÖÃ´®¿Ú
+	m_comm1.SetInputMode(1);//ÉèÖÃÊı¾İ¶ÁÈ¡¸ñÊ½Îª¶ş½øÖÆ
 	strcpy(tmp_str,baud_str_232);strcat(tmp_str,",n,8,1");
 	//MessageBox(tmp_str);
-	m_comm1.SetSettings(tmp_str);//ä¼ è¾“å‚æ•°
-	//m_Comm.SetSettings("115200,n,8,1");//ä¼ è¾“å‚æ•°
-	m_comm1.SetRThreshold(1);//ç¼“å†²åŒºå†…æœ‰ä¸€ä¸ªå­—ç¬¦å°±å¯ä»¥æ¥æ”¶
-	m_comm1.SetInBufferSize(2048);//æ¥æ”¶ç¼“å†²åŒºçš„å¤§å°
-	m_comm1.SetOutBufferSize(2048);//å‘é€ç¼“å†²åŒºå¤§å°
-	m_comm1.SetInBufferCount(0);//æ¸…ç©ºæ¥æ”¶ç¼“å†²åŒº
+	m_comm1.SetSettings(tmp_str);//´«Êä²ÎÊı
+	//m_Comm.SetSettings("115200,n,8,1");//´«Êä²ÎÊı
+	m_comm1.SetRThreshold(1);//»º³åÇøÄÚÓĞÒ»¸ö×Ö·û¾Í¿ÉÒÔ½ÓÊÕ
+	m_comm1.SetInBufferSize(2048);//½ÓÊÕ»º³åÇøµÄ´óĞ¡
+	m_comm1.SetOutBufferSize(2048);//·¢ËÍ»º³åÇø´óĞ¡
+	m_comm1.SetInBufferCount(0);//Çå¿Õ½ÓÊÕ»º³åÇø
 	if(!m_comm1.GetPortOpen())
 	{
-		m_comm1.SetPortOpen(true);//æ‰“å¼€ä¸²å£
+		m_comm1.SetPortOpen(true);//´ò¿ª´®¿Ú
 		//	Dis_Button(IDC_BUTTON1,0);
 		//	Dis_Button(IDC_BUTTON2,1);
 		//Dis_Button(IDC_BUTTON3,1);
-		//	com_open_flag=1;//ä¸²è¡Œå£å·²æ‰“å¼€
+		//	com_open_flag=1;//´®ĞĞ¿ÚÒÑ´ò¿ª
 		//	char ss1[100];
 		//sprintf(ss1,"Serial_Num=%d",m_PPort_232);
 		//MessageBox(tmp_str,ss1);
 	}	
 }
-//æ‰“å¼€485å£é…ç½®å¯¹è¯æ¡†
+//´ò¿ª485¿ÚÅäÖÃ¶Ô»°¿ò
 void CBridge_485Dlg::Open_485_Port()
 {
 	// TODO: Add your control notification handler code here
@@ -320,49 +324,49 @@ void CBridge_485Dlg::Open_485_Port()
 	//AfxMessageBox(spc);
 	char tmp_str[30];
 	if(flag_485==0) return;
-	m_comm2.SetCommPort(m_PPort_485);//m_Port);//è®¾ç½®ä¸²å£
-	m_comm2.SetInputMode(1);//è®¾ç½®æ•°æ®è¯»å–æ ¼å¼ä¸ºäºŒè¿›åˆ¶
+	m_comm2.SetCommPort(m_PPort_485);//m_Port);//ÉèÖÃ´®¿Ú
+	m_comm2.SetInputMode(1);//ÉèÖÃÊı¾İ¶ÁÈ¡¸ñÊ½Îª¶ş½øÖÆ
 	strcpy(tmp_str,baud_str_485);strcat(tmp_str,",n,8,1");
 	//MessageBox(tmp_str);
-	m_comm2.SetSettings(tmp_str);//ä¼ è¾“å‚æ•°
-	//m_Comm.SetSettings("115200,n,8,1");//ä¼ è¾“å‚æ•°
-	m_comm2.SetRThreshold(1);//ç¼“å†²åŒºå†…æœ‰ä¸€ä¸ªå­—ç¬¦å°±å¯ä»¥æ¥æ”¶
-	m_comm2.SetInBufferSize(2048);//æ¥æ”¶ç¼“å†²åŒºçš„å¤§å°
-	m_comm2.SetOutBufferSize(2048);//å‘é€ç¼“å†²åŒºå¤§å°
-	m_comm2.SetInBufferCount(0);//æ¸…ç©ºæ¥æ”¶ç¼“å†²åŒº
+	m_comm2.SetSettings(tmp_str);//´«Êä²ÎÊı
+	//m_Comm.SetSettings("115200,n,8,1");//´«Êä²ÎÊı
+	m_comm2.SetRThreshold(1);//»º³åÇøÄÚÓĞÒ»¸ö×Ö·û¾Í¿ÉÒÔ½ÓÊÕ
+	m_comm2.SetInBufferSize(2048);//½ÓÊÕ»º³åÇøµÄ´óĞ¡
+	m_comm2.SetOutBufferSize(2048);//·¢ËÍ»º³åÇø´óĞ¡
+	m_comm2.SetInBufferCount(0);//Çå¿Õ½ÓÊÕ»º³åÇø
 	if(!m_comm2.GetPortOpen())
 	{
-		m_comm2.SetPortOpen(true);//æ‰“å¼€ä¸²å£
+		m_comm2.SetPortOpen(true);//´ò¿ª´®¿Ú
 		//	Dis_Button(IDC_BUTTON1,0);
 		//	Dis_Button(IDC_BUTTON2,1);
 		//	Dis_Button(IDC_BUTTON3,1);
-		//com_open_flag=1;//ä¸²è¡Œå£å·²æ‰“å¼€
+		//com_open_flag=1;//´®ĞĞ¿ÚÒÑ´ò¿ª
 		//MessageBox("485 opened");
 		//char tmp[100];
 		//	sprintf(tmp,"serial_num=%d",m_PPort_485);
 		//	MessageBox(tmp,(char *) tmp_str);
 	}	
 }
-//æ‰“å¼€æ— çº¿ä¸²è¡Œå£
+//´ò¿ªÎŞÏß´®ĞĞ¿Ú
 void CBridge_485Dlg::OnOpenS232() 
 {
 	// TODO: Add your command handler code here
 	if(m_comm1.GetPortOpen())
 	{
-		m_comm1.SetPortOpen(false);//å…³é—­ä¸²å£
+		m_comm1.SetPortOpen(false);//¹Ø±Õ´®¿Ú
 		Open_232_Port();
 	}
 	else {
 		Open_232_Port();
 	}
 }
-//æ‰“å¼€æµ‹é‡ä¸²è¡Œå£
+//´ò¿ª²âÁ¿´®ĞĞ¿Ú
 void CBridge_485Dlg::OnOpenS485() 
 {
 	// TODO: Add your command handler code here
 	if(m_comm2.GetPortOpen())
 	{
-		m_comm2.SetPortOpen(false);//å…³é—­ä¸²å£
+		m_comm2.SetPortOpen(false);//¹Ø±Õ´®¿Ú
 		Open_485_Port(); 
 	}
 	else {
@@ -370,45 +374,45 @@ void CBridge_485Dlg::OnOpenS485()
 		
 	}
 }
-//ä»ä¸²è¡Œå£å‘é€æ•°æ®
+//´Ó´®ĞĞ¿Ú·¢ËÍÊı¾İ
 void CBridge_485Dlg::TDR_Send_Data_To_Com(unsigned char *send_buf, int data_len,int which_channel)
 {
-	//which_channel=1,æ‰‹æœºå£;=2,485å£
-	CByteArray m_Array;//äºŒè¿›åˆ¶æ•°ç»„
+	//which_channel=1,ÊÖ»ú¿Ú;=2,485¿Ú
+	CByteArray m_Array;//¶ş½øÖÆÊı×é
 	m_Array.SetSize(data_len);
-	for(int i=0;i<data_len;i++)//ä¸ºæ•°ç»„èµ‹å€¼
+	for(int i=0;i<data_len;i++)//ÎªÊı×é¸³Öµ
 	{
 		m_Array.SetAt(i,send_buf[i]); 
 		
 	}
 	switch(which_channel) {
-	case 1://æ‰‹æœºå£
+	case 1://ÊÖ»ú¿Ú
 		{
 			if(m_comm1.GetPortOpen()){
-				// MessageBox("ä»æ‰‹æœºå‘é€æ•°æ®");
-				m_comm1.SetOutput(COleVariant(m_Array));//å‘é€æ•°æ®
+				// MessageBox("´ÓÊÖ»ú·¢ËÍÊı¾İ");
+				m_comm1.SetOutput(COleVariant(m_Array));//·¢ËÍÊı¾İ
 			}
 		}
 		break;
-	case 2://æµ‹é‡å£
+	case 2://²âÁ¿¿Ú
 		{
 			if(m_comm2.GetPortOpen()){
-				//MessageBox("ä»485å‘é€æ•°æ®");
-				m_comm2.SetOutput(COleVariant(m_Array));//å‘é€æ•°æ®
+				//MessageBox("´Ó485·¢ËÍÊı¾İ");
+				m_comm2.SetOutput(COleVariant(m_Array));//·¢ËÍÊı¾İ
 			}
 		}
 		break;
 	}
 	
 }
-//ä»æ‰‹æœºå‘é€æ•°æ®
+//´ÓÊÖ»ú·¢ËÍÊı¾İ
 void CBridge_485Dlg::On232_Send() 
 {
 	// TODO: Add your command handler code here
 	unsigned char pkt[1024];
     unsigned char tmp[100];
 	//for(int i=0;i<5;i++) { sprintf((char *) tmp,"%d",i);pkt[i]=tmp[0];}
-	strcpy((char *) pkt,"AT+CISMSSEND=13866120701,3,ä¸­å›½ç§‘å­¦æŠ€æœ¯å¤§å­¦234");
+	strcpy((char *) pkt,"AT+CISMSSEND=13866120701,3,ÖĞ¹ú¿ÆÑ§¼¼Êõ´óÑ§234");
 	int test_data(200);
 	sprintf((char *) tmp,"_%d",test_data);
 	strcat((char *) pkt,(char *) tmp);
@@ -423,7 +427,7 @@ void CBridge_485Dlg::On232_Send()
     //TDR_Send_Data_To_Com(pkt,len,1);
 	
 }
-//ä»æ‰‹æœºæ¥æ”¶æ•°æ®
+//´ÓÊÖ»ú½ÓÊÕÊı¾İ
 void CBridge_485Dlg::OnReceive_232() 
 {
 	// TODO: Add your command handler code here
@@ -451,16 +455,16 @@ void CBridge_485Dlg::OnReceive_232()
 		
 	}
 }
-//æƒ³æµ‹æ§èŠ‚ç‚¹å‘é€æ•°æ®
+//Ïë²â¿Ø½Úµã·¢ËÍÊı¾İ
 void CBridge_485Dlg::OnSend_485() 
 {
 	// TODO: Add your command handler code here
 	//	unsigned char pkt[20];
 	//	for(int i=0;i<5;i++) pkt[i]=i*5;
 	//TDR_Send_Data_To_Com(pkt,5,2);
-	Fill_485_data_Pkt();//å‘é€RTU æ•°æ®åŒ…
+	Fill_485_data_Pkt();//·¢ËÍRTU Êı¾İ°ü
 }
-//ä»æµ‹é‡æ§åˆ¶èŠ‚ç‚¹æ¥æ”¶æ•°æ®
+//´Ó²âÁ¿¿ØÖÆ½Úµã½ÓÊÕÊı¾İ
 void CBridge_485Dlg::OnReceive_485() 
 {
 	// TODO: Add your command handler code here
@@ -475,7 +479,7 @@ void CBridge_485Dlg::OnReceive_485()
 		}
 	}
 }
-//è·å¾—å½“å‰ç¼“å†²åŒºçš„æ•°æ®,è¿”å›å€¼ä¸ºå½“å‰çš„æ•°æ®é•¿åº¦
+//»ñµÃµ±Ç°»º³åÇøµÄÊı¾İ,·µ»ØÖµÎªµ±Ç°µÄÊı¾İ³¤¶È
 int CBridge_485Dlg::TDR_Get_Cur_Buffer_Data(unsigned char *buf,int which_channel)
 {
 	int k(0);
@@ -483,7 +487,7 @@ int CBridge_485Dlg::TDR_Get_Cur_Buffer_Data(unsigned char *buf,int which_channel
 	switch(which_channel) {
 	case 1:
 		{
-			k=m_comm1.GetInBufferCount();//æ¥æ”¶ç¼“å†²åŒºå­—ç¬¦æ•°
+			k=m_comm1.GetInBufferCount();//½ÓÊÕ»º³åÇø×Ö·ûÊı
 			if(k>0) {
 				m_input=m_comm1.GetInput();
 				memmove(buf, (unsigned char*)m_input.parray->pvData,k);
@@ -493,7 +497,7 @@ int CBridge_485Dlg::TDR_Get_Cur_Buffer_Data(unsigned char *buf,int which_channel
 		break;
 	case 2:
 		{
-			k=m_comm2.GetInBufferCount();//æ¥æ”¶ç¼“å†²åŒºå­—ç¬¦æ•°
+			k=m_comm2.GetInBufferCount();//½ÓÊÕ»º³åÇø×Ö·ûÊı
 			if(k>0) {
 				m_input=m_comm2.GetInput();
 				memmove(buf, (unsigned char*)m_input.parray->pvData,k);
@@ -504,23 +508,23 @@ int CBridge_485Dlg::TDR_Get_Cur_Buffer_Data(unsigned char *buf,int which_channel
 	
 	return k;
 }
-//æŠ¥è­¦è®¾ç½®
+//±¨¾¯ÉèÖÃ
 void CBridge_485Dlg::On_BaoJing_Config() 
 {
 	// TODO: Add your command handler code here
 	char cfg_name[200];
     Mobile_Dlg mobile_dlg;
-	//äº§ç”ŸæŠ¥è­¦æ–‡ä»¶
+	//²úÉú±¨¾¯ÎÄ¼ş
 	strcpy(cfg_name,Config_Path_Dir);strcat(cfg_name,"\\Bconfig.txt");
 	strcpy(mobile_dlg.Cfg_File_name,cfg_name);
 	
 	mobile_dlg.DoModal();
 }
-//ç”Ÿæˆ485æ•°æ®å°åŒ…å¹¶å‘é€
+//Éú³É485Êı¾İ·â°ü²¢·¢ËÍ
 void CBridge_485Dlg::Fill_485_data_Pkt()
 {
-    unsigned char Send_Pkt_Data[100];//å‘é€æ•°æ®åŒ…
-	int pkt_len(0);//æ•°æ®åŒ…é•¿åº¦
+    unsigned char Send_Pkt_Data[100];//·¢ËÍÊı¾İ°ü
+	int pkt_len(0);//Êı¾İ°ü³¤¶È
     unsigned short int CRC_val;
 	
 	pkt_len=0;
@@ -544,11 +548,11 @@ void CBridge_485Dlg::Fill_485_data_Pkt()
 		Send_Pkt_Data[1],Send_Pkt_Data[2],Send_Pkt_Data[3],Send_Pkt_Data[4],Send_Pkt_Data[5],
 		Send_Pkt_Data[6],Send_Pkt_Data[7],pkt_len);
 	MessageBox(spp);
-	//å‘é€æ•°æ®
+	//·¢ËÍÊı¾İ
    	TDR_Send_Data_To_Com(Send_Pkt_Data,pkt_len,2);
 	
 }
-//è®¡ç®—CRC-16æ ¡éªŒä»£ç 
+//¼ÆËãCRC-16Ğ£Ñé´úÂë
 unsigned short int CBridge_485Dlg::Com_CRC_16_Code(unsigned char *buf,int buf_len)
 {
 	
@@ -571,19 +575,19 @@ unsigned short int CBridge_485Dlg::Com_CRC_16_Code(unsigned char *buf,int buf_le
 	}
 	return reg_tmp;
 }
-//485æµ‹é‡ç½‘ç»œæ§åˆ¶èŠ‚ç‚¹å‚æ•°é…ç½®
+//485²âÁ¿ÍøÂç¿ØÖÆ½Úµã²ÎÊıÅäÖÃ
 void CBridge_485Dlg::OnConfig_para() 
 {
 	// TODO: Add your command handler code here
 	Cfg_485_Net_Node_dlg r485_para_dlg;
 	char para_file_name[200];
-	//ç”Ÿæˆæ–‡ä»¶å
+	//Éú³ÉÎÄ¼şÃû
 	strcpy(para_file_name,Config_Path_Dir);strcat(para_file_name,"\\Bpara.txt");
 	// MessageBox(para_file_name);
 	strcpy(r485_para_dlg.Cfg_File_Name,para_file_name);
 	r485_para_dlg.DoModal();
 }
-//å°†æµ‹é‡æ•°æ®æ·»åŠ åˆ°æ•°æ®åº“æ–‡ä»¶
+//½«²âÁ¿Êı¾İÌí¼Óµ½Êı¾İ¿âÎÄ¼ş
 void CBridge_485Dlg::Add_Dtat_To_Lib(char *file_name, char *str)
 {
 	FILE *fp;
@@ -594,7 +598,7 @@ void CBridge_485Dlg::Add_Dtat_To_Lib(char *file_name, char *str)
 		fclose(fp);
 	}
 }
-//æµè§ˆæµ‹é‡æ•°æ®æ–‡ä»¶å†…å®¹
+//ä¯ÀÀ²âÁ¿Êı¾İÎÄ¼şÄÚÈİ
 void CBridge_485Dlg::OnLibBrow() 
 {
 	// TODO: Add your command handler code here
@@ -604,13 +608,13 @@ void CBridge_485Dlg::OnLibBrow()
 void CBridge_485Dlg::OnClearLib() 
 {
 	// TODO: Add your command handler code here
-	if(MessageBox("æ¸…ç†æ•°æ®æ–‡ä»¶?","è¯·é€‰æ‹©.......",MB_YESNO)==IDYES){
+	if(MessageBox("ÇåÀíÊı¾İÎÄ¼ş?","ÇëÑ¡Ôñ.......",MB_YESNO)==IDYES){
 		FILE *fpt;
 		fpt=fopen(Meas_Lib_File_Name,"w");
 		if(fpt!=NULL) fclose(fpt);
 	} 
 }
-//æ£€æŸ¥æ‰‹æœºé€šè®¯
+//¼ì²éÊÖ»úÍ¨Ñ¶
 int CBridge_485Dlg::Check_ShouJi_Comm()
 {
 	int ret(0);
@@ -623,7 +627,7 @@ int CBridge_485Dlg::Check_ShouJi_Comm()
 	
 	
 	//for(int i=0;i<5;i++) { sprintf((char *) tmp,"%d",i);pkt[i]=tmp[0];}
-	strcpy((char *) pkt,"AT");//+CISMSSEND=13866120701,3,ä¸­å›½ç§‘å­¦æŠ€æœ¯å¤§å­¦234");
+	strcpy((char *) pkt,"AT");//+CISMSSEND=13866120701,3,ÖĞ¹ú¿ÆÑ§¼¼Êõ´óÑ§234");
 	
 	
 	int len=strlen((char *) pkt);
@@ -643,14 +647,14 @@ int CBridge_485Dlg::Check_ShouJi_Comm()
 	}
 	return ret;
 }
-//æ£€æŸ¥485é€šè®¯ç½‘ç»œ
+//¼ì²é485Í¨Ñ¶ÍøÂç
 int CBridge_485Dlg::Check_485_Comm()
 {
 	int ret(0);
 	unsigned char pkt[2048];
 	TDR_Get_Cur_Buffer_Data(pkt,2);
 	Fill_485_Connect_Pkt(1);
-   	Sleep(2000);//å»¶ç»­æ—¶é—´
+   	Sleep(2000);//ÑÓĞøÊ±¼ä
 	int k=TDR_Get_Cur_Buffer_Data(pkt,2);
 	if(k>0) {
 		unsigned short int crc_val;
@@ -669,38 +673,41 @@ int CBridge_485Dlg::Check_485_Comm()
 	}
 	return ret;
 }
-//æ‰‹æœºæ¨¡å—é€šè®¯æ£€æŸ¥
+//ÊÖ»úÄ£¿éÍ¨Ñ¶¼ì²é
 void CBridge_485Dlg::OnShoujiCom() 
 {
 	// TODO: Add your command handler code here
 	int ret_val;
 	ret_val=Check_ShouJi_Comm();
-	if(ret_val==0)MessageBox("æ— çº¿ç½‘ç»œå¼‚å¸¸");
-	else MessageBox("æ— çº¿ç½‘ç»œæ­£å¸¸____OK_______");
+	if(ret_val==0)MessageBox("ÎŞÏßÍøÂçÒì³£");
+	else MessageBox("ÎŞÏßÍøÂçÕı³£____OK_______");
 }
-//485é€šè®¯ç½‘ç»œæ£€æŸ¥
+//485Í¨Ñ¶ÍøÂç¼ì²é
 void CBridge_485Dlg::On485Com_ch() 
 {
 	// TODO: Add your command handler code here
 	int ret_val;
 	ret_val=Check_485_Comm();
-	if(ret_val==0)MessageBox("æµ‹æ§ç½‘ç»œå¼‚å¸¸");
-	else MessageBox("æµ‹æ§ç½‘ç»œæ­£å¸¸______OK_______");
+	if(ret_val==0)MessageBox("²â¿ØÍøÂçÒì³£");
+	else MessageBox("²â¿ØÍøÂçÕı³£______OK_______");
 }
-//æµ‹é‡ä¼ æ„Ÿå™¨å™¨åˆå§‹å€¼
+//²âÁ¿´«¸ĞÆ÷Æ÷³õÊ¼Öµ
 void CBridge_485Dlg::OnInitVal() 
 {
 	// TODO: Add your command handler code here
-	MessageBox("ä¼ æ„Ÿå™¨åˆå§‹å€¼");
+	//
+	InitSensorVal dlg;
+	if(!dlg.DoModal())
+		MessageBox("´«¸ĞÆ÷³õÊ¼ÖµÉèÖÃ´°ÎŞ·¨´ò¿ª");
 }
-//ä»é…ç½®æ–‡ä»¶ä¸­è·å¾—æµ‹é‡ç½‘ç»œå„èŠ‚ç‚¹çš„é…ç½®ä¿¡æ¯
+//´ÓÅäÖÃÎÄ¼şÖĞ»ñµÃ²âÁ¿ÍøÂç¸÷½ÚµãµÄÅäÖÃĞÅÏ¢
 void CBridge_485Dlg::Load_Node_Info()
 {
 	FILE *fp;
 	char para_file_name[200];
 	char tmp[100] ;//,tmp1[100];
 	int i,j,len;
-	//ç”Ÿæˆæ–‡ä»¶å
+	//Éú³ÉÎÄ¼şÃû
 	strcpy(para_file_name,Config_Path_Dir);strcat(para_file_name,"\\Bpara.txt");
 	fp=fopen(para_file_name,"r");
 	if(fp!=NULL){
@@ -712,14 +719,14 @@ void CBridge_485Dlg::Load_Node_Info()
             fgets(tmp,100,fp);Node_Ch_num[i]=atoi(tmp);
 			for(j=0;j<Node_Ch_num[i];j++){
 				fgets(tmp,100,fp);len=strlen(tmp);tmp[len-1]='\0';
-				//ä¼ æ„Ÿå™¨åç§°
+				//´«¸ĞÆ÷Ãû³Æ
 				strcpy(Node_Ch_Sensor_Name[i][j],tmp);
 				// MessageBox(Node_Ch_Sensor_Name[i][j]);
-				//ä¼ æ„Ÿå™¨çµæ•åº¦
+				//´«¸ĞÆ÷ÁéÃô¶È
 				fgets(tmp,100,fp); Node_Ch_Sensor_Lmd[i][j]=atof(tmp);
 				//sprintf(tmp1,"lmd=%5.3f",Node_Ch_Sensor_Lmd[i][j]);
 				// MessageBox(tmp1);
-				//ä¼ æ„Ÿå™¨å•ä½
+				//´«¸ĞÆ÷µ¥Î»
 				fgets(tmp,100,fp);len=strlen(tmp);tmp[len-1]='\0';
 				strcpy(Node_Ch_Sensor_Unit[i][j],tmp);
 				//MessageBox(Node_Ch_Sensor_Unit[i][j]);
@@ -728,15 +735,15 @@ void CBridge_485Dlg::Load_Node_Info()
 		}     
 		
 		/*
-		//èŠ‚ç‚¹å‚æ•°
-		int Total_Node_Num;//èŠ‚ç‚¹æ€»æ•°
-		int Node_Ch_num[32];//æ¯ä¸ªèŠ‚ç‚¹æµ‹é‡é€šé“æ•°
-		char Node_Ch_Sensor_Name[32][8][20];//æ¯ä¸ªé€šé“çš„ä¼ æ„Ÿå™¨åç§°
-		double Node_Ch_Sensor_Lmd[32][8];//æ¯ä¸ªèŠ‚ç‚¹é€šé“ä¼ æ„Ÿå™¨çµæ•åº¦
-		char Node_Ch_Sensor_Unit[32][8][20];//æ¯ä¸ªèŠ‚ç‚¹æµ‹é‡é€šé“çš„å•ä½
+		//½Úµã²ÎÊı
+		int Total_Node_Num;//½Úµã×ÜÊı
+		int Node_Ch_num[32];//Ã¿¸ö½Úµã²âÁ¿Í¨µÀÊı
+		char Node_Ch_Sensor_Name[32][8][20];//Ã¿¸öÍ¨µÀµÄ´«¸ĞÆ÷Ãû³Æ
+		double Node_Ch_Sensor_Lmd[32][8];//Ã¿¸ö½ÚµãÍ¨µÀ´«¸ĞÆ÷ÁéÃô¶È
+		char Node_Ch_Sensor_Unit[32][8][20];//Ã¿¸ö½Úµã²âÁ¿Í¨µÀµÄµ¥Î»
 		*/
 		fclose(fp);
-		//è·å¾—å½“å‰æ–½å·¥é˜¶æ®µä¿¡æ¯
+		//»ñµÃµ±Ç°Ê©¹¤½×¶ÎĞÅÏ¢
 		strcpy(para_file_name,Config_Path_Dir);strcat(para_file_name,"\\Sgcfg.txt");
 		fp=fopen(para_file_name,"r");
 		if(fp!=NULL){
@@ -747,20 +754,20 @@ void CBridge_485Dlg::Load_Node_Info()
 		
 	}
 	else {
-		MessageBox("æ— é…ç½®æ–‡ä»¶,ç¨‹åºå°†ç»“æŸè¿è¡Œ....");
-		//exit(0);ç”°æµ·æ¶›ä¿®æ”¹
+		MessageBox("ÎŞÅäÖÃÎÄ¼ş,³ÌĞò½«½áÊøÔËĞĞ....");
+		//exit(0);Ìïº£ÌÎĞŞ¸Ä
 		
 	}
 }
-//å‘é€è”ç»œæ•°æ®åŒ…
+//·¢ËÍÁªÂçÊı¾İ°ü
 void CBridge_485Dlg::Fill_485_Connect_Pkt(unsigned char dev_addr)
 {
-    unsigned char Send_Pkt_Data[100];//å‘é€æ•°æ®åŒ…
-	int pkt_len(0);//æ•°æ®åŒ…é•¿åº¦
+    unsigned char Send_Pkt_Data[100];//·¢ËÍÊı¾İ°ü
+	int pkt_len(0);//Êı¾İ°ü³¤¶È
     unsigned short int CRC_val;
 	
 	pkt_len=0;
-    Send_Pkt_Data[pkt_len]=dev_addr;pkt_len++;//è®¾å¤‡åœ°å€
+    Send_Pkt_Data[pkt_len]=dev_addr;pkt_len++;//Éè±¸µØÖ·
     Send_Pkt_Data[pkt_len]=0x46;pkt_len++;
     Send_Pkt_Data[pkt_len]=0;pkt_len++;
 	
@@ -774,16 +781,16 @@ void CBridge_485Dlg::Fill_485_Connect_Pkt(unsigned char dev_addr)
     sprintf(spp,"%x %x %x %x %x %d", Send_Pkt_Data[0],
 		Send_Pkt_Data[1],Send_Pkt_Data[2],Send_Pkt_Data[3],Send_Pkt_Data[4],pkt_len);
     MessageBox(spp);
-	//å‘é€æ•°æ®
+	//·¢ËÍÊı¾İ
 	TDR_Send_Data_To_Com(Send_Pkt_Data,pkt_len,2);
 	
 }
-//æµ‹æ§ç½‘ç»œ
+//²â¿ØÍøÂç
 void CBridge_485Dlg::Take_Meas_485_Net(unsigned char addr_id)
 {
-	//addr_id----A/Dæ¨¡å—åœ°å€
-	unsigned char Send_Pkt_Data[100];//å‘é€æ•°æ®åŒ…
-	int pkt_len(0);//æ•°æ®åŒ…é•¿åº¦
+	//addr_id----A/DÄ£¿éµØÖ·
+	unsigned char Send_Pkt_Data[100];//·¢ËÍÊı¾İ°ü
+	int pkt_len(0);//Êı¾İ°ü³¤¶È
     unsigned short int CRC_val;
 	
 	pkt_len=0;
@@ -808,19 +815,19 @@ void CBridge_485Dlg::Take_Meas_485_Net(unsigned char addr_id)
 		Send_Pkt_Data[6],Send_Pkt_Data[7],pkt_len);
 	//MessageBox(spp);
     
-	//å‘é€æ•°æ®
+	//·¢ËÍÊı¾İ
    	TDR_Send_Data_To_Com(Send_Pkt_Data,pkt_len,2);
-	//Sleep(2000);//å»¶ç»­æ—¶é—´2
+	//Sleep(2000);//ÑÓĞøÊ±¼ä2
 	
 	
 }
-//ä»æµ‹é‡æ§åˆ¶ç½‘ç»œè·å¾—æ•°æ®
+//´Ó²âÁ¿¿ØÖÆÍøÂç»ñµÃÊı¾İ
 int CBridge_485Dlg::Fetch_Meas_485_Data(unsigned char *pkt)
 {
 	int ret_val=TDR_Get_Cur_Buffer_Data(pkt,2);
 	return ret_val;
 }
-//æ‰«æç½‘ç»œèŠ‚ç‚¹æ•°æ®å¹¶å†™å…¥æ–‡ä»¶
+//É¨ÃèÍøÂç½ÚµãÊı¾İ²¢Ğ´ÈëÎÄ¼ş
 void CBridge_485Dlg::OnFetch485Data() 
 {
 	// TODO: Add your command handler code here
@@ -828,31 +835,58 @@ void CBridge_485Dlg::OnFetch485Data()
 	char tmp1[300],tmp2[200],output[300];
 	unsigned char pkt[1024];
 	int len;
-	CString temp = "";
-	int Meas_cnt(0);//æµ‹é‡é€šé“è®¡æ•°
-					/*	//èŠ‚ç‚¹å‚æ•°
-					int Total_Node_Num;//èŠ‚ç‚¹æ€»æ•°
-					int Node_Ch_num[32];//æ¯ä¸ªèŠ‚ç‚¹æµ‹é‡é€šé“æ•°
-					char Node_Ch_Sensor_Name[32][8][20];//æ¯ä¸ªé€šé“çš„ä¼ æ„Ÿå™¨åç§°
-					double Node_Ch_Sensor_Lmd[32][8];//æ¯ä¸ªèŠ‚ç‚¹é€šé“ä¼ æ„Ÿå™¨çµæ•åº¦
-					char Node_Ch_Sensor_Unit[32][8][20];//æ¯ä¸ªèŠ‚ç‚¹æµ‹é‡é€šé“çš„å•ä½
+	int Meas_cnt(0);//²âÁ¿Í¨µÀ¼ÆÊı
+					/*	//½Úµã²ÎÊı
+					int Total_Node_Num;//½Úµã×ÜÊı
+					int Node_Ch_num[32];//Ã¿¸ö½Úµã²âÁ¿Í¨µÀÊı
+					char Node_Ch_Sensor_Name[32][8][20];//Ã¿¸öÍ¨µÀµÄ´«¸ĞÆ÷Ãû³Æ
+					double Node_Ch_Sensor_Lmd[32][8];//Ã¿¸ö½ÚµãÍ¨µÀ´«¸ĞÆ÷ÁéÃô¶È
+					char Node_Ch_Sensor_Unit[32][8][20];//Ã¿¸ö½Úµã²âÁ¿Í¨µÀµÄµ¥Î»
 	*/
-	//æµ‹é‡æ—¶é—´
+	//²âÁ¿Ê±¼ä
 	CTime m_cur_time=CTime::GetCurrentTime();
 	CString ss=m_cur_time.Format("%Y_%m_%d_%H_%M_%S;");
 	strcpy(output,ss.operator LPCTSTR());
-	CString strTime = m_cur_time.Format("%Y-%m-%d %H:%M:%S");
-	DataToCurView.SetAt(0,strTime);
+	
 	//MessageBox(output);
 	sprintf(tmp1,"%d",Total_Node_Num);//MessageBox(tmp1);
 	
 	
+	/*CString m_strFolderPath="DataFolder" ;
+	// ÅĞ¶ÏÂ·¾¶ÊÇ·ñ´æÔÚ 
+	if (!PathIsDirectory(m_strFolderPath) ) 
+	{ 
+		CString strMsg; 
+		strMsg.Format ("Ö¸¶¨Â·¾¶\"%s\"²»´æÔÚ£¬ÊÇ·ñ´´½¨?", m_strFolderPath); 
+		if (AfxMessageBox(strMsg, MB_YESNO) == IDYES) 
+		{ 
+			if (!CreateDirectory(m_strFolderPath, NULL ) ) 
+			{ 
+				strMsg.Format ("´´½¨Â·¾¶\"%s\"Ê§°Ü£¡½«´æ´¢ÔÚ¸ùÄ¿Â¼ÏÂ", m_strFolderPath); 
+				AfxMessageBox(strMsg);
+			} 
+		} 
+	}
+	sqlite3* db;
+	int rc = sqlite3_open(ss,&db);
+	ASSERT(rc == SQLITE_OK);
+	if(rc == SQLITE_OK)
+	{
+		AfxMessageBox("´ò¿ª³É¹¦");
+		SetWindowText("ÕıÔÚĞ´ÈëÎÄ¼ş:"+ss);
+	}
+	else
+	{	
+		CString OpenErrorMsg = "";
+		OpenErrorMsg.Format("Êı¾İ¿â´ò¿ª³ö´í.\n´íÎóÔ­Òò:%s\n", sqlite3_errmsg(db));
+		AfxMessageBox(OpenErrorMsg);
+	}*/
+
 	
 	
-	
-	
-	for(i=0;i<Total_Node_Num;i++) {//æµ‹é‡èŠ‚ç‚¹å¾ªç¯
-		//	for(j=0;j<Node_Ch_num[i];j++) {//æµ‹é‡é€šé“å¾ªç¯
+
+	for(i=0;i<Total_Node_Num;i++) {//²âÁ¿½ÚµãÑ­»·
+		//	for(j=0;j<Node_Ch_num[i];j++) {//²âÁ¿Í¨µÀÑ­»·
 		Take_Meas_485_Net((unsigned char) (i+1));
 		Sleep(1500);
 		
@@ -867,15 +901,7 @@ void CBridge_485Dlg::OnFetch485Data()
 			ret_crc+=(unsigned short int) pkt[len-2];
 			if(ret_crc==crc_val) {
 				for(j=0;j<Node_Ch_num[i];j++){
-					
-					temp.Format("%d",i+1);////
-					DataToCurView.SetAt(1,temp);//è®¡å…¥èŠ‚ç‚¹
-					temp.Format("%d",j+1);////
-					DataToCurView.SetAt(2,temp);//è®¡å…¥é€šé“
-					temp.Format("%s",Node_Ch_Sensor_Name[i][j]);////
-					DataToCurView.SetAt(3,temp);//è®¡å…¥æ„Ÿåº”å™¨åç§°
-					
-					strcpy(tmp1,output);sprintf(tmp2,"èŠ‚ç‚¹%d;é€šé“%d;",i+1,j+1);strcat(tmp1,tmp2);
+					strcpy(tmp1,output);sprintf(tmp2,"½Úµã%d;Í¨µÀ%d;",i+1,j+1);strcat(tmp1,tmp2);
 					strcat(tmp1,Node_Ch_Sensor_Name[i][j]);strcat(tmp1,";");
 					unsigned short int xx;short int yy;
 					xx=pkt[j*2+3];xx=(xx<<8)&0x0ff00;xx=xx+pkt[j*2+4];
@@ -883,41 +909,16 @@ void CBridge_485Dlg::OnFetch485Data()
 					double s_val;
 					s_val=Com_Sensor_Value(yy,Node_Ch_Sensor_Lmd[i][j]);
 					
-					temp.Format("%3.2f",Node_Ch_Sensor_Lmd[i][j]);////
-					DataToCurView.SetAt(4,temp);//è®¡å…¥çµæ•åº¦
-					
-					Cur_Sensor_Meas_Val[Meas_cnt]=s_val;Meas_cnt++;//æŠŠæµ‹é‡å‚æ•°æ”¾å…¥é“æ•°ç»„ä¸­.
-					sprintf(tmp2,"%7.2f",s_val);
-					
-					temp.Format("%7.2f",s_val);////
-					DataToCurView.SetAt(5,temp);//è®¡å…¥æ•°å€¼
-					
-					////////////////////////////////
-					CString s_val_str = "";
-					s_val_str.Format("%s",tmp2);
-					//WriteToSQL(&s_val_str,i,j,NULL);
-					////////////////////////////////
-					
-					strcat(tmp1,tmp2);
+					Cur_Sensor_Meas_Val[Meas_cnt]=s_val-InitValOfSensor[Step_flag];Meas_cnt++;//°Ñ²âÁ¿²ÎÊı·ÅÈëµÀÊı×éÖĞ.
+					sprintf(tmp2,"%7.2f",s_val);strcat(tmp1,tmp2);
 					//sprintf(tmp2,"%7.2f %7.2f",s_val,Cur_Sensor_Meas_Val[Meas_cnt-1]);strcat(tmp1,tmp2);
 					strcat(tmp1,";");
 					strcat(tmp1,Node_Ch_Sensor_Unit[i][j]);
-					
-					temp.Format("%s",Node_Ch_Sensor_Unit[i][j]);////
-					DataToCurView.SetAt(6,temp);//è®¡å…¥å•ä½
-					
 					strcat(tmp1,";");strcat(tmp1,Test_Position);
 					Display_Meas_Res(IDC_LIST2, tmp1,j);
-					
-					temp.Format("%s",Test_Position);////
-					DataToCurView.SetAt(7,temp);//è®¡å…¥ä½ç½®
-					ASSERT(&DataToCurView != NULL);
-					SendData(&DataToCurView);
-					
-					
 					strcat(tmp1,"\n");
 					//MessageBox(tmp1);
-					Add_Dtat_To_Lib(Meas_Lib_File_Name,tmp1);//æµ‹é‡æ•°æ®å†™å…¥æ–‡ä»¶
+					Add_Dtat_To_Lib(Meas_Lib_File_Name,tmp1);//²âÁ¿Êı¾İĞ´ÈëÎÄ¼ş
 					
 				}
 				// MessageBox("crc ok");
@@ -930,7 +931,7 @@ void CBridge_485Dlg::OnFetch485Data()
 	}
 	
 }
-//è®¡ç®—ä¼ æ„Ÿå™¨çš„æ•°æ®
+//¼ÆËã´«¸ĞÆ÷µÄÊı¾İ
 double CBridge_485Dlg::Com_Sensor_Value(short int xx, double lmd)
 {
 	double yy(0.0);
@@ -943,7 +944,7 @@ double CBridge_485Dlg::Com_Sensor_Value(short int xx, double lmd)
 	return yy;
 	
 }
-//æ˜¾ç¤ºæµ‹é‡ç»“æœ
+//ÏÔÊ¾²âÁ¿½á¹û
 void CBridge_485Dlg::Display_Meas_Res(int idc_list, char *str,int flag)
 {
 	CListBox *ptr;
@@ -953,29 +954,29 @@ void CBridge_485Dlg::Display_Meas_Res(int idc_list, char *str,int flag)
 		ptr->AddString(str);
 	}
 }
-//å®šæ—¶æµ‹é‡
+//¶¨Ê±²âÁ¿
 void CBridge_485Dlg::OnTimer(UINT nIDEvent) 
 {
 	// TODO: Add your message handler code here and/or call default
 	int ret(0);Test_fflag=0;
 	char cur_state[200],temp_ch[20];
-	strcpy(cur_state,"å…¬è·¯æ¡¥æ¢ç¢—æ‰£å¼æ»¡å ‚æ”¯æ¶æ–½å·¥å®‰å…¨é¢„è­¦ç³»ç»Ÿ - ");
-	if(Run_Auto_Flag!=0) strcat(cur_state,"å®šæ—¶æµ‹é‡_");
+	strcpy(cur_state,"ºÏ·Ê¹¤Òµ´óÑ§ÍÁË®Ñ§Ôº_");
+	if(Run_Auto_Flag!=0) strcat(cur_state,"¶¨Ê±²âÁ¿_");
 	sprintf(temp_ch,"%d",Step_flag);
 	strcat(cur_state,temp_ch);
 	if(nIDEvent==10) {
 		SetWindowText(cur_state);
 		KillTimer(10);
-		OnFetch485Data();//å®šæ—¶æµ‹é‡
-		Test_Warning_Conditioan();//å¤„ç†æ•°æ®æŠ¥è­¦
+		OnFetch485Data();//¶¨Ê±²âÁ¿
+		Test_Warning_Conditioan();//´¦ÀíÊı¾İ±¨¾¯
 		//Cmd_Buffer[0]='\0';
-		//_____æ£€æŸ¥æ‰‹æœºä¿¡æ¯___
+		//_____¼ì²éÊÖ»úĞÅÏ¢___
 		ret=Fetch_Phone_Buffer_Interval();
 		if(ret==1){
 			// MessageBox(Cmd_Buffer);
 			Resoulation_Cmd_Info();
 		}
-		//____å¤„ç†ç›¸å…³å‘½ä»¤_____
+		//____´¦ÀíÏà¹ØÃüÁî_____
 		Process_Phone_Cmd(1);
 		
 		
@@ -985,24 +986,24 @@ void CBridge_485Dlg::OnTimer(UINT nIDEvent)
 			else SetTimer(10,Delay_Time,NULL);//
 		}
 	}
-	if(nIDEvent==20) {//å‘æ‰‹æœºå‘é€æ•°æ®
+	if(nIDEvent==20) {//ÏòÊÖ»ú·¢ËÍÊı¾İ
 		KillTimer(20);
 		// MessageBox("20");
 		SetTimer(20,Send_Mobile_data_Time,NULL);
 	}
 	CDialog::OnTimer(nIDEvent);
 }
-//å®šæ—¶æµ‹é‡æ•°æ®
+//¶¨Ê±²âÁ¿Êı¾İ
 void CBridge_485Dlg::OnTimerMeas() 
 {
 	// TODO: Add your command handler code here
 	if(Run_Auto_Flag==0) SetTimer(10,2000,NULL);//
 	else {
 		SetTimer(10,Delay_Time,NULL);//
-		SetTimer(20,Send_Mobile_data_Time,NULL);//å®šæ—¶å‘æ‰‹æœºå‘é€æ•°æ®
+		SetTimer(20,Send_Mobile_data_Time,NULL);//¶¨Ê±ÏòÊÖ»ú·¢ËÍÊı¾İ
 	}
 }
-//è®¾ç½®è¿è¡Œæ¨¡å¼
+//ÉèÖÃÔËĞĞÄ£Ê½
 void CBridge_485Dlg::Set_Run_Mode()
 {
 	FILE *fp;
@@ -1010,46 +1011,46 @@ void CBridge_485Dlg::Set_Run_Mode()
 	char tmp[100];
 	int len;
 	strcpy(cfg_name,Config_Path_Dir);strcat(cfg_name,"\\Bconfig.txt");
-	Run_Auto_Flag=0;//æ‰‹åŠ¨è¿è¡Œæ¨¡å¼
+	Run_Auto_Flag=0;//ÊÖ¶¯ÔËĞĞÄ£Ê½
 	fp=fopen(cfg_name,"r");
 	if(fp!=NULL){
 		fgets(tmp,100,fp);Run_Auto_Flag=atoi(tmp);
 		fgets(tmp,100,fp);Delay_Time=atoi(tmp);
 		if(Delay_Time<=0) Delay_Time=2000;
 		else Delay_Time*=1000;
-		//å‘æ‰‹æœºå‘é€æ•°æ®çš„æ—¶é—´é—´éš”
+		//ÏòÊÖ»ú·¢ËÍÊı¾İµÄÊ±¼ä¼ä¸ô
 		fgets(tmp,100,fp);Send_Mobile_data_Time=atoi(tmp);
 		if(Send_Mobile_data_Time<=0) Send_Mobile_data_Time=30*1000;
 		else Send_Mobile_data_Time=Send_Mobile_data_Time*60000;
-		//æ‰‹æœºé€šè®¯å£å·ç 
+		//ÊÖ»úÍ¨Ñ¶¿ÚºÅÂë
 		fgets(tmp,100,fp);m_PPort_232=atoi(tmp);
 		fgets(baud_str_232,19,fp);len=strlen(baud_str_232);baud_str_232[len-1]='\0';
-		//485ç½‘ç»œé€šè®¯å£å‚æ•°
+		//485ÍøÂçÍ¨Ñ¶¿Ú²ÎÊı
 		fgets(tmp,100,fp);m_PPort_485=atoi(tmp);
 		fgets(baud_str_485,19,fp);len=strlen(baud_str_485);baud_str_485[len-1]='\0';
 		fclose(fp);
-		//æ‰“å¼€æµ‹æ§ç½‘ç»œ
+		//´ò¿ª²â¿ØÍøÂç
 		if(Run_Auto_Flag!=0) {
 			flag_485=1;
 			OnOpenS485(); 
-			//æ‰“å¼€232å£
+			//´ò¿ª232¿Ú
 			flag_232=1;
 			OnOpenS232();
-			OnTimerMeas();//å¯åŠ¨å®šæ—¶å™¨
+			OnTimerMeas();//Æô¶¯¶¨Ê±Æ÷
 		}
-		if(Run_Auto_Flag==0) Set_Button_Text(IDC_BUTTON1,"æ‰‹åŠ¨æ¨¡å¼");
-		else Set_Button_Text(IDC_BUTTON1,"å®šæ—¶æ¨¡å¼");
+		if(Run_Auto_Flag==0) Set_Button_Text(IDC_BUTTON1,"ÊÖ¶¯Ä£Ê½");
+		else Set_Button_Text(IDC_BUTTON1,"¶¨Ê±Ä£Ê½");
 	}
 	
 }
-//è®¾ç½®è¿è¡Œæ¨¡å¼
+//ÉèÖÃÔËĞĞÄ£Ê½
 void CBridge_485Dlg::Set_Button_Text(int idc_bnt, char *str)
 {
 	CButton *ptr;
 	ptr=(CButton *) GetDlgItem(idc_bnt);
 	if(ptr!=NULL) ptr->SetWindowText(str);
 }
-//å½“å‰æ–½å·¥é˜¶æ®µè®¾ç½®
+//µ±Ç°Ê©¹¤½×¶ÎÉèÖÃ
 void CBridge_485Dlg::OnSgStep() 
 {
 	// TODO: Add your command handler code here
@@ -1058,7 +1059,7 @@ void CBridge_485Dlg::OnSgStep()
 	//MessageBox(Config_Path_Dir);
 	FILE *fp;
 	char Step_file_name[200],buf[20];
-	strcpy(Step_file_name,Config_Path_Dir);strcat(Step_file_name,"\\Sgcfg.txt");//æ–½å·¥é…ç½®æ–‡ä»¶
+	strcpy(Step_file_name,Config_Path_Dir);strcat(Step_file_name,"\\Sgcfg.txt");//Ê©¹¤ÅäÖÃÎÄ¼ş
 	fp=fopen(Step_file_name,"r");
 	if(fp!=NULL){
 		fgets(buf,10,fp);flag=atoi(buf);
@@ -1084,7 +1085,7 @@ void CBridge_485Dlg::OnSgStep()
 		
 	};
 }
-//æŠ¥è­¦æ–‡ä»¶å‚æ•°è®¾ç½®
+//±¨¾¯ÎÄ¼ş²ÎÊıÉèÖÃ
 void CBridge_485Dlg::OnWarningPara() 
 {
 	// TODO: Add your command handler code here
@@ -1092,7 +1093,7 @@ void CBridge_485Dlg::OnWarningPara()
 	strcpy(dlg.Cfg_Path,Config_Path_Dir);
 	dlg.DoModal();
 }
-//æŠ¥è­¦å‚æ•°åŠŸèƒ½éªŒè¯
+//±¨¾¯²ÎÊı¹¦ÄÜÑéÖ¤
 void CBridge_485Dlg::OnWarningTest() 
 {
 	// TODO: Add your command handler code here
@@ -1100,35 +1101,35 @@ void CBridge_485Dlg::OnWarningTest()
 	strcpy(dlg.Cfg_Path,Config_Path_Dir);
 	dlg.DoModal();
 }
-//æ£€æŸ¥æŠ¥è­¦æ¡ä»¶
+//¼ì²é±¨¾¯Ìõ¼ş
 void CBridge_485Dlg::Test_Warning_Conditioan()
 {
-	/// int Total_Node_Num;//èŠ‚ç‚¹æ€»æ•°
-	//int Node_Ch_num[32];//æ¯ä¸ªèŠ‚ç‚¹æµ‹é‡é€šé“æ•°
+	/// int Total_Node_Num;//½Úµã×ÜÊı
+	//int Node_Ch_num[32];//Ã¿¸ö½Úµã²âÁ¿Í¨µÀÊı
 	int ret,i,Warning_Sensor_Num(0),Sensor_Pos[320];
 	double SG_Warning_Val[320],warn_info[320];
 	
-	//åˆ¤æ–­æŠ¥è­¦ä¿¡æ¯
-	//è·å¾—ä¸åŒé˜¶æ®µæŠ¥è­¦æ•°æ®
-	//æ ¹æ®æ–½å·¥é˜¶æ®µä¸åŒ,è·å¾—æ¯ä¸ªä¼ æ„Ÿå™¨çš„æŠ¥è­¦å€¼,æˆåŠŸ,è¿”å›1,å¤±è´¥,è¿”å›0.
+	//ÅĞ¶Ï±¨¾¯ĞÅÏ¢
+	//»ñµÃ²»Í¬½×¶Î±¨¾¯Êı¾İ
+	//¸ù¾İÊ©¹¤½×¶Î²»Í¬,»ñµÃÃ¿¸ö´«¸ĞÆ÷µÄ±¨¾¯Öµ,³É¹¦,·µ»Ø1,Ê§°Ü,·µ»Ø0.
 	ret=Bridge_Dll_Get_Sensor_Warning_Val(Step_flag,SG_Warning_Val);
 	if(ret==0) {
-        MessageBox("è·å¾—æŠ¥è­¦ä¿¡æ¯å¤±è´¥.....");return;
+        MessageBox("»ñµÃ±¨¾¯ĞÅÏ¢Ê§°Ü.....");return;
 	}
-	//æ˜¾ç¤ºé¢„è­¦å‘Šä¿¡æ¯
+	//ÏÔÊ¾Ô¤¾¯¸æĞÅÏ¢
 	int val=Bridge_Dll_Get_Warning_flag(Total_Node_Num,Node_Ch_num,SG_Warning_Val,
 		Cur_Sensor_Meas_Val,&Warning_Sensor_Num,Sensor_Pos,warn_info);
 	if(val==0) return;
-	//å¤„ç†æŠ¥è­¦
-	if(Warning_Sensor_Num==0) return;//æ— æŠ¥è­¦ä¿¡æ¯
+	//´¦Àí±¨¾¯
+	if(Warning_Sensor_Num==0) return;//ÎŞ±¨¾¯ĞÅÏ¢
 	   
-	//æ˜¾ç¤ºæŠ¥è­¦ä¿¡æ¯
+	//ÏÔÊ¾±¨¾¯ĞÅÏ¢
 	char warn_msg[200],tmp_chr[200];
 	
-	strcpy(warn_msg,"æŠ¥è­¦:\n");
+	strcpy(warn_msg,"±¨¾¯:\n");
 	//strcpy(disp_msg,"warning:");
 	for(i=0;i<Warning_Sensor_Num;i++){
-		sprintf(tmp_chr,"é˜¶æ®µä»£ç :%d__èŠ‚ç‚¹:%d__é€šé“:%d_\næµ‹é‡:%10.2f__è®¾ç½®:%10.2f\n",Step_flag,Sensor_Pos[i*2],Sensor_Pos[i*2+1],
+		sprintf(tmp_chr,"½×¶Î´úÂë:%d__½Úµã:%d__Í¨µÀ:%d_\n²âÁ¿:%10.2f__ÉèÖÃ:%10.2f\n",Step_flag,Sensor_Pos[i*2],Sensor_Pos[i*2+1],
 			warn_info[i*2],warn_info[i*2+1]);strcat(warn_msg,tmp_chr);
 		//sprintf(tmp_chr,"%d_%d_%d_%7.1f__%1.1f",Step_flag,Sensor_Pos[i*2],Sensor_Pos[i*2+1],warn_info[i*2],warn_info[i*2+1]);
 		//strcat(disp_msg,tmp_chr);
@@ -1136,11 +1137,11 @@ void CBridge_485Dlg::Test_Warning_Conditioan()
 	// SetWindowText(disp_msg);
 	MessageBox(warn_msg,warn_msg);
 	int len=strlen(warn_msg);if(len>130) warn_msg[130]='\0';
-	//å‘é€æŠ¥è­¦ä¿¡æ¯
+	//·¢ËÍ±¨¾¯ĞÅÏ¢
 	Test_fflag=1;
 	Send_Warning_Msg(warn_msg);
 }
-//é€šè¿‡æ”¶é›†å‘é€æŠ¥è­¦ä¿¡æ¯
+//Í¨¹ıÊÕ¼¯·¢ËÍ±¨¾¯ĞÅÏ¢
 void CBridge_485Dlg::Send_Warning_Msg(char *msg)
 {
 	// TODO: Add your command handler code here
@@ -1150,7 +1151,7 @@ void CBridge_485Dlg::Send_Warning_Msg(char *msg)
 	char tmp_file_name[200];
 	FILE *fp;
 	int i;
-	strcpy(tmp_file_name,Config_Path_Dir);strcat(tmp_file_name,"\\Bconfig.txt");//è·å¾—é…ç½®æ–‡ä»¶
+	strcpy(tmp_file_name,Config_Path_Dir);strcat(tmp_file_name,"\\Bconfig.txt");//»ñµÃÅäÖÃÎÄ¼ş
 	fp=fopen(tmp_file_name,"r");
 	if(fp==NULL) {
 		MessageBox("open config file error",tmp_file_name,MB_OK);
@@ -1160,30 +1161,30 @@ void CBridge_485Dlg::Send_Warning_Msg(char *msg)
 		fgets((char *) tmp,100,fp);
 		//MessageBox((char *) tmp);
 	}
-	//å–å¾—éœ€è¦é€šçŸ¥çš„äººæ•°
+	//È¡µÃĞèÒªÍ¨ÖªµÄÈËÊı
 	int Person_Num(0),len;
 	fgets((char *) tmp,100,fp);Person_Num=atoi((char *) tmp);
 	//sprintf((char *) tmp,"%d",Person_Num);
 	//MessageBox((char *) tmp);
-    for(i=0;i<Person_Num;i++){//å‘é€çŸ­æ¶ˆæ¯
-		fgets((char *) tmp,100,fp);//è·å¾—æ¥æ”¶æŠ¥è­¦ä¿¡æ¯çš„äººå‘˜åå­—
-		fgets((char *) tmp,100,fp);//è·å¾—æ¥æ”¶ä¿¡æ¯æ‰‹æœºå·
+    for(i=0;i<Person_Num;i++){//·¢ËÍ¶ÌÏûÏ¢
+		fgets((char *) tmp,100,fp);//»ñµÃ½ÓÊÕ±¨¾¯ĞÅÏ¢µÄÈËÔ±Ãû×Ö
+		fgets((char *) tmp,100,fp);//»ñµÃ½ÓÊÕĞÅÏ¢ÊÖ»úºÅ
         len=strlen((char *) tmp);tmp[len-1]='\0';
 		//MessageBox((char *)tmp);
-        strcpy((char *) pkt,"AT+CISMSSEND=");//13866120701,3,ä¸­");
+        strcpy((char *) pkt,"AT+CISMSSEND=");//13866120701,3,ÖĞ");
 		strcat((char *) pkt,(char *) tmp);strcat((char *) pkt,",3,");
-		strcat((char *) pkt,msg);//å½¢æˆå®Œæ•´å‘é€ä¿¡æ¯
+		strcat((char *) pkt,msg);//ĞÎ³ÉÍêÕû·¢ËÍĞÅÏ¢
 		//MessageBox((char *) pkt);
-		//å‘é€ä¿¡æ¯
+		//·¢ËÍĞÅÏ¢
 		len=strlen((char *) pkt); pkt[len]=0x0d;len++;
 		TDR_Send_Data_To_Com(pkt,len,1);
 		Sleep(1000);
 	}
-	if(Person_Num!=0) MessageBox((char *) pkt,"æŠ¥è­¦ä¿¡æ¯!!!",MB_OK);
+	if(Person_Num!=0) MessageBox((char *) pkt,"±¨¾¯ĞÅÏ¢!!!",MB_OK);
 	fclose(fp);
 	
 }
-//æ— çº¿é€šè®¯æ•°æ®å‘é€
+//ÎŞÏßÍ¨Ñ¶Êı¾İ·¢ËÍ
 void CBridge_485Dlg::OnTestWirelessData() 
 {
 	// TODO: Add your command handler code here
@@ -1191,7 +1192,7 @@ void CBridge_485Dlg::OnTestWirelessData()
     Cur_Sensor_Meas_Val[2]=10.0;Cur_Sensor_Meas_Val[0]=10.0;
 	Test_Warning_Conditioan();
 }
-//ä»çŸ­ä¿¡æ¯ä¸­æå–ç”µè¯å·ç å’Œå‘½ä»¤ä»£ç 
+//´Ó¶ÌĞÅÏ¢ÖĞÌáÈ¡µç»°ºÅÂëºÍÃüÁî´úÂë
 void CBridge_485Dlg::OnGetPhoneNum() 
 {
 	// TODO: Add your command handler code here
@@ -1202,17 +1203,17 @@ void CBridge_485Dlg::OnGetPhoneNum()
 	if(ret==0) return;
 	//MessageBox(phone_num,cmd_id);
 	//	MessageBox(data_buf);
-	Control_Command_ID=atoi(cmd_id);//å‘½ä»¤ä»£ç 
-	cmd_Dat=atoi(data_buf);//å‘½ä»¤æ•°æ®
-	strcpy(cur_phone_num,phone_num);//å‘é€å‘½ä»¤æ”¶æ®å·ç 
+	Control_Command_ID=atoi(cmd_id);//ÃüÁî´úÂë
+	cmd_Dat=atoi(data_buf);//ÃüÁîÊı¾İ
+	strcpy(cur_phone_num,phone_num);//·¢ËÍÃüÁîÊÕ¾İºÅÂë
 	Process_Phone_Cmd(0);
 	
 }
-//ä»å‘½ä»¤ç¼“å†²åŒºä¸­æå–æ‰‹æœºå·ç ,å‘½ä»¤ä»£ç å’Œå‘½ä»¤æ•°æ®
+//´ÓÃüÁî»º³åÇøÖĞÌáÈ¡ÊÖ»úºÅÂë,ÃüÁî´úÂëºÍÃüÁîÊı¾İ
 int CBridge_485Dlg::Fetch_Phone_Data(char *buf_ptr, char *phone_num, char *cmd_id, char *dat_ptr)
 {
-	//æ•°æ®è¯´æ˜buf_ptr---ä»æ”¶æ®ä¸­æ¥æ”¶çš„çš„æ•°æ®
-	//phone_num---å­˜å‚¨å‘é€çŸ­æ¶ˆæ¯çš„æ‰‹æœºå·ç ;cmd_id---å‘½ä»¤ä»£ç ä¸²;dat_ptr---å‘½ä»¤æºå¸¦çš„æ•°æ®
+	//Êı¾İËµÃ÷buf_ptr---´ÓÊÕ¾İÖĞ½ÓÊÕµÄµÄÊı¾İ
+	//phone_num---´æ´¢·¢ËÍ¶ÌÏûÏ¢µÄÊÖ»úºÅÂë;cmd_id---ÃüÁî´úÂë´®;dat_ptr---ÃüÁîĞ¯´øµÄÊı¾İ
 	int pkt;int index1,index2,index3,i;
 	char tmp_ch[1024];
 	int len=strlen(buf_ptr);if(len<=1) return 0;
@@ -1227,7 +1228,7 @@ int CBridge_485Dlg::Fetch_Phone_Data(char *buf_ptr, char *phone_num, char *cmd_i
 	if(index2==-1) return 0;
 	index3=cs.Find("CE");
 	if(index3==-1) return 0;
-	//æ£€éªŒä»£ç çš„åˆæ³•æ€§
+	//¼ìÑé´úÂëµÄºÏ·¨ĞÔ
 	int xx[3],yy;
 	xx[0]=index1;xx[1]=index2;xx[2]=index3;
 	yy=xx[0];
@@ -1239,18 +1240,18 @@ int CBridge_485Dlg::Fetch_Phone_Data(char *buf_ptr, char *phone_num, char *cmd_i
 		// MessageBox(buf_ptr);
 		return 0;
 	}
-	//æå–ç”µè¯å·ç 
+	//ÌáÈ¡µç»°ºÅÂë
 	pkt=0;
 	for(i=index1+9;i<index1+10+10;i++) {phone_num[pkt]=buf_ptr[i];pkt++;}
 	phone_num[pkt]='\0';
 	//MessageBox(phone_num);
 	
-	//æå–å‘½ä»¤ä»£ç å’Œæ•°æ®ä¸²
+	//ÌáÈ¡ÃüÁî´úÂëºÍÊı¾İ´®
 	pkt=0;
 	for(i=index2+2;i<index3+2;i++) {tmp_ch[pkt]=buf_ptr[i];pkt++;}
 	tmp_ch[pkt]='\0';
 	//MessageBox(tmp_ch);
-	//ç”Ÿæˆå‘½ä»¤ä»£ç 
+	//Éú³ÉÃüÁî´úÂë
 	len=strlen(buf_ptr)-yy-1;
 	memmove(&buf_ptr[0],&buf_ptr[yy+2],len);buf_ptr[len]='\0';
 	//MessageBox(tmp_ch);   
@@ -1280,7 +1281,7 @@ int CBridge_485Dlg::Fetch_Phone_Data(char *buf_ptr, char *phone_num, char *cmd_i
 	
 	return 1;
 }
-//è§£æä»æ‰‹æœºæ¥æ”¶åˆ°çš„æ•°æ®
+//½âÎö´ÓÊÖ»ú½ÓÊÕµ½µÄÊı¾İ
 void CBridge_485Dlg::Resoulation_Cmd_Info()
 {
 	char phone_num[20],cmd_id[20],data_buf[20];
@@ -1290,12 +1291,12 @@ void CBridge_485Dlg::Resoulation_Cmd_Info()
 	if(ret==0) {Control_Command_ID=0;return;}
 	//MessageBox(phone_num,cmd_id);
 	//	MessageBox(data_buf);
-	Control_Command_ID=atoi(cmd_id);//å‘½ä»¤ä»£ç 
-	cmd_Dat=atoi(data_buf);//å‘½ä»¤æ•°æ®
-	strcpy(cur_phone_num,phone_num);//å‘é€å‘½ä»¤æ‰‹æœºå·ç 
+	Control_Command_ID=atoi(cmd_id);//ÃüÁî´úÂë
+	cmd_Dat=atoi(data_buf);//ÃüÁîÊı¾İ
+	strcpy(cur_phone_num,phone_num);//·¢ËÍÃüÁîÊÖ»úºÅÂë
 	
 }
-//å®šæœŸè·å–æ‰‹æœºæ•°æ®
+//¶¨ÆÚ»ñÈ¡ÊÖ»úÊı¾İ
 int CBridge_485Dlg::Fetch_Phone_Buffer_Interval()
 {
 	unsigned char pkt[2048];
@@ -1321,40 +1322,40 @@ int CBridge_485Dlg::Fetch_Phone_Buffer_Interval()
 	}
 	return 0;
 }
-//å¤„ç†æ‰‹æœºç›¸å…³çš„å‘½ä»¤
+//´¦ÀíÊÖ»úÏà¹ØµÄÃüÁî
 void CBridge_485Dlg::Process_Phone_Cmd(int fflag)
 {
 	if(Control_Command_ID==0) return;
 	switch(Control_Command_ID){
-	case 10://æŸ¥è¯¢å½“å‰æ•°æ®
+	case 10://²éÑ¯µ±Ç°Êı¾İ
 		{
-			if(fflag==0) MessageBox("æŸ¥è¯¢å½“å‰æ•°æ®");
+			if(fflag==0) MessageBox("²éÑ¯µ±Ç°Êı¾İ");
 			else {
 				Send_Cur_Testing_Data(cur_phone_num,1);
 			}
 		}
 		break;
-	case 15://è®¾ç½®å·¥ä½œæ–½å·¥é˜¶æ®µ
+	case 15://ÉèÖÃ¹¤×÷Ê©¹¤½×¶Î
 		{
-			if(fflag==0) MessageBox("è®¾ç½®å·¥ä½œæ–½å·¥é˜¶æ®µ");
+			if(fflag==0) MessageBox("ÉèÖÃ¹¤×÷Ê©¹¤½×¶Î");
 			
 			else {
 				if((cmd_Dat>0) && (cmd_Dat<5))Step_flag=cmd_Dat;
 				else {Step_flag=0;cmd_Dat=0;}
-				Keep_Step_Flag(Step_flag);//ä¿å­˜è®¾ç½®
+				Keep_Step_Flag(Step_flag);//±£´æÉèÖÃ
 				
 				Send_Cur_Testing_Data(cur_phone_num,0);
 			}
 		}
 		break;
-	case 20://è·å–å½“å‰çš„å·¥ä½œçŠ¶æ€
+	case 20://»ñÈ¡µ±Ç°µÄ¹¤×÷×´Ì¬
 		{
-			if(fflag==0) MessageBox("è®¾ç½®å·¥ä½œæ–½å·¥é˜¶æ®µ");
+			if(fflag==0) MessageBox("ÉèÖÃ¹¤×÷Ê©¹¤½×¶Î");
 			
 			else {
 				if((cmd_Dat>0) && (cmd_Dat<5))Step_flag=cmd_Dat;
 				else {Step_flag=0;cmd_Dat=0;}
-				Keep_Step_Flag(Step_flag);//ä¿å­˜è®¾ç½®
+				Keep_Step_Flag(Step_flag);//±£´æÉèÖÃ
 				
 				Send_Cur_Testing_Data(cur_phone_num,2);
 			}
@@ -1367,7 +1368,7 @@ void CBridge_485Dlg::Process_Phone_Cmd(int fflag)
 	}
 	Control_Command_ID=0;
 }
-//å‘é€å½“å‰æ•°æ®
+//·¢ËÍµ±Ç°Êı¾İ
 void CBridge_485Dlg::Send_Cur_Testing_Data(char *phone_num,int flag)
 {
     unsigned char pkt[1024];
@@ -1377,12 +1378,12 @@ void CBridge_485Dlg::Send_Cur_Testing_Data(char *phone_num,int flag)
 	strcat((char *) pkt,",3,");
 	tmp_chr[0]='\0';
 	switch(flag){
-	case 1://å‘é€å½“å‰æ•°æ®
+	case 1://·¢ËÍµ±Ç°Êı¾İ
 		{   
 			len=0;
 			sprintf(temp_str,"%d %d",Total_Node_Num,Node_Ch_num[0]);
 			//MessageBox(temp_str);
-			for(i=0;i<Total_Node_Num;i++){//èŠ‚ç‚¹æ€»æ•°
+			for(i=0;i<Total_Node_Num;i++){//½Úµã×ÜÊı
 				for(j=0;j<Node_Ch_num[i];j++){
 					sprintf(temp_str,"%d_%d_%d_%10.2f\n",Step_flag,i,j,Cur_Sensor_Meas_Val[len]);
 					len++;
@@ -1393,31 +1394,31 @@ void CBridge_485Dlg::Send_Cur_Testing_Data(char *phone_num,int flag)
 			strcat((char *) pkt,tmp_chr);
 		}
 		break;
-	case 0://å›é€æ–½å·¥é˜¶æ®µæ ‡å¿—
+	case 0://»ØËÍÊ©¹¤½×¶Î±êÖ¾
 		{
-			sprintf(tmp_chr,"æ–½å·¥é˜¶æ®µ:%d",Step_flag);
+			sprintf(tmp_chr,"Ê©¹¤½×¶Î:%d",Step_flag);
             strcat((char *) pkt,tmp_chr);
 		}
 		break;
-    case 2://è·å–å½“å‰çš„å·¥ä½œçŠ¶æ€---æ–½å·¥çš„ç¬¬å‡ é˜¶æ®µ
+    case 2://»ñÈ¡µ±Ç°µÄ¹¤×÷×´Ì¬---Ê©¹¤µÄµÚ¼¸½×¶Î
 		{
-			if(Step_flag==0) strcpy(tmp_chr,"é¢„å‹20%");
-			if(Step_flag==1) strcpy(tmp_chr,"é¢„å‹80%");
-			if(Step_flag==2) strcpy(tmp_chr,"é¢„å‹100%");
-			if(Step_flag==3) strcpy(tmp_chr,"ç¬¬1æ¬¡æµ‡é“¸");
-			if(Step_flag==4) strcpy(tmp_chr,"ç¬¬2æ¬¡æµ‡é“¸");
+			if(Step_flag==0) strcpy(tmp_chr,"Ô¤Ñ¹20%");
+			if(Step_flag==1) strcpy(tmp_chr,"Ô¤Ñ¹80%");
+			if(Step_flag==2) strcpy(tmp_chr,"Ô¤Ñ¹100%");
+			if(Step_flag==3) strcpy(tmp_chr,"µÚ1´Î½½Öı");
+			if(Step_flag==4) strcpy(tmp_chr,"µÚ2´Î½½Öı");
 			//sprintf(tmp_chr,"_%d",Step_flag);
 			strcat((char *) pkt,tmp_chr);
 		}
 		break;
-	default://å›é€é”™è¯¯ä¿¡æ¯
+	default://»ØËÍ´íÎóĞÅÏ¢
 		{
-			strcpy(tmp_chr,"å‘½ä»¤ä¸æ”¯æŒ!!");	strcat((char *) pkt,tmp_chr);
+			strcpy(tmp_chr,"ÃüÁî²»Ö§³Ö!!");	strcat((char *) pkt,tmp_chr);
 		}
 		break;
 		
 	}
-	//å‘é€ä¿¡æ¯
+	//·¢ËÍĞÅÏ¢
 	len=strlen((char *) pkt); pkt[len]=0x0d;len++;pkt[len]='\0';
 	// MessageBox((char *) pkt);
 	TDR_Send_Data_To_Com(pkt,len,1);
@@ -1429,26 +1430,26 @@ void CBridge_485Dlg::Keep_Step_Flag(int val)
 {
 	FILE *fp;
 	char Step_file_name[200],buf[20];
-	strcpy(Step_file_name,Config_Path_Dir);strcat(Step_file_name,"\\Sgcfg.txt");//æ–½å·¥é…ç½®æ–‡ä»¶
+	strcpy(Step_file_name,Config_Path_Dir);strcat(Step_file_name,"\\Sgcfg.txt");//Ê©¹¤ÅäÖÃÎÄ¼ş
 	fp=fopen(Step_file_name,"w");
 	if(fp!=NULL){
 		sprintf(buf,"%d\n",val);fputs(buf,fp);
 		fclose(fp);
 	}
 }
-//å…³é—­é¡¶äº‹æµ‹é‡åŠŸèƒ½.
+//¹Ø±Õ¶¥ÊÂ²âÁ¿¹¦ÄÜ.
 void CBridge_485Dlg::OnTimerStop() 
 {
 	// TODO: Add your command handler code here
 	KillTimer(10);//
-	KillTimer(20);//å®šæ—¶å‘æ‰‹æœºå‘é€æ•°æ®
+	KillTimer(20);//¶¨Ê±ÏòÊÖ»ú·¢ËÍÊı¾İ
 }
 
-//DEL double* CBridge_485Dlg::Send_To_History()
-//DEL {
-//DEL 	Cur_Sensor_Meas_Val[0]=rand()%100 + 0.1;
-//DEL 	return Cur_Sensor_Meas_Val;
-//DEL }
+double* CBridge_485Dlg::Send_To_History()
+{
+	Cur_Sensor_Meas_Val[0]=rand()%100 + 0.1;
+	return Cur_Sensor_Meas_Val;
+}
 
 void CBridge_485Dlg::OnHistLibBrow() 
 {
@@ -1463,129 +1464,35 @@ void CBridge_485Dlg::OnHistLibBrow()
 void CBridge_485Dlg::OnCurDataBrow() 
 {
 	// TODO: Add your command handler code here
-	for(int i = 0;;)
-	{
-		if((phdlg[i]!= NULL)&&(IsWindow(phdlg[i]->m_hWnd)))
-		{
-			i++;
-		}
-		else
-		{
-			Brow_Cur_Data_Count = i;
-			break;
-		}
-		if(i == 8)
-		{
-			AfxMessageBox("ç›‘æµ‹çª—å£è¾¾åˆ°8ä¸ª,è¯·å…³é—­éƒ¨åˆ†");
-			return;
-		}
-		
-	}
-	phdlg[Brow_Cur_Data_Count] = new Brow_Cur_Data;
-	phdlg[Brow_Cur_Data_Count]->Create(IDD_CUR_DATA_DIALOG,GetDesktopWindow());
-	phdlg[Brow_Cur_Data_Count]->ShowWindow(SW_SHOW);
-	CString str = "";
-	str.Format("%då·å®æ—¶ç›‘æµ‹çª—å£",Brow_Cur_Data_Count+1);
-	phdlg[Brow_Cur_Data_Count]->SetWindowText(str);	
-}
-
-void CBridge_485Dlg::WriteToSQL(CString *pDataStr, int Node, int Ch, sqlite3 *pdb)
-{
-/*	CString m_strFolderPath="DataFolder" ;
-// åˆ¤æ–­è·¯å¾„æ˜¯å¦å­˜åœ¨ 
-if (!PathIsDirectory(m_strFolderPath) ) 
-{ 
-CString strMsg; 
-strMsg.Format ("æŒ‡å®šè·¯å¾„\"%s\"ä¸å­˜åœ¨ï¼Œæ˜¯å¦åˆ›å»º?", m_strFolderPath); 
-if (AfxMessageBox(strMsg, MB_YESNO) == IDYES) 
-{ 
-if (!CreateDirectory(m_strFolderPath, NULL ) ) 
-{ 
-strMsg.Format ("åˆ›å»ºè·¯å¾„\"%s\"å¤±è´¥ï¼å°†å­˜å‚¨åœ¨æ ¹ç›®å½•ä¸‹", m_strFolderPath); 
-AfxMessageBox(strMsg);
-} 
-} 
-}
-
-  sqlite3* db;
-  int rc = sqlite3_open(m_strFolderPath + "\\data1.dat",&db);
-  ASSERT(rc == SQLITE_OK);
-  if(rc == SQLITE_OK)
-  {
-		AfxMessageBox("æ‰“å¼€æˆåŠŸ");
-		
-		  }
-		  else
-		  {	
-		  CString OpenErrorMsg = "";
-		  OpenErrorMsg.Format("æ•°æ®åº“æ‰“å¼€å‡ºé”™.\né”™è¯¯åŸå› :%s\n", sqlite3_errmsg(db));
-		  AfxMessageBox(OpenErrorMsg);
-		  return;
-		  }
-		  CString TableName = "";
-		  CString sqlcmd = "";
-		  char* ExeErrorMsg = "";
-		  TableName.Format("Node_%d_Ch_%d",Node,Ch);
-		  sqlcmd = "create table if not exists "+TableName+
-		  "(NUM integer primary key autoincrement, DataTime varchar(50),SensorVal integer(15))";
-		  rc = sqlite3_exec(db, sqlcmd, NULL, NULL, &ExeErrorMsg);
-		  if(rc != SQLITE_OK)
-		  AfxMessageBox(ExeErrorMsg);
-		  CTime time = CTime::GetCurrentTime();
-		  CString Timestr = time.Format("%Y-%m-%d-%H-%M-%S");
-		  double val=_ttol(pDataStr->GetBuffer(0));
-		  sqlcmd.Format("insert into data (DataTime,SensorVal) values ('%s',%d)",Timestr,val);
-		  rc = sqlite3_exec(db, sqlcmd, NULL, NULL, &ExeErrorMsg);
-		  if(rc != SQLITE_OK)
-		  AfxMessageBox(ExeErrorMsg);
-		  
-			//AfxMessageBox("");
-	sqlite3_close(db);*/
+	Curhdlg = new Brow_Cur_Data;
+	Curhdlg->Create(IDD_CUR_DATA_DIALOG,GetDesktopWindow());
+	Curhdlg->ShowWindow(SW_SHOW);
 	
 	
 }
 
-void CBridge_485Dlg::OnButtonTest() 
+void CBridge_485Dlg::OnButton3() 
 {
-	CTime m_cur_time=CTime::GetCurrentTime();
-	CString strTime = m_cur_time.Format("%Y-%m-%d %H:%M:%S");
-	CStringArray *Array = new CStringArray;
-	Array->SetSize(8);
-	Array->SetAt(0,strTime);//è®¡å…¥æ—¶é—´
-	CString temp = _T("");
-	temp.Format("1");
-	Array->SetAt(1,temp);//è®¡å…¥èŠ‚ç‚¹
-	temp.Format("1");
-	Array->SetAt(2,temp);//è®¡å…¥é€šé“
-	Array->SetAt(3,"Name");//è®¡å…¥æ„Ÿåº”å™¨åç§°
-	temp.Format("%4.2f",(rand()%100)/100.0+rand()%5);
-	Array->SetAt(4,temp);//è®¡å…¥çµæ•åº¦
-	temp.Format("%d",rand()%20);
-	Array->SetAt(5,temp);//è®¡å…¥æ•°å€¼
-	Array->SetAt(6,"Unit");//è®¡å…¥å•ä½
-	Array->SetAt(7,"Position");//è®¡å…¥ä½ç½®*/	
-	SendData(Array);
-	/*	DataToCurView.Add("123");
-	DataToCurView.Add("abc");
-	for(int i = 0;i<5;i++)
-	{
-	if((phdlg[i]!= NULL)&&(IsWindow(phdlg[i]->m_hWnd)))
-	{
-	phdlg[i]->SendMessage(WM_RECEIVEDATA,i,(LPARAM)(&DataToCurView));
-	}
-	}
-	*/
-}
-
-void CBridge_485Dlg::SendData(CStringArray* Array) 
-{
-	for(int i = 0;i<8;i++)
-	{
-		if((phdlg[i]!= NULL)&&(IsWindow(phdlg[i]->m_hWnd)))
-		{
-			phdlg[i]->SendMessage(WM_RECEIVEDATA,i+1,(LPARAM)(Array));
-		}
-	}
+	if(Curhdlg!=NULL)
+		Curhdlg->PostMessage(WM_RECEIVEMSG,3,rand()%20);
+	// TODO: Add your control notification handler code here
 	
 }
 
+int CBridge_485Dlg::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+{
+	if (CDialog::OnCreate(lpCreateStruct) == -1)
+		return -1;
+	
+	// TODO: Add your specialized creation code here
+	
+	return 0;
+}
+
+void CBridge_485Dlg::OnCancelMode() 
+{
+	CDialog::OnCancelMode();
+	
+	// TODO: Add your message handler code here
+	
+}

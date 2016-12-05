@@ -84,24 +84,24 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
 END
 
-IDD_BRIDGE_485_DIALOG DIALOGEX 0, 0, 457, 239
-STYLE DS_SYSMODAL | DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | 
-    WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_BRIDGE_485_DIALOG DIALOGEX 0, 0, 457, 228
+STYLE DS_SYSMODAL | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 EXSTYLE WS_EX_APPWINDOW
 MENU IDR_MENU1
-FONT 10, "宋体"
+FONT 9, "宋体", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "确定",IDOK,193,218,50,14
-    PUSHBUTTON      "取消",IDCANCEL,263,218,50,14
+    DEFPUSHBUTTON   "确定",IDOK,193,207,50,14
+    PUSHBUTTON      "取消",IDCANCEL,263,207,50,14
     CONTROL         "",IDC_MSCOMM1,"{648A5600-2C6E-101B-82B6-000000000014}",
-                    WS_TABSTOP,66,207,25,25
+                    WS_TABSTOP,66,196,25,25
     CONTROL         "",IDC_MSCOMM2,"{648A5600-2C6E-101B-82B6-000000000014}",
-                    WS_TABSTOP,35,207,25,25
-    LISTBOX         IDC_LIST2,7,6,444,179,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP,35,196,25,25
+    LISTBOX         IDC_LIST2,6,7,444,179,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_TABSTOP
-    PUSHBUTTON      "运行模式",IDC_BUTTON1,345,201,92,31,NOT WS_VISIBLE | 
+    PUSHBUTTON      "运行模式",IDC_BUTTON1,345,190,92,31,NOT WS_VISIBLE | 
                     WS_DISABLED
-    PUSHBUTTON      "实时监测测试",IDC_BUTTON_TEST,122,218,50,14
+    PUSHBUTTON      "Button3",IDC_BUTTON3,130,207,50,14
 END
 
 IDD_SCOMM_PARA DIALOG DISCARDABLE  0, 0, 248, 105
@@ -151,17 +151,19 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "接收报警信号的负责人信息输入"
 FONT 10, "System"
 BEGIN
-    DEFPUSHBUTTON   "确    定",IDOK,147,117,50,14
+    DEFPUSHBUTTON   "保存",IDOK,147,117,50,14
     PUSHBUTTON      "取    消",IDCANCEL,213,117,50,14
     GROUPBOX        "技术人员姓名及手机号",IDC_STATIC,14,7,263,129,BS_CENTER
     COMBOBOX        IDC_COMBO1,19,19,251,92,CBS_DROPDOWN | WS_VSCROLL | 
                     WS_TABSTOP
-    LTEXT           "姓名:",IDC_STATIC,20,67,29,13
-    EDITTEXT        IDC_EDIT1,66,67,196,15,ES_AUTOHSCROLL | WS_DISABLED
-    LTEXT           "手机:",IDC_STATIC,20,89,29,13
-    EDITTEXT        IDC_EDIT2,66,89,196,15,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "添    加",IDC_BUTTON1,21,117,49,13,WS_DISABLED
+    LTEXT           "姓名:",IDC_STATIC,182,36,29,13
+    EDITTEXT        IDC_EDIT1,185,67,77,15,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "手机:",IDC_STATIC,186,50,29,13
+    EDITTEXT        IDC_EDIT2,185,89,77,15,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "添    加",IDC_BTN_ADD,21,117,49,13
     PUSHBUTTON      "删    除",IDC_BUTTON2,80,117,49,13,WS_DISABLED
+    CONTROL         "",IDC_GRID_RECT,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,
+                    19,32,114,52
 END
 
 IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 342, 191
@@ -209,28 +211,30 @@ BEGIN
                     15,87,124,11
 END
 
-IDD_SENSOR_WARNING_VALUE DIALOG DISCARDABLE  0, 0, 375, 201
+IDD_SENSOR_WARNING_VALUE DIALOG DISCARDABLE  0, 0, 281, 142
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "预压与施工阶段传感器报警参数设置"
-FONT 10, "System"
+FONT 10, "宋体"
 BEGIN
-    DEFPUSHBUTTON   "确    定",IDOK,158,180,50,14
-    PUSHBUTTON      "取    消",IDCANCEL,219,180,50,14
-    GROUPBOX        "预压与施工阶段",IDC_STATIC,7,7,361,32,BS_CENTER
+    DEFPUSHBUTTON   "保存",IDOK,43,115,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,167,115,50,14
+    GROUPBOX        "预压与施工阶段",IDC_STATIC,7,13,85,99,BS_CENTER
     CONTROL         "预压50%",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP,14,22,43,10
-    CONTROL         "预压80%",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,77,22,
+                    WS_GROUP,18,31,43,10
+    CONTROL         "预压80%",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,18,45,
                     43,10
-    CONTROL         "预压100%",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,138,22,
+    CONTROL         "预压100%",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,18,59,
                     43,10
     CONTROL         "施工第1次浇铸",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
-                    195,22,67,10
+                    18,73,62,10
     CONTROL         "施工第2次浇铸",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
-                    272,22,78,10
-    GROUPBOX        "传感器报警参数设置",IDC_STEP_PHASE,7,45,361,129,
+                    18,87,65,10
+    GROUPBOX        "传感器报警参数设置",IDC_STEP_PHASE,109,7,160,105,
                     BS_CENTER
-    LISTBOX         IDC_LIST1,7,54,361,119,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_LIST1,217,41,56,83,LBS_NOINTEGRALHEIGHT | NOT 
+                    WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_GRID_RECT,"Static",SS_BLACKFRAME,116,24,147,79
+    DEFPUSHBUTTON   "添加",IDC_BTN_ADD,105,115,50,14
 END
 
 TESTING_WARNING_FUN DIALOG DISCARDABLE  0, 0, 367, 181
@@ -258,40 +262,48 @@ BEGIN
                     235,115,106,15
 END
 
-IDD_HIST_BROW_DIALOG DIALOG DISCARDABLE  0, 0, 387, 258
+IDD_HIST_BROW_DIALOG DIALOG DISCARDABLE  0, 0, 430, 268
 STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
 CAPTION "历史浏览"
 FONT 10, "宋体"
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,274,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,330,237,50,14
-    DEFPUSHBUTTON   "浏览文件",IDC_BROWSE_BUTTON,137,237,50,14
+    DEFPUSHBUTTON   "OK",IDOK,321,237,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,373,237,50,14
+    DEFPUSHBUTTON   "浏览文件",IDC_BROWSE_BUTTON,184,237,50,14
     CONTROL         "Custom1",IDC_CHART_HISTROY,"ChartCtrl",WS_CLIPCHILDREN | 
-                    WS_TABSTOP,7,7,373,204
-    SCROLLBAR       IDC_SCROLLBAR_HIST,7,211,373,11
-    PUSHBUTTON      "关闭文件",IDC_CLOSE_HIST,188,237,50,14
+                    WS_TABSTOP,7,7,416,204
+    SCROLLBAR       IDC_SCROLLBAR_HIST,7,211,416,11
+    PUSHBUTTON      "关闭文件",IDC_CLOSE_HIST,235,237,50,14
 END
 
-IDD_CUR_DATA_DIALOG DIALOG DISCARDABLE  0, 0, 375, 309
+IDD_CUR_DATA_DIALOG DIALOG DISCARDABLE  0, 0, 361, 164
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "实时监测数据"
 FONT 10, "宋体"
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,313,263,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,313,282,50,14
-    PUSHBUTTON      "生成数据库测试",IDC_TEMPBUTTON,309,244,56,14
-    CONTROL         "",IDC_CHART,"ChartCtrl",WS_CLIPCHILDREN | WS_TABSTOP,0,
-                    0,375,178
-    PUSHBUTTON      "绘图测试",IDC_BUTTON_DRAW,312,227,50,14
-    COMBOBOX        IDC_COMBO_NODE,326,186,37,55,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    LTEXT           "节点:",IDC_STATIC,302,188,19,8
-    COMBOBOX        IDC_COMBO_CHANNEL,326,207,37,55,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    LTEXT           "通道:",IDC_STATIC,303,209,19,8
-    CONTROL         "",IDC_FIELD_GRID,"Static",SS_ETCHEDFRAME | NOT 
-                    WS_VISIBLE,0,184,292,118
+    DEFPUSHBUTTON   "OK",IDOK,304,126,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,304,143,50,14
+    PUSHBUTTON      "测试MSG",IDC_BUTTON_TESTMSG,199,137,45,20
+END
+
+IDD_SENSOR_INIT_VAL DIALOG DISCARDABLE  0, 0, 139, 127
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "感应器初始值设置"
+FONT 12, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,106,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,73,106,50,14
+    LTEXT           "预压50%",IDC_STATIC,28,9,31,12
+    LTEXT           "预压80%",IDC_STATIC,28,28,31,12
+    LTEXT           "预压100%",IDC_STATIC,25,46,33,12
+    LTEXT           "施工第1次浇筑",IDC_STATIC,7,64,55,12
+    LTEXT           "施工第2次浇筑",IDC_STATIC,7,83,55,12
+    EDITTEXT        IDC_YY1INITVAL,62,7,45,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_YY2INITVAL,62,27,45,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_YY3INITVAL,62,45,45,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SG1INITVAL,62,61,45,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SG2INITVAL,62,81,45,14,ES_AUTOHSCROLL
 END
 
 
@@ -358,8 +370,8 @@ BEGIN
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 450
-        TOPMARGIN, 8
-        BOTTOMMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 221
     END
 
     IDD_SCOMM_PARA, DIALOG
@@ -413,9 +425,9 @@ BEGIN
     IDD_SENSOR_WARNING_VALUE, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 368
+        RIGHTMARGIN, 273
         TOPMARGIN, 7
-        BOTTOMMARGIN, 194
+        BOTTOMMARGIN, 135
     END
 
     TESTING_WARNING_FUN, DIALOG
@@ -429,15 +441,26 @@ BEGIN
     IDD_HIST_BROW_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 380
+        RIGHTMARGIN, 423
         TOPMARGIN, 7
-        BOTTOMMARGIN, 251
+        BOTTOMMARGIN, 261
     END
 
     IDD_CUR_DATA_DIALOG, DIALOG
     BEGIN
-        RIGHTMARGIN, 374
-        BOTTOMMARGIN, 302
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 354
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 157
+    END
+
+    IDD_SENSOR_INIT_VAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 132
+        VERTGUIDE, 62
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -450,65 +473,45 @@ END
 
 IDR_MENU1 MENU DISCARDABLE 
 BEGIN
-    POPUP "  文件  "
-    BEGIN
-        MENUITEM "新建工程",                    ID_MENU_NEW
-        MENUITEM "打开工程",                    IDC_HIST_LIB_BROW
-        MENUITEM "关闭工程",                    ID_MENU_CLOSE
-        MENUITEM "导入工程",                    65535
-        MENUITEM "导出工程",                    65535
-        MENUITEM "文本输出",                    65535
-        MENUITEM "清空文件",                    IDD_CLEAR_LIB
-        MENUITEM "退出程序",                    ID_MENU_EXIT
-    END
-    POPUP "  测量  "
+    POPUP "定时测量"
     BEGIN
         MENUITEM "启动定时测量",                IDD_TIMER_MEAS
         MENUITEM "关闭定时测量",                IDD_TIMER_STOP
     END
-    POPUP "  报警  "
+    POPUP "报警参数设置"
     BEGIN
         MENUITEM "预压与施工阶段选择",          MENU_SG_STEP
         MENUITEM "传感器报警值",                MENU_WARNING_PARA
         MENUITEM "报警功能验证",                IDD_WARNING_TEST
+        MENUITEM "无线发送数据测试",            IDD_TEST_WIRELESS_DATA
         MENUITEM "提取电话号码和命令代码",      IDD_GET_PHONE_NUM
     END
-    POPUP "  配置  "
+    POPUP "串行口参数设置"
     BEGIN
-        MENUITEM "测量节点配置",                NODE_CONFIG
+        MENUITEM "无线通讯口参数",              ID1_232_CFG
+        MENUITEM "打开无线串行口",              IDD_OPEN_S232
+        MENUITEM "数据测量通讯口参数",          IDD2_485_CFG
+        MENUITEM "打开测量串行口",              IDD_OPEN_S485
         MENUITEM "传感器初始值",                IDD_INIT_VAL
-        POPUP "  串口设置  "
-        BEGIN
-            MENUITEM "无线通讯口参数",              ID1_232_CFG
-            MENUITEM "打开无线串行口",              IDD_OPEN_S232
-            MENUITEM "数据测量通讯口参数",          IDD2_485_CFG
-            MENUITEM "打开测量串行口",              IDD_OPEN_S485
-        END
     END
-    POPUP "  管理员  "
+    MENUITEM "测量节点配置",                NODE_CONFIG
+    MENUITEM "监理人员信息",                WARNING_CONFIG
+    POPUP "测量数据浏览"
     BEGIN
-        MENUITEM "监理人员信息",                WARNING_CONFIG
+        MENUITEM "历史数据浏览",                IDC_HIST_LIB_BROW
+        MENUITEM "当前实时监测",                IDC_CUR_DATA_BROW
     END
-    POPUP "  视图  "
+    MENUITEM "清空测量数据文件",            IDD_CLEAR_LIB
+    POPUP "通讯测试"
     BEGIN
-        MENUITEM "T-X 图窗",                    IDC_CUR_DATA_BROW, MENUBREAK
-        MENUITEM "数据表窗",                    ID_MENUITEM32801
-        MENUITEM SEPARATOR
-        MENUITEM " 工具栏",                     ID_MENUITEM32807
-        MENUITEM " 状态栏",                     ID_MENUITEM32808
-    END
-    POPUP "  测试  "
-    BEGIN
+        MENUITEM "向手机发送信息",              ID1_232_SEND
+        MENUITEM "从手机接收信息",              ID1_RECEIVE_232
+        MENUITEM "向测量节点发送数据",          ID2_SEND_485, GRAYED
+        MENUITEM "从测量节点读数据",            ID2_RECEIVE_485, GRAYED
         MENUITEM "无线网络检查",                IDD_SHOUJI_COM
         MENUITEM "测控网络检查",                IDD_485_COM
         MENUITEM "扫描数据节点",                IDD_FETCH_485_DATA
-        MENUITEM "向手机发送信息",              ID1_232_SEND
-        MENUITEM "从手机接收信息",              ID1_RECEIVE_232
-        MENUITEM "无线发送数据测试",            IDD_TEST_WIRELESS_DATA
-        MENUITEM "向测量节点发送数据",          ID2_SEND_485, GRAYED
-        MENUITEM "从测量节点读取数据",          ID2_RECEIVE_485, GRAYED
     END
-    MENUITEM "  帮助  ",                    65535
 END
 
 
@@ -610,11 +613,6 @@ BEGIN
     NODE_CONFIG             "配置测量节点参数"
     WARNING_CONFIG          "设置报警参数"
     DATA_LIB_BROW           "浏览测量数据"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDD_CLEAR_LIB           "清空测量文件"
 END
 
 #endif    // Chinese (P.R.C.) resources

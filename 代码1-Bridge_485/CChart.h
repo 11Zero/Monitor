@@ -1,7 +1,0 @@
-#include "ChartCtrl\ChartStandardAxis.h"
-#include "ChartCtrl\ChartDateTimeAxis.h"
-#include "ChartCtrl\ChartCtrl.h"
-#include "ChartCtrl\ChartLineSerie.h"
-#include "ChartCtrl\ChartBarSerie.h"
-#include "ChartCtrl\ChartAxisLabel.h"
-#include "ChartCtrl\ChartScrollBar.h"

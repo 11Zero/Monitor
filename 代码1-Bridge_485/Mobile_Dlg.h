@@ -19,11 +19,12 @@ public:
 	void Load_Phone_Num();
 	Mobile_Dlg(CWnd* pParent = NULL);   // standard constructor
 	char Cfg_File_name[200];//报警参数设置
+	void CreateGrid();
 
 // Dialog Data
 	//{{AFX_DATA(Mobile_Dlg)
 	enum { IDD = IDD_MOBILE_PHENG };
-		// NOTE: the ClassWizard will add data members here
+	CStatic	m_wndGridLocation;
 	//}}AFX_DATA
 
 
@@ -36,10 +37,12 @@ public:
 
 // Implementation
 protected:
-
+	CBCGPGridCtrl		m_wndGrid;
 	// Generated message map functions
 	//{{AFX_MSG(Mobile_Dlg)
 	virtual BOOL OnInitDialog();
+	afx_msg void OnBtnAdd();
+	virtual void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

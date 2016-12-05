@@ -49,7 +49,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "..\stdafx.h"
 #include "ChartCtrl.h"
 
 #include "ChartSerie.h"
@@ -617,7 +617,7 @@ void CChartCtrl::AttachCustomSerie(CChartSerie* pNewSeries,
 	}
 }
 
-CChartSerie* CChartCtrl::GetSerie(size_t uSerieId) const//田海涛修改过，原本为size_t型参数
+CChartSerie* CChartCtrl::GetSerie(size_t uSerieId) const
 {
 	CChartSerie* pToReturn = NULL;
 	TSeriesMap::const_iterator iter = m_mapSeries.find(uSerieId);
@@ -1081,6 +1081,7 @@ void CChartCtrl::OnPrint(CDC *pDC, CPrintInfo *pInfo)
     pInfo->m_rectDraw.left   = 0;
     pInfo->m_rectDraw.right  = m_LogicalPageSize.cx;
     pInfo->m_rectDraw.bottom = m_LogicalPageSize.cy;
+
 	DrawChart(pDC, &pInfo->m_rectDraw);
 
     // SetWindowOrg back for next page

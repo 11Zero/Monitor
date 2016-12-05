@@ -7,14 +7,13 @@
 #include "Browse_History_Data.h"
 #include <math.h>
 #include <stdlib.h>
-#include "CChart.h"
-/*#include "ChartCtrl\ChartStandardAxis.h"
+#include "ChartCtrl\ChartStandardAxis.h"
 #include "ChartCtrl\ChartDateTimeAxis.h"
 #include "ChartCtrl\ChartCtrl.h"
 #include "ChartCtrl\ChartLineSerie.h"
 #include "ChartCtrl\ChartBarSerie.h"
 #include "ChartCtrl\ChartAxisLabel.h"
-#include "ChartCtrl\ChartScrollBar.h"*/
+#include "ChartCtrl\ChartScrollBar.h"
 
 
 
@@ -283,6 +282,19 @@ BOOL Browse_History_Data::BrowseDat()
 	return TRUE;
 
 
+	//AfxMessageBox(MsgStr);
+	//if(tempint == 1)
+	//{
+	//	char* GetErrorMsg = 0;
+		//sqlite3_exec(db,"",callback,NULL,&GetErrorMsg);
+		//此处根据历史记录滚轴的位置来做20次查询，刷新画面显示的20个点，通过callback函数实现数据刷新；
+	//}
+
+	//for(int count = 0;count <20;count++)
+	//{
+	//	sqlcmd.Format("select * from MyTable_4 where ID = '%d'",); 
+	//}
+	//sqlite3_close(db);
 
 }
 int callback1(void* pData,int nCount,char** pValue,char** pName)

@@ -6,7 +6,7 @@
 #endif // _MSC_VER > 1000
 // Browse_History_Data.h : header file
 //
-#include "CChart.h"
+#include "ChartCtrl\ChartCtrl.h"
 #include "sqlite3.h"
 /////////////////////////////////////////////////////////////////////////////
 // Browse_History_Data dialog

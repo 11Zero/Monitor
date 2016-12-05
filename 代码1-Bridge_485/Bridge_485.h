@@ -29,7 +29,6 @@ public:
 	//{{AFX_VIRTUAL(CBridge_485App)
 	public:
 	virtual BOOL InitInstance();
-	virtual int ExitInstance();
 	//}}AFX_VIRTUAL
 
 // Implementation

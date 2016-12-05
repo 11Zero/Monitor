@@ -106,6 +106,7 @@ void CChartFont::SelectFont(CDC* pDC) const
 			lf.lfOrientation = 900;
 			lf.lfEscapement = 900;
 		}
+
 		m_Font.DeleteObject();
 		m_Font.CreatePointFontIndirect(&lf, pDC);
 		m_bDirty = false;

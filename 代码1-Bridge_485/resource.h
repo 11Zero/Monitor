@@ -18,17 +18,16 @@
 #define TESTING_WARNING_FUN             140
 #define IDD_HIST_BROW_DIALOG            141
 #define IDD_CUR_DATA_DIALOG             142
+#define IDD_SENSOR_INIT_VAL             143
 #define IDC_MSCOMM1                     1000
 #define IDC_MSCOMM2                     1001
 #define IDC_COMBO1                      1002
 #define IDC_COMBO2                      1003
 #define IDC_COMBO3                      1004
 #define IDC_COMBO4                      1005
-#define IDC_EDIT1                       1005
 #define IDC_EDIT2                       1006
 #define IDC_BUTTON1                     1007
 #define IDC_BUTTON2                     1008
-#define IDC_LIST1                       1008
 #define IDC_LIST2                       1009
 #define IDC_RADIO1                      1010
 #define IDC_RADIO2                      1011
@@ -40,14 +39,17 @@
 #define IDC_CHART_HISTROY               1020
 #define IDC_SCROLLBAR_HIST              1022
 #define IDC_CLOSE_HIST                  1023
-#define IDC_TEMPBUTTON                  1024
-#define IDC_CHART                       1025
-#define IDC_BUTTON_TEST                 1026
-#define IDC_BUTTON_DRAW                 1027
-#define IDC_COMBO_NODE                  1028
-#define IDC_COMBO_CHANNEL               1029
-#define IDC_FIELD_GRID                  1035
-#define IDC_CHECK1                      1036
+#define IDC_BUTTON_TESTMSG              1024
+#define IDC_BUTTON3                     1025
+#define IDC_YY1INITVAL                  1027
+#define IDC_YY2INITVAL                  1028
+#define IDC_GRID_RECT                   1029
+#define IDC_EDIT1                       1030
+#define IDC_YY3INITVAL                  1031
+#define IDC_BTN_ADD                     1031
+#define IDC_LIST1                       1032
+#define IDC_SG1INITVAL                  1033
+#define IDC_SG2INITVAL                  1034
 #define NODE_CONFIG                     32771
 #define WARNING_CONFIG                  32772
 #define DATA_LIB_BROW                   32773
@@ -73,20 +75,14 @@
 #define IDD_TIMER_STOP                  32796
 #define IDC_HIST_LIB_BROW               32799
 #define IDC_CUR_DATA_BROW               32800
-#define ID_MENUITEM32801                32801
-#define ID_MENU_EXIT                    32802
-#define ID_MENU_NEW                     32803
-#define ID_MENU_CLOSE                   32804
-#define ID_MENUITEM32807                32807
-#define ID_MENUITEM32808                32808
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        143
-#define _APS_NEXT_COMMAND_VALUE         32812
-#define _APS_NEXT_CONTROL_VALUE         1037
-#define _APS_NEXT_SYMED_VALUE           101
+#define _APS_NEXT_RESOURCE_VALUE        144
+#define _APS_NEXT_COMMAND_VALUE         32801
+#define _APS_NEXT_CONTROL_VALUE         1032
+#define _APS_NEXT_SYMED_VALUE           103
 #endif
 #endif

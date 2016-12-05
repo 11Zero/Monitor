@@ -14,6 +14,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CBridge_485App
 
+
 BEGIN_MESSAGE_MAP(CBridge_485App, CWinApp)
 	//{{AFX_MSG_MAP(CBridge_485App)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
@@ -35,13 +36,13 @@ CBridge_485App::CBridge_485App()
 // The one and only CBridge_485App object
 
 CBridge_485App theApp;
+
 /////////////////////////////////////////////////////////////////////////////
 // CBridge_485App initialization
 
 BOOL CBridge_485App::InitInstance()
 {
 	AfxEnableControlContainer();
-	skinppLoadSkin(_T("Aura.ssk"));
 
 	// Standard initialization
 	// If you are not using these features and wish to reduce the size
@@ -71,11 +72,4 @@ BOOL CBridge_485App::InitInstance()
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
 	return FALSE;
-}
-
-int CBridge_485App::ExitInstance() 
-{
-	// TODO: Add your specialized code here and/or call the base class
-	skinppExitSkin();
-	return CWinApp::ExitInstance();
 }

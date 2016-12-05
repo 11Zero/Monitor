@@ -44,12 +44,6 @@
     <Filter Include="Utilities\Zlib">
       <UniqueIdentifier>{3c7bfb40-ea2b-4024-8db1-95b9b6a0f4e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Diagram">
-      <UniqueIdentifier>{b3986f8f-30f8-4039-80ca-addfb34318e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Grid">
-      <UniqueIdentifier>{2c903abd-64ce-4440-af1e-0590695d69ad}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Zlib\adler32.c">
@@ -319,6 +313,15 @@
     <ClCompile Include="BCGPGlobalUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BCGPGridCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BCGPGridSerialize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BCGPGridView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="BCGPGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -554,6 +557,12 @@
       <Filter>Calendar</Filter>
     </ClCompile>
     <ClCompile Include="BCGPRegistry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BCGPReportCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BCGPReportView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BCGPRibbonBackstagePagePrint.cpp">
@@ -1036,114 +1045,6 @@
     <ClCompile Include="BCGPChartShape3D.cpp">
       <Filter>Chart</Filter>
     </ClCompile>
-    <ClCompile Include="BCGPEditBrushDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPLineStyleComboBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonBackstagePageRecent.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramCtrl.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramShape.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramVisualContainer.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramVisualObject.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramVisualConstructor.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPBrushButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPTextFormatDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPTagCloud.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPTreeMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramConnector.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPVisualManagerVS2012.cpp">
-      <Filter>Visual Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPTreeCtrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonCustomizationData.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonCustomizeQATPage.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonTreeCtrl.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRenameDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonItemDlg.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPDiagramView.cpp">
-      <Filter>Diagram</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPWinUITiles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonQuickStepsButton.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPRibbonToolsPage.cpp">
-      <Filter>Ribbon</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPVisualManager2013.cpp">
-      <Filter>Visual Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPGestureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPSwitchImpl.cpp">
-      <Filter>Gauge</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPPageTransitionManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPShadowManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPGridCtrl.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPGridSerialize.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPGridView.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPReportCtrl.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPReportView.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPGridFilter.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGPGridFilterMenu.cpp">
-      <Filter>Grid</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BCGCBPro.h">
@@ -1434,6 +1335,15 @@
     <ClInclude Include="BCGPGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BCGPGridCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BCGPGridSerialize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BCGPGridView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="BCGPHelpids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1626,6 +1536,9 @@
     <ClInclude Include="BCGPPngImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BCGPReportView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="BCGPPopupDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1672,6 +1585,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BCGPRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BCGPReportCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BCGPRibbonUndoButton.h">
@@ -2124,117 +2040,6 @@
     <ClInclude Include="BCGPChartShape3D.h">
       <Filter>Chart</Filter>
     </ClInclude>
-    <ClInclude Include="BCGPEditBrushDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPLineStyleComboBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonBackstagePageRecent.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramVisualObject.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramCtrl.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramShape.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramVisualContainer.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramVisualConstructor.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPBrushButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPTextFormatDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bcgptargetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPTagCloud.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPTreeMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramConnector.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPVisualManagerVS2012.h">
-      <Filter>Visual Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPTreeCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonCustomizationData.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonCustomizeQATPage.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonTreeCtrl.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRenameDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonItemDlg.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPDiagramView.h">
-      <Filter>Diagram</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPWinUITiles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonQuickStepsButton.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPRibbonToolsPage.h">
-      <Filter>Ribbon</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPVisualManager2013.h">
-      <Filter>Visual Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPGestureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPSwitchImpl.h">
-      <Filter>Gauge</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPPageTransitionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPShadowManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPGridCtrl.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPGridSerialize.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPGridView.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPReportCtrl.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPReportView.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPGridFilter.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGPGridFilterMenu.h">
-      <Filter>Grid</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BCGCBPro.rc">
@@ -2423,6 +2228,9 @@
     <None Include="res\rect-pro.cur">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\ribbon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="res\RibbonPrintL.PNG">
       <Filter>Resource Files</Filter>
     </None>
@@ -2526,24 +2334,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\font-pro.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\linestyles.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\proplistadvanced.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\swap.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\rotate32.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\proplist32.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\proplist.bmp">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

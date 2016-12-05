@@ -9,11 +9,12 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CSet_Sensor_Warning_Value dialog
-#include "BCG\stdafx.h"
+
 class CSet_Sensor_Warning_Value : public CDialog
 {
 // Construction
 public:
+	void UpdateGrid();
 	void CreateGrid();
 	void Set_List_Content(int id_list);
 	int Get_Step_value(void);
@@ -22,11 +23,10 @@ public:
 	char Cur_file_name[200];//不同阶段配置文件名称
 	int Step_flag;//当前阶段
 	void Set_Radio(int idc);
-	//CBCGPGridCtrl* m_pCurrGrid;
 // Dialog Data
 	//{{AFX_DATA(CSet_Sensor_Warning_Value)
 	enum { IDD = IDD_SENSOR_WARNING_VALUE };
-		// NOTE: the ClassWizard will add data members here
+	CStatic	m_wndGridLocation;
 	//}}AFX_DATA
 
 
@@ -39,7 +39,7 @@ public:
 
 // Implementation
 protected:
-
+	CBCGPGridCtrl m_wndGrid;
 	// Generated message map functions
 	//{{AFX_MSG(CSet_Sensor_Warning_Value)
 	virtual BOOL OnInitDialog();
@@ -48,6 +48,8 @@ protected:
 	afx_msg void OnRadio3();
 	afx_msg void OnRadio4();
 	afx_msg void OnRadio5();
+	afx_msg void OnBtnAdd();
+	virtual void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
