@@ -18,6 +18,7 @@ class CBridge_485Dlg : public CDialog
 {
 // Construction
 public:
+	void SendPack();
 	Brow_Cur_Data* Curhdlg;
 	double* Send_To_History();
 	double TestData;
@@ -78,6 +79,7 @@ public:
 	char Cmd_Buffer[2048];//命令缓冲区
 	char cur_phone_num[40];//收集号码
 	double InitValOfSensor[5];//感应器初始值，顺序为预压1，预压2，预压3，施工1，施工2
+	char DataPackItem[8][50];//一个时间点的测试数据打包，1节点，2通道，3名称，4原始值【转码后】，5初始值，6单位，7地点，8时间
 // Dialog Data
 	//{{AFX_DATA(CBridge_485Dlg)
 	enum { IDD = IDD_BRIDGE_485_DIALOG };

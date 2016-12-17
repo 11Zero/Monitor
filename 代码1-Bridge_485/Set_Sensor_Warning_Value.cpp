@@ -136,6 +136,7 @@ void CSet_Sensor_Warning_Value::Set_Radio(int idc)
 void CSet_Sensor_Warning_Value::OnRadio1() 
 {
 	// TODO: Add your control notification handler code here
+	OnOK();
 	Step_flag=0;
 	UpdateGrid();
 	strcpy(Cur_file_name,Cfg_Path);strcat(Cur_file_name,"YY_Step1.txt");
@@ -145,6 +146,7 @@ void CSet_Sensor_Warning_Value::OnRadio1()
 void CSet_Sensor_Warning_Value::OnRadio2() 
 {
 	// TODO: Add your control notification handler code here
+	OnOK();
 	Step_flag=1;
 	UpdateGrid();
 	strcpy(Cur_file_name,Cfg_Path);strcat(Cur_file_name,"YY_Step2.txt");
@@ -154,6 +156,7 @@ void CSet_Sensor_Warning_Value::OnRadio2()
 void CSet_Sensor_Warning_Value::OnRadio3() 
 {
 	// TODO: Add your control notification handler code here
+	OnOK();
 	Step_flag=2;
 	UpdateGrid();
 	strcpy(Cur_file_name,Cfg_Path);strcat(Cur_file_name,"YY_Step3.txt");
@@ -163,6 +166,7 @@ void CSet_Sensor_Warning_Value::OnRadio3()
 void CSet_Sensor_Warning_Value::OnRadio4() 
 {
 	// TODO: Add your control notification handler code here
+	OnOK();
 	Step_flag=3;
 	UpdateGrid();
 	strcpy(Cur_file_name,Cfg_Path);strcat(Cur_file_name,"SG_Step1.txt");
@@ -172,6 +176,7 @@ void CSet_Sensor_Warning_Value::OnRadio4()
 void CSet_Sensor_Warning_Value::OnRadio5() 
 {
 	// TODO: Add your control notification handler code here
+	OnOK();
 	Step_flag=4;
 	UpdateGrid();
 		strcpy(Cur_file_name,Cfg_Path);strcat(Cur_file_name,"SG_Step2.txt");
@@ -346,12 +351,23 @@ void CSet_Sensor_Warning_Value::OnOK()
 			sprintf(pBuf,"%s",sqlcmd);//名称
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
+			sqlcmd.Format("update init_val set step%d='%s' where ID=%d",Step+1,strname,3*(i-EmptyCount)+4);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val数据名称
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+			
 			sqlcmd.Format("update warning_val set step%d='%s' where ID=%d",Step+1,strval,3*(i-EmptyCount)+5);//
 			sprintf(pBuf,"%s",sqlcmd);//数值
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
 			sqlcmd.Format("update warning_val set step%d='%s' where ID=%d",Step+1,strunit,3*(i-EmptyCount)+6);//
 			sprintf(pBuf,"%s",sqlcmd);//单位
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
+			sqlcmd.Format("update init_val set step%d='%s' where ID=%d",Step+1,strunit,3*(i-EmptyCount)+6);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val数据单位
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
 		}
@@ -362,14 +378,31 @@ void CSet_Sensor_Warning_Value::OnOK()
 			sprintf(pBuf,"%s",sqlcmd);//名称
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
+			sqlcmd.Format("insert into init_val values (%d,'','','','','')",SensorSelCount);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val名称
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
 			SensorSelCount++;
 			sqlcmd.Format("insert into warning_val values (%d,'','','','','')",SensorSelCount);//
 			sprintf(pBuf,"%s",sqlcmd);//数值
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
+			sqlcmd.Format("insert into init_val values (%d,'0','0','0','0','0')",SensorSelCount);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val数值
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
 			SensorSelCount++;
 			sqlcmd.Format("insert into warning_val values (%d,'','','','','')",SensorSelCount);//
 			sprintf(pBuf,"%s",sqlcmd);//单位
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
+			sqlcmd.Format("insert into init_val values (%d,'','','','','')",SensorSelCount);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val单位
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
 
@@ -377,7 +410,12 @@ void CSet_Sensor_Warning_Value::OnOK()
 			sprintf(pBuf,"%s",sqlcmd);//名称
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
-			AfxMessageBox(ExeErrorMsg);
+
+			sqlcmd.Format("update init_val set step%d='%s' where ID=%d",Step+1,strname,3*(i-EmptyCount)+4);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val名称
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
 			sqlcmd.Format("update warning_val set step%d='%s' where ID=%d",Step+1,strval,3*(i-EmptyCount)+5);//
 			sprintf(pBuf,"%s",sqlcmd);//数值
 			sqlcmd = GB2312ToUTF8(pBuf);
@@ -386,6 +424,12 @@ void CSet_Sensor_Warning_Value::OnOK()
 			sprintf(pBuf,"%s",sqlcmd);//单位
 			sqlcmd = GB2312ToUTF8(pBuf);
 			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
+			sqlcmd.Format("update init_val set step%d='%s' where ID=%d",Step+1,strunit,3*(i-EmptyCount)+6);//
+			sprintf(pBuf,"%s",sqlcmd);//init_val单位
+			sqlcmd = GB2312ToUTF8(pBuf);
+			rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+
 		}
 	}
 	for(i=m_wndGrid.GetRowCount()-EmptyCount+1;i<SensorSelCount/3;i++)
@@ -397,6 +441,10 @@ void CSet_Sensor_Warning_Value::OnOK()
 		sprintf(pBuf,"%s",sqlcmd);//名称
 		sqlcmd = GB2312ToUTF8(pBuf);
 		rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+		sqlcmd.Format("update init_val set step%d='%s' where ID=%d",Step+1,strname,3*i+1);//
+		sprintf(pBuf,"%s",sqlcmd);//init_val名称
+		sqlcmd = GB2312ToUTF8(pBuf);
+		rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
 		sqlcmd.Format("update warning_val set step%d='%s' where ID=%d",Step+1,strval,3*i+2);//
 		sprintf(pBuf,"%s",sqlcmd);//数值
 		sqlcmd = GB2312ToUTF8(pBuf);
@@ -405,10 +453,18 @@ void CSet_Sensor_Warning_Value::OnOK()
 		sprintf(pBuf,"%s",sqlcmd);//单位
 		sqlcmd = GB2312ToUTF8(pBuf);
 		rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+		sqlcmd.Format("update init_val set step%d='%s' where ID=%d",Step+1,strunit,3*i+3);//
+		sprintf(pBuf,"%s",sqlcmd);//init_val单位
+		sqlcmd = GB2312ToUTF8(pBuf);
+		rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
 	}
 
 	sqlcmd.Format("update warning_val set step%d='%d' where ID=3",Step+1,m_wndGrid.GetRowCount()-EmptyCount);//
 	sprintf(pBuf,"%s",sqlcmd);//单位
+	sqlcmd = GB2312ToUTF8(pBuf);
+	rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+	sqlcmd.Format("update init_val set step%d='%d' where ID=3",Step+1,m_wndGrid.GetRowCount()-EmptyCount);//
+	sprintf(pBuf,"%s",sqlcmd);//init_val单位
 	sqlcmd = GB2312ToUTF8(pBuf);
 	rc = sqlite3_exec( db, sqlcmd, NULL, NULL, &ExeErrorMsg);
 	sqlite3_close(db);

@@ -28,6 +28,7 @@ void Brow_Cur_Data::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(Brow_Cur_Data)
+	DDX_Control(pDX, IDC_CHART, m_wndChart);
 		// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
@@ -35,8 +36,8 @@ void Brow_Cur_Data::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(Brow_Cur_Data, CDialog)
 	//{{AFX_MSG_MAP(Brow_Cur_Data)
-	ON_MESSAGE(WM_RECEIVEMSG,OnReceivemsg)
 	ON_BN_CLICKED(IDC_BUTTON_TESTMSG, OnButtonTestmsg)
+	ON_MESSAGE(WM_RECEIVEMSG,OnReceivemsg)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -138,4 +139,69 @@ void Brow_Cur_Data::OnButtonTestmsg()
 {
 	// TODO: Add your control notification handler code here
 	
+}
+
+
+
+void Brow_Cur_Data::CreateChart()
+{
+	CBCGPChartVisualObject* pChart = m_wndChart.GetChart();
+	ASSERT_VALID(pChart);
+
+	pChart->ShowAxisIntervalInterlacing(BCGP_CHART_X_PRIMARY_AXIS, FALSE);
+
+	pChart->SetChartType (BCGPChartHistoricalLine, BCGP_CT_SIMPLE, FALSE);
+	pChart->SetLegendPosition(BCGPChartLayout::LP_TOPRIGHT);
+
+	CBCGPChartAxis* pXAxis = pChart->GetChartAxis(BCGP_CHART_X_PRIMARY_AXIS);
+	ASSERT_VALID(pXAxis);
+
+	pXAxis->m_axisLabelType = CBCGPChartAxis::ALT_NO_LABELS;
+	pXAxis->m_majorTickMarkType = CBCGPChartAxis::TMT_NO_TICKS;
+	pXAxis->SetFixedIntervalWidth(20, 1);
+
+	CBCGPChartAxis* pYAxis = pChart->GetChartAxis(BCGP_CHART_Y_PRIMARY_AXIS);
+	ASSERT_VALID(pYAxis);
+
+	pYAxis->SetFixedDisplayRange(0., 4, 20.);
+
+	pYAxis->m_bDisplayAxisName = FALSE;
+
+	pChart->SetChartTitle(_T("Chart Title"));
+	pChart->ShowChartTitle(1,0);
+	pChart->ShowAxisIntervalInterlacing(BCGP_CHART_Y_PRIMARY_AXIS);
+	pChart->SetLegendPosition(BCGPChartLayout::LP_LEFT,FALSE);
+	pChart->ShowDataMarkers(0);
+	pChart->ShowDataLabels(0);
+	pChart->SetAxisName(BCGP_CHART_X_PRIMARY_AXIS, _T("X Axis"));
+	pChart->ShowAxisName(BCGP_CHART_X_PRIMARY_AXIS, 1);
+	pChart->ShowAxisIntervalInterlacing(BCGP_CHART_X_PRIMARY_AXIS, 1);
+	pChart->ShowAxisGridLines(BCGP_CHART_X_PRIMARY_AXIS, 1, FALSE);
+
+	pChart->SetAxisName(BCGP_CHART_Y_PRIMARY_AXIS, _T("Y Axis"));
+	pChart->ShowAxisName(BCGP_CHART_Y_PRIMARY_AXIS, 1);
+	pChart->ShowAxisIntervalInterlacing(BCGP_CHART_Y_PRIMARY_AXIS, 1);
+	pChart->ShowAxisGridLines(BCGP_CHART_Y_PRIMARY_AXIS, 1, FALSE);
+	CString strLabel;
+	strLabel.Format(_T("Series %d"), 1);
+	CBCGPChartSeries*	pSerie = pChart->CreateSeries(strLabel);
+	for (int i = 0; i < 20; i++)
+	{
+		//const double d = MAX_VAL / 25;
+		double dblVal = rand()%20;//min(MAX - 1, max(0., m_arLastVal[i] + dblDelta));
+		CString strXAxis=_T("");
+		strXAxis.Format("зјБъ");
+		pSerie->AddDataPoint(strXAxis,dblVal);
+	}
+
+
+}
+
+BOOL Brow_Cur_Data::OnInitDialog() 
+{
+	CDialog::OnInitDialog();
+	
+	CreateChart();	
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
 }

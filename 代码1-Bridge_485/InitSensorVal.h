@@ -14,12 +14,14 @@ class InitSensorVal : public CDialog
 {
 // Construction
 public:
+	void UpdateGrid();
+	void CreateGrid();
 	InitSensorVal(CWnd* pParent = NULL);   // standard constructor
-
+	int Step_flag;
 // Dialog Data
 	//{{AFX_DATA(InitSensorVal)
 	enum { IDD = IDD_SENSOR_INIT_VAL };
-		// NOTE: the ClassWizard will add data members here
+	CStatic	m_wndGridLocation;
 	//}}AFX_DATA
 
 
@@ -32,11 +34,18 @@ public:
 
 // Implementation
 protected:
+	CBCGPGridCtrl m_wndGrid;
 
 	// Generated message map functions
 	//{{AFX_MSG(InitSensorVal)
 	virtual void OnOK();
 	afx_msg void OnPaint();
+	virtual BOOL OnInitDialog();
+	afx_msg void OnRadio1();
+	afx_msg void OnRadio2();
+	afx_msg void OnRadio3();
+	afx_msg void OnRadio4();
+	afx_msg void OnRadio5();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

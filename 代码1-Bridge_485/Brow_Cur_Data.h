@@ -14,11 +14,13 @@ class Brow_Cur_Data : public CDialog
 {
 // Construction
 public:
+	void CreateChart();
 	Brow_Cur_Data(CWnd* pParent = NULL);   // standard constructor
 	void DrawData();
 // Dialog Data
 	//{{AFX_DATA(Brow_Cur_Data)
 	enum { IDD = IDD_CUR_DATA_DIALOG };
+	CBCGPChartCtrl	m_wndChart;
 		// NOTE: the ClassWizard will add data members here
 	//}}AFX_DATA
 
@@ -39,6 +41,7 @@ protected:
 	virtual void OnCancel();
 	virtual void OnOK();
 	afx_msg void OnButtonTestmsg();
+	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	LRESULT OnReceivemsg(WPARAM wParam, LPARAM lParam);

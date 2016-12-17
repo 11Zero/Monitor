@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CSet_Sensor_Warning_Value
+LastClass=CBridge_485Dlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "Bridge_485.h"
@@ -13,31 +13,31 @@ Class2=CBridge_485Dlg
 Class3=CAboutDlg
 
 ResourceCount=15
-Resource1=IDD_BRIDGE_485_DIALOG
+Resource1=IDD_SENSOR_WARNING_VALUE
 Resource2=IDR_MAINFRAME
-Resource3=IDD_SCOMM_PARA
-Resource4=IDD_DIALOG2
+Resource3=IDD_DIALOG1
+Resource4=IDR_MENU1
 Class4=RS_232_Para
-Resource5=IDD_DIALOG1
+Resource5=IDD_SENSOR_INIT_VAL
 Class5=RS_485_Dlg
-Resource6=IDD_SENSOR_INIT_VAL
+Resource6=IDD_SG_STEP_SEL
 Class6=Mobile_Dlg
-Resource7=IDD_SENSOR_WARNING_VALUE
+Resource7=IDD_RS485_PARA
 Class7=Cfg_485_Net_Node_dlg
-Resource8=TESTING_WARNING_FUN
+Resource8=IDD_SCOMM_PARA
 Class8=Browse_History_Data
-Resource9=IDD_RS485_PARA
+Resource9=IDD_HIST_BROW_DIALOG
 Class9=CSg_Step_Selectiong
-Resource10=IDD_ABOUTBOX
+Resource10=IDD_MOBILE_PHENG
 Class10=CSet_Sensor_Warning_Value
-Resource11=IDD_CUR_DATA_DIALOG
+Resource11=TESTING_WARNING_FUN
 Class11=CTesting_Warning_Value_Fun
-Resource12=IDD_HIST_BROW_DIALOG
-Resource13=IDD_MOBILE_PHENG
+Resource12=IDD_DIALOG2
+Resource13=IDD_ABOUTBOX
 Class12=Brow_Cur_Data
-Resource14=IDD_SG_STEP_SEL
+Resource14=IDD_BRIDGE_485_DIALOG
 Class13=InitSensorVal
-Resource15=IDR_MENU1
+Resource15=IDD_CUR_DATA_DIALOG
 
 [CLS:CBridge_485App]
 Type=0
@@ -88,14 +88,14 @@ Command1=IDD_TIMER_MEAS
 Command2=IDD_TIMER_STOP
 Command3=MENU_SG_STEP
 Command4=MENU_WARNING_PARA
-Command5=IDD_WARNING_TEST
-Command6=IDD_TEST_WIRELESS_DATA
-Command7=IDD_GET_PHONE_NUM
-Command8=ID1_232_CFG
-Command9=IDD_OPEN_S232
-Command10=IDD2_485_CFG
-Command11=IDD_OPEN_S485
-Command12=IDD_INIT_VAL
+Command5=IDD_INIT_VAL
+Command6=IDD_WARNING_TEST
+Command7=ID1_232_CFG
+Command8=IDD_OPEN_S232
+Command9=IDD_OPEN_S485
+Command10=IDD_TEST_WIRELESS_DATA
+Command11=IDD2_485_CFG
+Command12=IDD_GET_PHONE_NUM
 Command13=NODE_CONFIG
 Command14=WARNING_CONFIG
 Command15=IDC_HIST_LIB_BROW
@@ -302,10 +302,11 @@ Control6=IDC_CLOSE_HIST,button,1342242816
 [DLG:IDD_CUR_DATA_DIALOG]
 Type=1
 Class=Brow_Cur_Data
-ControlCount=3
+ControlCount=4
 Control1=IDOK,button,1342242817
 Control2=IDCANCEL,button,1342242816
 Control3=IDC_BUTTON_TESTMSG,button,1342242816
+Control4=IDC_CHART,static,1342177284
 
 [CLS:Brow_Cur_Data]
 Type=0
@@ -319,19 +320,22 @@ LastObject=Brow_Cur_Data
 [DLG:IDD_SENSOR_INIT_VAL]
 Type=1
 Class=InitSensorVal
-ControlCount=12
+ControlCount=15
 Control1=IDOK,button,1342242817
 Control2=IDCANCEL,button,1342242816
-Control3=IDC_STATIC,static,1342308352
-Control4=IDC_STATIC,static,1342308352
-Control5=IDC_STATIC,static,1342308352
-Control6=IDC_STATIC,static,1342308352
-Control7=IDC_STATIC,static,1342308352
-Control8=IDC_YY1INITVAL,edit,1350631552
-Control9=IDC_YY2INITVAL,edit,1350631552
-Control10=IDC_YY3INITVAL,edit,1350631552
-Control11=IDC_SG1INITVAL,edit,1350631552
-Control12=IDC_SG2INITVAL,edit,1350631552
+Control3=IDC_YY1INITVAL,edit,1082196096
+Control4=IDC_YY2INITVAL,edit,1082196096
+Control5=IDC_YY3INITVAL,edit,1082196096
+Control6=IDC_SG1INITVAL,edit,1082196096
+Control7=IDC_SG2INITVAL,edit,1082196096
+Control8=IDC_GRID_RECT,static,1342177287
+Control9=IDC_STATIC,button,1342177287
+Control10=IDC_STATIC,button,1342177287
+Control11=IDC_RADIO1,button,1342177289
+Control12=IDC_RADIO2,button,1342177289
+Control13=IDC_RADIO3,button,1342177289
+Control14=IDC_RADIO4,button,1342177289
+Control15=IDC_RADIO5,button,1342177289
 
 [CLS:InitSensorVal]
 Type=0
@@ -339,6 +343,6 @@ HeaderFile=InitSensorVal.h
 ImplementationFile=InitSensorVal.cpp
 BaseClass=CDialog
 Filter=D
-LastObject=ID1_232_CFG
+LastObject=IDC_RADIO3
 VirtualFilter=dWC
 

@@ -48,6 +48,7 @@
 #define IDC_YY3INITVAL                  1031
 #define IDC_BTN_ADD                     1031
 #define IDC_LIST1                       1032
+#define IDC_CHART                       1032
 #define IDC_SG1INITVAL                  1033
 #define IDC_SG2INITVAL                  1034
 #define NODE_CONFIG                     32771
@@ -82,7 +83,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        144
 #define _APS_NEXT_COMMAND_VALUE         32801
-#define _APS_NEXT_CONTROL_VALUE         1032
+#define _APS_NEXT_CONTROL_VALUE         1033
 #define _APS_NEXT_SYMED_VALUE           103
 #endif
 #endif

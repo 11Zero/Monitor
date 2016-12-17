@@ -884,7 +884,7 @@ void CBridge_485Dlg::OnFetch485Data()
 
 	
 	
-
+	CTime t;
 	for(i=0;i<Total_Node_Num;i++) {//测量节点循环
 		//	for(j=0;j<Node_Ch_num[i];j++) {//测量通道循环
 		Take_Meas_485_Net((unsigned char) (i+1));
@@ -901,20 +901,35 @@ void CBridge_485Dlg::OnFetch485Data()
 			ret_crc+=(unsigned short int) pkt[len-2];
 			if(ret_crc==crc_val) {
 				for(j=0;j<Node_Ch_num[i];j++){
-					strcpy(tmp1,output);sprintf(tmp2,"节点%d;通道%d;",i+1,j+1);strcat(tmp1,tmp2);
-					strcat(tmp1,Node_Ch_Sensor_Name[i][j]);strcat(tmp1,";");
+					memset(DataPackItem,0,sizeof(DataPackItem)/sizeof(DataPackItem[0][0]));
+					strcpy(tmp1,output);
+					sprintf(DataPackItem[0],"%d",i+1);
+					sprintf(DataPackItem[1],"%d",j+1);
+					sprintf(tmp2,"节点%d;通道%d;",i+1,j+1);
+					strcat(tmp1,tmp2);
+					strcat(tmp1,Node_Ch_Sensor_Name[i][j]);
+					sprintf(DataPackItem[2],"%s",Node_Ch_Sensor_Name[i][j]);
+					strcat(tmp1,";");
 					unsigned short int xx;short int yy;
 					xx=pkt[j*2+3];xx=(xx<<8)&0x0ff00;xx=xx+pkt[j*2+4];
 					yy=(short int ) xx;
 					double s_val;
 					s_val=Com_Sensor_Value(yy,Node_Ch_Sensor_Lmd[i][j]);
+					sprintf(DataPackItem[3],"%.4f",s_val);
 					
 					Cur_Sensor_Meas_Val[Meas_cnt]=s_val-InitValOfSensor[Step_flag];Meas_cnt++;//把测量参数放入道数组中.
-					sprintf(tmp2,"%7.2f",s_val);strcat(tmp1,tmp2);
+					sprintf(DataPackItem[4],"%.4f",InitValOfSensor[Step_flag]);
+					sprintf(tmp2,"%7.2f",s_val);
+					strcat(tmp1,tmp2);
 					//sprintf(tmp2,"%7.2f %7.2f",s_val,Cur_Sensor_Meas_Val[Meas_cnt-1]);strcat(tmp1,tmp2);
 					strcat(tmp1,";");
 					strcat(tmp1,Node_Ch_Sensor_Unit[i][j]);
+					sprintf(DataPackItem[5],"%s",Node_Ch_Sensor_Unit[i][j]);
 					strcat(tmp1,";");strcat(tmp1,Test_Position);
+					sprintf(DataPackItem[6],"%s",Test_Position);
+					t = CTime::GetCurrentTime();
+					sprintf(DataPackItem[7],"%d:%d:%d",t.GetHour(),t.GetMinute(),t.GetSecond());
+					SendPack();//发送数据包
 					Display_Meas_Res(IDC_LIST2, tmp1,j);
 					strcat(tmp1,"\n");
 					//MessageBox(tmp1);
@@ -1495,4 +1510,9 @@ void CBridge_485Dlg::OnCancelMode()
 	
 	// TODO: Add your message handler code here
 	
+}
+
+void CBridge_485Dlg::SendPack()
+{
+
 }
