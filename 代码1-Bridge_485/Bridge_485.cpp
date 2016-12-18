@@ -57,6 +57,7 @@ BOOL CBridge_485App::InitInstance()
 
 	CBridge_485Dlg dlg;
 	m_pMainWnd = &dlg;
+	ASSERT(m_pMainWnd);
 	int nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
 	{

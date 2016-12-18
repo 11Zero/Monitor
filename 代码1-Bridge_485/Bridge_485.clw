@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CBridge_485Dlg
+LastClass=Brow_Cur_Data
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "Bridge_485.h"
@@ -13,29 +13,29 @@ Class2=CBridge_485Dlg
 Class3=CAboutDlg
 
 ResourceCount=15
-Resource1=IDD_SENSOR_WARNING_VALUE
+Resource1=IDD_BRIDGE_485_DIALOG
 Resource2=IDR_MAINFRAME
-Resource3=IDD_DIALOG1
-Resource4=IDR_MENU1
+Resource3=IDR_MENU1
+Resource4=TESTING_WARNING_FUN
 Class4=RS_232_Para
-Resource5=IDD_SENSOR_INIT_VAL
+Resource5=IDD_ABOUTBOX
 Class5=RS_485_Dlg
-Resource6=IDD_SG_STEP_SEL
+Resource6=IDD_RS485_PARA
 Class6=Mobile_Dlg
-Resource7=IDD_RS485_PARA
+Resource7=IDD_HIST_BROW_DIALOG
 Class7=Cfg_485_Net_Node_dlg
-Resource8=IDD_SCOMM_PARA
+Resource8=IDD_DIALOG2
 Class8=Browse_History_Data
-Resource9=IDD_HIST_BROW_DIALOG
+Resource9=IDD_MOBILE_PHENG
 Class9=CSg_Step_Selectiong
-Resource10=IDD_MOBILE_PHENG
+Resource10=IDD_DIALOG1
 Class10=CSet_Sensor_Warning_Value
-Resource11=TESTING_WARNING_FUN
+Resource11=IDD_SENSOR_WARNING_VALUE
 Class11=CTesting_Warning_Value_Fun
-Resource12=IDD_DIALOG2
-Resource13=IDD_ABOUTBOX
+Resource12=IDD_SG_STEP_SEL
+Resource13=IDD_SCOMM_PARA
 Class12=Brow_Cur_Data
-Resource14=IDD_BRIDGE_485_DIALOG
+Resource14=IDD_SENSOR_INIT_VAL
 Class13=InitSensorVal
 Resource15=IDD_CUR_DATA_DIALOG
 
@@ -52,7 +52,7 @@ ImplementationFile=Bridge_485Dlg.cpp
 Filter=D
 BaseClass=CDialog
 VirtualFilter=dWC
-LastObject=CBridge_485Dlg
+LastObject=IDD_INIT_VAL
 
 [CLS:CAboutDlg]
 Type=0
@@ -79,7 +79,7 @@ Control3=IDC_MSCOMM1,{648A5600-2C6E-101B-82B6-000000000014},1342242816
 Control4=IDC_MSCOMM2,{648A5600-2C6E-101B-82B6-000000000014},1342242816
 Control5=IDC_LIST2,listbox,1352728833
 Control6=IDC_BUTTON1,button,1208025088
-Control7=IDC_BUTTON3,button,1342242816
+Control7=IDC_BUTTON_TEST,button,1342242816
 
 [MNU:IDR_MENU1]
 Type=1
@@ -302,11 +302,19 @@ Control6=IDC_CLOSE_HIST,button,1342242816
 [DLG:IDD_CUR_DATA_DIALOG]
 Type=1
 Class=Brow_Cur_Data
-ControlCount=4
+ControlCount=12
 Control1=IDOK,button,1342242817
 Control2=IDCANCEL,button,1342242816
-Control3=IDC_BUTTON_TESTMSG,button,1342242816
-Control4=IDC_CHART,static,1342177284
+Control3=IDC_BUTTON_TESTMSG,button,1476460544
+Control4=IDC_STATIC,static,1342308352
+Control5=IDC_COMBO_NODE,combobox,1344340226
+Control6=IDC_STATIC,static,1342308352
+Control7=IDC_COMBO_CHANNEL,combobox,1344340226
+Control8=IDC_BUTTON_DRAW,button,1342242816
+Control9=IDC_TEMPBUTTON,button,1342242816
+Control10=IDC_FRAME_MESSAGE,static,1342177287
+Control11=IDC_CHART,ChartCtrl,1107361792
+Control12=IDC_BCGCHART,static,1342177287
 
 [CLS:Brow_Cur_Data]
 Type=0
@@ -315,7 +323,7 @@ ImplementationFile=Brow_Cur_Data.cpp
 BaseClass=CDialog
 Filter=D
 VirtualFilter=dWC
-LastObject=Brow_Cur_Data
+LastObject=IDC_BCGCHART
 
 [DLG:IDD_SENSOR_INIT_VAL]
 Type=1

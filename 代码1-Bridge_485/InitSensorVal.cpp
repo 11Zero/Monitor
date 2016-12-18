@@ -109,8 +109,9 @@ void InitSensorVal::OnOK()
 	// TODO: Add extra validation here
 	CBridge_485App* pApp=(CBridge_485App*)AfxGetApp();
 	CBridge_485Dlg* pd=(CBridge_485Dlg*)pApp->m_pMainWnd;
+	pd->UpdateSensorInitVal(Step_flag);
 	//double InitVal[5];
-	CString tempstr="";
+/*	CString tempstr="";
 	GetDlgItemText(IDC_YY1INITVAL,tempstr);
 	pd->InitValOfSensor[0] = atof(tempstr);
 	GetDlgItemText(IDC_YY2INITVAL,tempstr);
@@ -121,7 +122,7 @@ void InitSensorVal::OnOK()
 	pd->InitValOfSensor[3] = atof(tempstr);
 	GetDlgItemText(IDC_SG2INITVAL,tempstr);
 	pd->InitValOfSensor[4] = atof(tempstr);
-	CDialog::OnOK();
+	CDialog::OnOK();*/
 }
 
 void InitSensorVal::OnPaint() 
@@ -131,7 +132,7 @@ void InitSensorVal::OnPaint()
 	CBridge_485App* pApp=(CBridge_485App*)AfxGetApp();
 	CBridge_485Dlg* pd=(CBridge_485Dlg*)pApp->m_pMainWnd;
 	CString str;
-	str.Format("%.2f",pd->InitValOfSensor[0]);
+	/*str.Format("%.2f",pd->InitValOfSensor[0]);
 	SetDlgItemText(IDC_YY1INITVAL,str);
 	str.Format("%.2f",pd->InitValOfSensor[1]);
 	SetDlgItemText(IDC_YY2INITVAL,str);
@@ -140,7 +141,7 @@ void InitSensorVal::OnPaint()
 	str.Format("%.2f",pd->InitValOfSensor[3]);
 	SetDlgItemText(IDC_SG1INITVAL,str);
 	str.Format("%.2f",pd->InitValOfSensor[4]);
-	SetDlgItemText(IDC_SG2INITVAL,str);
+	SetDlgItemText(IDC_SG2INITVAL,str);*/
 
 }
 

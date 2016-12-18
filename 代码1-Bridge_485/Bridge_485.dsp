@@ -114,6 +114,10 @@ SOURCE=.\fg_485_Net_Node_dlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Forecast.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\InitSensorVal.cpp
 # End Source File
 # Begin Source File
@@ -176,6 +180,10 @@ SOURCE=.\Browse_History_Data.h
 # Begin Source File
 
 SOURCE=.\fg_485_Net_Node_dlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Forecast.h
 # End Source File
 # Begin Source File
 
@@ -476,12 +484,12 @@ SOURCE=.\Bridge_Warn_DLL.lib
 # End Source File
 # End Target
 # End Project
+# Section Bridge_485 : {648A5600-2C6E-101B-82B6-000000000014}
+# 	2:21:DefaultSinkHeaderFile:mscomm.h
+# 	2:16:DefaultSinkClass:CMSComm
+# End Section
 # Section Bridge_485 : {E6E17E90-DF38-11CF-8E74-00A0C90F26F8}
 # 	2:5:Class:CMSComm
 # 	2:10:HeaderFile:mscomm.h
 # 	2:8:ImplFile:mscomm.cpp
-# End Section
-# Section Bridge_485 : {648A5600-2C6E-101B-82B6-000000000014}
-# 	2:21:DefaultSinkHeaderFile:mscomm.h
-# 	2:16:DefaultSinkClass:CMSComm
 # End Section

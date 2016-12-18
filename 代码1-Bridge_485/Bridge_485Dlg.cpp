@@ -24,7 +24,36 @@ static char THIS_FILE[] = __FILE__;
 
 
 
-
+extern CString GB2312ToUTF8(char* str);
+extern CString UTF8ToGB2312(char* str);
+	float SensorInitVal[5][4][8];//预留5个施工阶段四个节点每个节点8个通道的感应器初始值
+	//char Update_SensorName_init[10][30];
+	//char Update_SensorVal_init[10][30];
+	char Update_SensorUnit_init[10][30];
+	int Update_SensorSelCount_init=0;
+	int Update_Step_init=0;
+	int update_sensor_init_callback(void* pData,int nCount,char** pValue,char** pName)
+	{
+		CString str = "";
+		str = UTF8ToGB2312(pValue[Update_Step_init+1]);
+		if(Update_SensorSelCount_init>3&&(Update_SensorSelCount_init%3-1>atoi(Update_SensorUnit_init[0])))
+			return 0;
+		else
+		{
+		//if(Update_SensorSelCount_init%3==0)
+		//	sprintf(Update_SensorName_init[Update_SensorSelCount_init/3],"%s",str);
+		if(Update_SensorSelCount_init%3==1)
+		{
+			//sprintf(Update_SensorVal_init[Update_SensorSelCount_init/3],"%s",str);
+			SensorInitVal[Update_Step_init][0][Update_SensorSelCount_init/3-1]=atof(str);
+			//目前只有一个通道，因此三维数组第二维度一直用0，日后维护再做修改
+		}
+		if(Update_SensorSelCount_init%3==2)
+			sprintf(Update_SensorUnit_init[Update_SensorSelCount_init/3],"%s",str);
+		}
+		Update_SensorSelCount_init++;
+		return 0;
+	}
 
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
@@ -123,10 +152,8 @@ ON_COMMAND(IDD_GET_PHONE_NUM, OnGetPhoneNum)
 ON_COMMAND(IDD_TIMER_STOP, OnTimerStop)
 ON_COMMAND(IDC_HIST_LIB_BROW, OnHistLibBrow)
 ON_COMMAND(IDC_CUR_DATA_BROW, OnCurDataBrow)
-	ON_BN_CLICKED(IDC_BUTTON3, OnButton3)
-	ON_WM_CREATE()
-	ON_WM_CANCELMODE()
-	//}}AFX_MSG_MAP
+ON_BN_CLICKED(IDC_BUTTON_TEST, OnButtonTest)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,6 +163,10 @@ BOOL CBridge_485Dlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	SetWindowPos(&wndNoTopMost,0,0,0,0, SWP_NOMOVE | SWP_NOSIZE);
+	Brow_Cur_Data_Count = 0;//初始化检测窗口计数器
+	DataToCurView.SetSize(8);//定义传输数据串为八个数据
+	for(int i= 0 ;i < sizeof(phdlg)/sizeof(phdlg[0]);i++)
+		phdlg[i] = NULL;//初始化监测窗口为空；
 	// Add "About..." menu item to system menu.
 	
 	// IDM_ABOUTBOX must be in the system command range.
@@ -153,17 +184,31 @@ BOOL CBridge_485Dlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
-	InitValOfSensor[0]=0.0;//各阶段感应器初始值初始化
-	InitValOfSensor[1]=0.0;
-	InitValOfSensor[2]=0.0;
-	InitValOfSensor[3]=0.0;
-	InitValOfSensor[4]=0.0;
+	
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	flag_232=flag_485=0;//未配置参数
-	SetWindowText("合肥工业大学土木与水利工程学院");
+	flag_232=0;
+	flag_485=0;//未配置参数
+	CString tempinitval="";
+	CString str="";
+	memset(SensorInitVal,0,sizeof(SensorInitVal)/sizeof(SensorInitVal[0][0][0])*sizeof(float));
+	//str.Format("%d",sizeof(SensorInitVal)/sizeof(SensorInitVal[0][0][0])*sizeof(float));
+	//AfxMessageBox(str);
+	/*int j=0,k=0;
+	for(j=0;j<sizeof(SensorInitVal)/sizeof(SensorInitVal[0]);j++)
+	{
+		str.Format("%.2f\n",***(SensorInitVal+j));
+		tempinitval=tempinitval+str;
+	}
+	*/
+	UpdateSensorInitVal(0);
+	UpdateSensorInitVal(1);
+	UpdateSensorInitVal(2);
+	UpdateSensorInitVal(3);
+	UpdateSensorInitVal(4);
+	SetWindowText(_T("公路桥梁碗扣式满堂支架施工安全预警系统"));
 	// TODO: Add extra initialization here
 	//获得执行文件当前所在目录
 	::GetCurrentDirectory(199,(LPTSTR) Cur_Path_Dir);
@@ -695,10 +740,12 @@ void CBridge_485Dlg::On485Com_ch()
 void CBridge_485Dlg::OnInitVal() 
 {
 	// TODO: Add your command handler code here
-	//
-	InitSensorVal dlg;
-	if(!dlg.DoModal())
-		MessageBox("传感器初始值设置窗无法打开");
+	//MessageBox("传感器初始值");
+	InitSensorVal InitDlg;
+	int rc=InitDlg.DoModal();
+	if(!rc)
+		AfxMessageBox("初始值窗口打开失败");
+
 }
 //从配置文件中获得测量网络各节点的配置信息
 void CBridge_485Dlg::Load_Node_Info()
@@ -835,6 +882,7 @@ void CBridge_485Dlg::OnFetch485Data()
 	char tmp1[300],tmp2[200],output[300];
 	unsigned char pkt[1024];
 	int len;
+	CString temp = "";
 	int Meas_cnt(0);//测量通道计数
 					/*	//节点参数
 					int Total_Node_Num;//节点总数
@@ -847,44 +895,16 @@ void CBridge_485Dlg::OnFetch485Data()
 	CTime m_cur_time=CTime::GetCurrentTime();
 	CString ss=m_cur_time.Format("%Y_%m_%d_%H_%M_%S;");
 	strcpy(output,ss.operator LPCTSTR());
-	
+	CString strTime = m_cur_time.Format("%Y-%m-%d %H:%M:%S");
+	DataToCurView.SetAt(0,strTime);
 	//MessageBox(output);
 	sprintf(tmp1,"%d",Total_Node_Num);//MessageBox(tmp1);
 	
 	
-	/*CString m_strFolderPath="DataFolder" ;
-	// 判断路径是否存在 
-	if (!PathIsDirectory(m_strFolderPath) ) 
-	{ 
-		CString strMsg; 
-		strMsg.Format ("指定路径\"%s\"不存在，是否创建?", m_strFolderPath); 
-		if (AfxMessageBox(strMsg, MB_YESNO) == IDYES) 
-		{ 
-			if (!CreateDirectory(m_strFolderPath, NULL ) ) 
-			{ 
-				strMsg.Format ("创建路径\"%s\"失败！将存储在根目录下", m_strFolderPath); 
-				AfxMessageBox(strMsg);
-			} 
-		} 
-	}
-	sqlite3* db;
-	int rc = sqlite3_open(ss,&db);
-	ASSERT(rc == SQLITE_OK);
-	if(rc == SQLITE_OK)
-	{
-		AfxMessageBox("打开成功");
-		SetWindowText("正在写入文件:"+ss);
-	}
-	else
-	{	
-		CString OpenErrorMsg = "";
-		OpenErrorMsg.Format("数据库打开出错.\n错误原因:%s\n", sqlite3_errmsg(db));
-		AfxMessageBox(OpenErrorMsg);
-	}*/
-
 	
 	
-	CTime t;
+	
+	
 	for(i=0;i<Total_Node_Num;i++) {//测量节点循环
 		//	for(j=0;j<Node_Ch_num[i];j++) {//测量通道循环
 		Take_Meas_485_Net((unsigned char) (i+1));
@@ -901,36 +921,54 @@ void CBridge_485Dlg::OnFetch485Data()
 			ret_crc+=(unsigned short int) pkt[len-2];
 			if(ret_crc==crc_val) {
 				for(j=0;j<Node_Ch_num[i];j++){
-					memset(DataPackItem,0,sizeof(DataPackItem)/sizeof(DataPackItem[0][0]));
-					strcpy(tmp1,output);
-					sprintf(DataPackItem[0],"%d",i+1);
-					sprintf(DataPackItem[1],"%d",j+1);
-					sprintf(tmp2,"节点%d;通道%d;",i+1,j+1);
-					strcat(tmp1,tmp2);
-					strcat(tmp1,Node_Ch_Sensor_Name[i][j]);
-					sprintf(DataPackItem[2],"%s",Node_Ch_Sensor_Name[i][j]);
-					strcat(tmp1,";");
+					
+					temp.Format("%d",i+1);////
+					DataToCurView.SetAt(1,temp);//计入节点
+					temp.Format("%d",j+1);////
+					DataToCurView.SetAt(2,temp);//计入通道
+					temp.Format("%s",Node_Ch_Sensor_Name[i][j]);////
+					DataToCurView.SetAt(3,temp);//计入感应器名称
+					
+					strcpy(tmp1,output);sprintf(tmp2,"节点%d;通道%d;",i+1,j+1);strcat(tmp1,tmp2);
+					strcat(tmp1,Node_Ch_Sensor_Name[i][j]);strcat(tmp1,";");
 					unsigned short int xx;short int yy;
 					xx=pkt[j*2+3];xx=(xx<<8)&0x0ff00;xx=xx+pkt[j*2+4];
 					yy=(short int ) xx;
 					double s_val;
 					s_val=Com_Sensor_Value(yy,Node_Ch_Sensor_Lmd[i][j]);
-					sprintf(DataPackItem[3],"%.4f",s_val);
 					
-					Cur_Sensor_Meas_Val[Meas_cnt]=s_val-InitValOfSensor[Step_flag];Meas_cnt++;//把测量参数放入道数组中.
-					sprintf(DataPackItem[4],"%.4f",InitValOfSensor[Step_flag]);
+					temp.Format("%3.2f",Node_Ch_Sensor_Lmd[i][j]);////
+					DataToCurView.SetAt(4,temp);//计入灵敏度
+					
+					Cur_Sensor_Meas_Val[Meas_cnt]=s_val;Meas_cnt++;//把测量参数放入道数组中.
 					sprintf(tmp2,"%7.2f",s_val);
+					
+					temp.Format("%7.2f",s_val);////
+					DataToCurView.SetAt(5,temp);//计入数值
+					
+					////////////////////////////////
+					CString s_val_str = "";
+					s_val_str.Format("%s",tmp2);
+					//WriteToSQL(&s_val_str,i,j,NULL);
+					////////////////////////////////
+					
 					strcat(tmp1,tmp2);
 					//sprintf(tmp2,"%7.2f %7.2f",s_val,Cur_Sensor_Meas_Val[Meas_cnt-1]);strcat(tmp1,tmp2);
 					strcat(tmp1,";");
 					strcat(tmp1,Node_Ch_Sensor_Unit[i][j]);
-					sprintf(DataPackItem[5],"%s",Node_Ch_Sensor_Unit[i][j]);
+					
+					temp.Format("%s",Node_Ch_Sensor_Unit[i][j]);////
+					DataToCurView.SetAt(6,temp);//计入单位
+					
 					strcat(tmp1,";");strcat(tmp1,Test_Position);
-					sprintf(DataPackItem[6],"%s",Test_Position);
-					t = CTime::GetCurrentTime();
-					sprintf(DataPackItem[7],"%d:%d:%d",t.GetHour(),t.GetMinute(),t.GetSecond());
-					SendPack();//发送数据包
 					Display_Meas_Res(IDC_LIST2, tmp1,j);
+					
+					temp.Format("%s",Test_Position);////
+					DataToCurView.SetAt(7,temp);//计入位置
+					ASSERT(&DataToCurView != NULL);
+					SendData(&DataToCurView);
+					
+					
 					strcat(tmp1,"\n");
 					//MessageBox(tmp1);
 					Add_Dtat_To_Lib(Meas_Lib_File_Name,tmp1);//测量数据写入文件
@@ -975,7 +1013,7 @@ void CBridge_485Dlg::OnTimer(UINT nIDEvent)
 	// TODO: Add your message handler code here and/or call default
 	int ret(0);Test_fflag=0;
 	char cur_state[200],temp_ch[20];
-	strcpy(cur_state,"合肥工业大学土水学院_");
+	strcpy(cur_state,"公路桥梁碗扣式满堂支架施工安全预警系统 - ");
 	if(Run_Auto_Flag!=0) strcat(cur_state,"定时测量_");
 	sprintf(temp_ch,"%d",Step_flag);
 	strcat(cur_state,temp_ch);
@@ -1076,14 +1114,18 @@ void CBridge_485Dlg::OnSgStep()
 	char Step_file_name[200],buf[20];
 	strcpy(Step_file_name,Config_Path_Dir);strcat(Step_file_name,"\\Sgcfg.txt");//施工配置文件
 	fp=fopen(Step_file_name,"r");
-	if(fp!=NULL){
+	if(fp!=NULL)
+	{
 		fgets(buf,10,fp);flag=atoi(buf);
-		if((flag<0) || (flag>4)) flag=0;
+		if((flag<0) || (flag>4))
+			flag=0;
 		fclose(fp);
 	}
-	else {
+	else
+	{
 		fp=fopen(Step_file_name,"w");
-		if(fp!=NULL){
+		if(fp!=NULL)
+		{
 			flag=0;
 			strcpy(buf,"0\n");fputs(buf,fp);
 			fclose(fp);
@@ -1091,14 +1133,15 @@ void CBridge_485Dlg::OnSgStep()
 		
 	}
 	dlg.Step_flag=flag;
-	if(dlg.DoModal()==IDOK){
+	if(dlg.DoModal()==IDOK)
+	{
 		fp=fopen(Step_file_name,"w");
-		if(fp!=NULL){
+		if(fp!=NULL)
+		{
 			sprintf(buf,"%d\n",dlg.Step_flag);Step_flag=dlg.Step_flag;
 			fputs(buf,fp);fclose(fp);
 		}
-		
-	};
+	}
 }
 //报警文件参数设置
 void CBridge_485Dlg::OnWarningPara() 
@@ -1460,11 +1503,11 @@ void CBridge_485Dlg::OnTimerStop()
 	KillTimer(20);//定时向手机发送数据
 }
 
-double* CBridge_485Dlg::Send_To_History()
-{
-	Cur_Sensor_Meas_Val[0]=rand()%100 + 0.1;
-	return Cur_Sensor_Meas_Val;
-}
+//DEL double* CBridge_485Dlg::Send_To_History()
+//DEL {
+//DEL 	Cur_Sensor_Meas_Val[0]=rand()%100 + 0.1;
+//DEL 	return Cur_Sensor_Meas_Val;
+//DEL }
 
 void CBridge_485Dlg::OnHistLibBrow() 
 {
@@ -1479,40 +1522,152 @@ void CBridge_485Dlg::OnHistLibBrow()
 void CBridge_485Dlg::OnCurDataBrow() 
 {
 	// TODO: Add your command handler code here
-	Curhdlg = new Brow_Cur_Data;
-	Curhdlg->Create(IDD_CUR_DATA_DIALOG,GetDesktopWindow());
-	Curhdlg->ShowWindow(SW_SHOW);
+	for(int i = 0;;)
+	{
+		if((phdlg[i]!= NULL)&&(IsWindow(phdlg[i]->m_hWnd)))
+		{
+			i++;
+		}
+		else
+		{
+			Brow_Cur_Data_Count = i;
+			break;
+		}
+		if(i == 8)
+		{
+			AfxMessageBox("监测窗口达到8个,请关闭部分");
+			return;
+		}
+		
+	}
+	phdlg[Brow_Cur_Data_Count] = new Brow_Cur_Data;
+	phdlg[Brow_Cur_Data_Count]->Create(IDD_CUR_DATA_DIALOG,this);
+	phdlg[Brow_Cur_Data_Count]->ShowWindow(SW_SHOW);
+	CString str = "";
+	str.Format("%d号实时监测窗口",Brow_Cur_Data_Count+1);
+	phdlg[Brow_Cur_Data_Count]->SetWindowText(str);	
+}
+
+void CBridge_485Dlg::WriteToSQL(CString *pDataStr, int Node, int Ch, sqlite3 *pdb)
+{
+/*	CString m_strFolderPath="DataFolder" ;
+// 判断路径是否存在 
+if (!PathIsDirectory(m_strFolderPath) ) 
+{ 
+CString strMsg; 
+strMsg.Format ("指定路径\"%s\"不存在，是否创建?", m_strFolderPath); 
+if (AfxMessageBox(strMsg, MB_YESNO) == IDYES) 
+{ 
+if (!CreateDirectory(m_strFolderPath, NULL ) ) 
+{ 
+strMsg.Format ("创建路径\"%s\"失败！将存储在根目录下", m_strFolderPath); 
+AfxMessageBox(strMsg);
+} 
+} 
+}
+
+  sqlite3* db;
+  int rc = sqlite3_open(m_strFolderPath + "\\data1.dat",&db);
+  ASSERT(rc == SQLITE_OK);
+  if(rc == SQLITE_OK)
+  {
+		AfxMessageBox("打开成功");
+		
+		  }
+		  else
+		  {	
+		  CString OpenErrorMsg = "";
+		  OpenErrorMsg.Format("数据库打开出错.\n错误原因:%s\n", sqlite3_errmsg(db));
+		  AfxMessageBox(OpenErrorMsg);
+		  return;
+		  }
+		  CString TableName = "";
+		  CString sqlcmd = "";
+		  char* ExeErrorMsg = "";
+		  TableName.Format("Node_%d_Ch_%d",Node,Ch);
+		  sqlcmd = "create table if not exists "+TableName+
+		  "(NUM integer primary key autoincrement, DataTime varchar(50),SensorVal integer(15))";
+		  rc = sqlite3_exec(db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+		  if(rc != SQLITE_OK)
+		  AfxMessageBox(ExeErrorMsg);
+		  CTime time = CTime::GetCurrentTime();
+		  CString Timestr = time.Format("%Y-%m-%d-%H-%M-%S");
+		  double val=_ttol(pDataStr->GetBuffer(0));
+		  sqlcmd.Format("insert into data (DataTime,SensorVal) values ('%s',%d)",Timestr,val);
+		  rc = sqlite3_exec(db, sqlcmd, NULL, NULL, &ExeErrorMsg);
+		  if(rc != SQLITE_OK)
+		  AfxMessageBox(ExeErrorMsg);
+		  
+			//AfxMessageBox("");
+	sqlite3_close(db);*/
 	
 	
 }
 
-void CBridge_485Dlg::OnButton3() 
+void CBridge_485Dlg::OnButtonTest() 
 {
-	if(Curhdlg!=NULL)
-		Curhdlg->PostMessage(WM_RECEIVEMSG,3,rand()%20);
-	// TODO: Add your control notification handler code here
-	
+	CTime m_cur_time=CTime::GetCurrentTime();
+	CString strTime = m_cur_time.Format("%Y-%m-%d %H:%M:%S");
+	CStringArray *Array = new CStringArray;
+	Array->SetSize(8);
+	Array->SetAt(0,strTime);//计入时间
+	CString temp = _T("");
+	temp.Format("1");
+	Array->SetAt(1,temp);//计入节点
+	temp.Format("1");
+	Array->SetAt(2,temp);//计入通道
+	Array->SetAt(3,"Name");//计入感应器名称
+	temp.Format("%4.2f",(rand()%100)/100.0+rand()%5);
+	Array->SetAt(4,temp);//计入灵敏度
+	temp.Format("%d",rand()%20);
+	Array->SetAt(5,temp);//计入数值
+	Array->SetAt(6,"Unit");//计入单位
+	Array->SetAt(7,"Position");//计入位置*/	
+	SendData(Array);
+	delete Array;
+	/*	DataToCurView.Add("123");
+	DataToCurView.Add("abc");
+	for(int i = 0;i<5;i++)
+	{
+	if((phdlg[i]!= NULL)&&(IsWindow(phdlg[i]->m_hWnd)))
+	{
+	phdlg[i]->SendMessage(WM_RECEIVEDATA,i,(LPARAM)(&DataToCurView));
+	}
+	}
+	*/
 }
 
-int CBridge_485Dlg::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+void CBridge_485Dlg::SendData(CStringArray* Array) 
 {
-	if (CDialog::OnCreate(lpCreateStruct) == -1)
-		return -1;
-	
-	// TODO: Add your specialized creation code here
-	
-	return 0;
+	for(int i = 0;i<8;i++)
+	{
+		if((phdlg[i]!= NULL)&&(IsWindow(phdlg[i]->m_hWnd)))
+		{
+			phdlg[i]->SendMessage(WM_RECEIVEDATA,i+1,(LPARAM)(Array));
+		}
+	}	
 }
 
-void CBridge_485Dlg::OnCancelMode() 
-{
-	CDialog::OnCancelMode();
-	
-	// TODO: Add your message handler code here
-	
-}
 
-void CBridge_485Dlg::SendPack()
+void CBridge_485Dlg::UpdateSensorInitVal(int step)
 {
-
+	sqlite3 *db=NULL;
+	CString FileName = "userdata.dat";
+	//CString FilePathName = "";
+	CString sqlcmd = "";
+    int rc;
+	char pBuf[MAX_PATH];                //存放路径的变量
+	GetCurrentDirectory(MAX_PATH,pBuf);                   //获取程序的当前目录
+	FileName.Format("%s\\DataFolder\\userdata.dat",pBuf);
+	sprintf(pBuf,"%s",FileName);
+	FileName = GB2312ToUTF8(pBuf);
+    rc = sqlite3_open(FileName, &db);
+	char* ExeErrorMsg = "";
+	Update_SensorSelCount_init = 0;
+	Update_Step_init=step;
+	//memset(Update_SensorName_init,0,sizeof(Update_SensorName_init)/sizeof(Update_SensorName_init[0][0]));
+	//memset(Update_SensorVal_init,0,sizeof(Update_SensorVal_init)/sizeof(Update_SensorVal_init[0][0]));
+	memset(Update_SensorUnit_init,0,sizeof(Update_SensorUnit_init)/sizeof(Update_SensorUnit_init[0][0]));
+	sqlite3_exec(db,"select * from init_val",update_sensor_init_callback,NULL,&ExeErrorMsg);//callback1为回调函数
+	sqlite3_close(db); 
 }
